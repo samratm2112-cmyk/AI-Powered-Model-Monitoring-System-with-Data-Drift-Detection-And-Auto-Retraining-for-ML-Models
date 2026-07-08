@@ -1,0 +1,151 @@
+[2026-04-21 15:37:54] [INFO] [INITIALIZATION] Starting ML Drift Detection System
+[2026-04-21 15:38:31] [INFO] [INITIALIZATION] Starting ML Drift Detection System
+[2026-04-21 15:38:48] [INFO] [INITIALIZATION] ✅ Initial model trained on 20000 samples
+[2026-04-21 15:38:49] [INFO] [BASELINE] Evaluation completed:
+[2026-04-21 15:38:49] [INFO] [BASELINE] accuracy: 0.9993
+[2026-04-21 15:38:49] [INFO] [BASELINE] precision: 0.9992
+[2026-04-21 15:38:49] [INFO] [BASELINE] recall: 0.9993
+[2026-04-21 15:38:49] [INFO] [BASELINE] f1: 0.9992
+[2026-04-21 15:38:49] [INFO] [DECISION] Drift detected: True
+[2026-04-21 15:38:49] [INFO] [DECISION] Accuracy degraded: False (0.9993 vs threshold 0.8000)
+[2026-04-21 15:38:49] [INFO] [DECISION] Retrain decision: True
+[2026-04-21 15:38:49] [WARNING] [DECISION] 🚨 ALERT: Drift detected - triggering retraining
+[2026-04-21 15:38:49] [INFO] [RETRAINING] 🔄 Starting retraining process
+[2026-04-21 15:38:49] [INFO] [RETRAINING] Combined dataset: 30000 samples (Old: 20000, New: 10000)
+[2026-04-21 15:38:49] [INFO] [RETRAINING] Starting retraining with 30000 samples
+[2026-04-21 15:39:12] [INFO] [RETRAINING] ✅ Model retraining completed successfully
+[2026-04-21 15:39:12] [INFO] [POST_RETRAINING] Evaluation completed:
+[2026-04-21 15:39:12] [INFO] [POST_RETRAINING] accuracy: 1.0000
+[2026-04-21 15:39:12] [INFO] [POST_RETRAINING] precision: 1.0000
+[2026-04-21 15:39:12] [INFO] [POST_RETRAINING] recall: 1.0000
+[2026-04-21 15:39:12] [INFO] [POST_RETRAINING] f1: 1.0000
+[2026-04-21 15:39:12] [INFO] [COMPARISON] Before accuracy: 0.9993
+[2026-04-21 15:39:12] [INFO] [COMPARISON] After accuracy: 1.0000
+[2026-04-21 15:39:12] [INFO] [COMPARISON] Improvement: +0.07%
+[2026-04-21 15:39:12] [SUCCESS] [COMPARISON] ✅ MODEL IMPROVED! Retraining was successful!
+[2026-04-21 15:39:12] [INFO] [CLASSIFICATION] Classification report generated (see output above)
+[2026-04-21 15:39:12] [INFO] [STATUS] System Status: 🟢 EXCELLENT
+[2026-04-21 15:39:12] [INFO] [RECOMMENDATION] ✅ Model ready for production deployment
+[2026-04-21 15:39:12] [INFO] [LOGGING] ✅ Decision log saved to decision_log.json
+[2026-04-21 15:39:12] [INFO] [COMPLETE] ✅ Decision Engine Execution Complete!
+[2026-04-21 15:39:12] [INFO] [COMPLETE] 📊 All events logged to retraining_log.txt
+[2026-05-09 17:55:38] [INFO] [INITIALIZATION] Starting ML Drift Detection System
+[2026-05-09 17:55:56] [INFO] [INITIALIZATION] ✅ Initial model trained on 20000 samples
+[2026-05-09 17:55:56] [INFO] [BASELINE] Evaluation completed:
+[2026-05-09 17:55:56] [INFO] [BASELINE] accuracy: 0.9993
+[2026-05-09 17:55:56] [INFO] [BASELINE] precision: 0.9992
+[2026-05-09 17:55:56] [INFO] [BASELINE] recall: 0.9993
+[2026-05-09 17:55:56] [INFO] [BASELINE] f1: 0.9992
+[2026-05-09 17:55:56] [INFO] [DECISION] Drift detected: True
+[2026-05-09 17:55:56] [INFO] [DECISION] Accuracy degraded: False (0.9993 vs threshold 0.8000)
+[2026-05-09 17:55:56] [INFO] [DECISION] Retrain decision: True
+[2026-05-09 17:55:56] [WARNING] [DECISION] 🚨 ALERT: Drift detected - triggering retraining
+[2026-05-09 17:55:56] [INFO] [RETRAINING] 🔄 Starting retraining process
+[2026-05-09 17:55:56] [INFO] [RETRAINING] Combined dataset: 30000 samples (Old: 20000, New: 10000)
+[2026-05-09 17:55:56] [INFO] [RETRAINING] Starting retraining with 30000 samples
+[2026-05-09 17:56:19] [INFO] [RETRAINING] ✅ Model retraining completed successfully
+[2026-05-09 17:56:19] [INFO] [POST_RETRAINING] Evaluation completed:
+[2026-05-09 17:56:19] [INFO] [POST_RETRAINING] accuracy: 1.0000
+[2026-05-09 17:56:19] [INFO] [POST_RETRAINING] precision: 1.0000
+[2026-05-09 17:56:19] [INFO] [POST_RETRAINING] recall: 1.0000
+[2026-05-09 17:56:19] [INFO] [POST_RETRAINING] f1: 1.0000
+[2026-05-09 17:56:19] [INFO] [COMPARISON] Before accuracy: 0.9993
+[2026-05-09 17:56:19] [INFO] [COMPARISON] After accuracy: 1.0000
+[2026-05-09 17:56:19] [INFO] [COMPARISON] Improvement: +0.07%
+[2026-05-09 17:56:19] [SUCCESS] [COMPARISON] ✅ MODEL IMPROVED! Retraining was successful!
+[2026-05-09 17:56:20] [INFO] [CLASSIFICATION] Classification report generated (see output above)
+[2026-05-09 17:56:20] [INFO] [STATUS] System Status: 🟢 EXCELLENT
+[2026-05-09 17:56:20] [INFO] [RECOMMENDATION] ✅ Model ready for production deployment
+[2026-05-09 17:56:20] [INFO] [LOGGING] ✅ Decision log saved to decision_log.json
+[2026-05-09 17:56:20] [INFO] [COMPLETE] ✅ Decision Engine Execution Complete!
+[2026-05-09 17:56:20] [INFO] [COMPLETE] 📊 All events logged to retraining_log.txt
+[2026-05-09 17:56:20] [INFO] [INITIALIZATION] Starting ML Drift Detection System
+[2026-05-09 17:56:24] [INFO] [DATA_LOADING] Data loaded: 284807 samples, 30 features
+[2026-05-09 17:56:24] [INFO] [PREPROCESSING] Data preprocessing completed
+[2026-05-09 18:01:28] [INFO] [INITIALIZATION] Starting ML Drift Detection System
+[2026-05-09 18:01:47] [INFO] [INITIALIZATION] ✅ Initial model trained on 20000 samples
+[2026-05-09 18:01:47] [INFO] [BASELINE] Evaluation completed:
+[2026-05-09 18:01:47] [INFO] [BASELINE] accuracy: 0.9993
+[2026-05-09 18:01:47] [INFO] [BASELINE] precision: 0.9992
+[2026-05-09 18:01:47] [INFO] [BASELINE] recall: 0.9993
+[2026-05-09 18:01:47] [INFO] [BASELINE] f1: 0.9992
+[2026-05-09 18:01:47] [INFO] [DECISION] Drift detected: True
+[2026-05-09 18:01:47] [INFO] [DECISION] Accuracy degraded: False (0.9993 vs threshold 0.8000)
+[2026-05-09 18:01:47] [INFO] [DECISION] Retrain decision: True
+[2026-05-09 18:01:47] [WARNING] [DECISION] 🚨 ALERT: Drift detected - triggering retraining
+[2026-05-09 18:01:47] [INFO] [RETRAINING] 🔄 Starting retraining process
+[2026-05-09 18:01:47] [INFO] [RETRAINING] Combined dataset: 30000 samples (Old: 20000, New: 10000)
+[2026-05-09 18:01:47] [INFO] [RETRAINING] Starting retraining with 30000 samples
+[2026-05-09 18:02:11] [INFO] [RETRAINING] ✅ Model retraining completed successfully
+[2026-05-09 18:02:12] [INFO] [POST_RETRAINING] Evaluation completed:
+[2026-05-09 18:02:12] [INFO] [POST_RETRAINING] accuracy: 1.0000
+[2026-05-09 18:02:12] [INFO] [POST_RETRAINING] precision: 1.0000
+[2026-05-09 18:02:12] [INFO] [POST_RETRAINING] recall: 1.0000
+[2026-05-09 18:02:12] [INFO] [POST_RETRAINING] f1: 1.0000
+[2026-05-09 18:02:12] [INFO] [COMPARISON] Before accuracy: 0.9993
+[2026-05-09 18:02:12] [INFO] [COMPARISON] After accuracy: 1.0000
+[2026-05-09 18:02:12] [INFO] [COMPARISON] Improvement: +0.07%
+[2026-05-09 18:02:12] [SUCCESS] [COMPARISON] ✅ MODEL IMPROVED! Retraining was successful!
+[2026-05-09 18:02:12] [INFO] [CLASSIFICATION] Classification report generated (see output above)
+[2026-05-09 18:02:12] [INFO] [STATUS] System Status: 🟢 EXCELLENT
+[2026-05-09 18:02:12] [INFO] [RECOMMENDATION] ✅ Model ready for production deployment
+[2026-05-09 18:02:12] [INFO] [LOGGING] ✅ Decision log saved to decision_log.json
+[2026-05-09 18:02:12] [INFO] [COMPLETE] ✅ Decision Engine Execution Complete!
+[2026-05-09 18:02:12] [INFO] [COMPLETE] 📊 All events logged to retraining_log.txt
+[2026-05-09 18:02:12] [INFO] [INITIALIZATION] Starting ML Drift Detection System
+[2026-05-09 18:02:16] [INFO] [DATA_LOADING] Data loaded: 284807 samples, 30 features
+[2026-05-09 18:02:17] [INFO] [PREPROCESSING] Data preprocessing completed
+[2026-05-09 18:05:29] [INFO] [MODEL_TRAINING] Model training completed
+[2026-05-09 18:05:30] [INFO] [BASELINE] Evaluation completed:
+[2026-05-09 18:05:30] [INFO] [BASELINE] accuracy: 0.9996
+[2026-05-09 18:05:30] [INFO] [BASELINE] precision: 0.9996
+[2026-05-09 18:05:30] [INFO] [BASELINE] recall: 0.9996
+[2026-05-09 18:05:30] [INFO] [BASELINE] f1: 0.9996
+[2026-05-09 18:05:30] [INFO] [DRIFT_SIMULATION] Drift simulation completed
+[2026-05-09 18:05:31] [WARNING] [DRIFT_DETECTION] Drift detected in 4 features
+[2026-05-09 18:05:31] [INFO] [ROOT_CAUSE] Feature importance analysis completed
+[2026-05-09 18:05:32] [INFO] [DRIFTED_DATA] Evaluation completed:
+[2026-05-09 18:05:32] [INFO] [DRIFTED_DATA] accuracy: 0.9995
+[2026-05-09 18:05:32] [INFO] [DRIFTED_DATA] precision: 0.9995
+[2026-05-09 18:05:32] [INFO] [DRIFTED_DATA] recall: 0.9995
+[2026-05-09 18:05:32] [INFO] [DRIFTED_DATA] f1: 0.9995
+[2026-05-09 18:05:32] [INFO] [DECISION] Drift detected: True
+[2026-05-09 18:05:32] [INFO] [DECISION] Accuracy degraded: False (0.9996 vs threshold 0.8000)
+[2026-05-09 18:05:32] [INFO] [DECISION] Retrain decision: True
+[2026-05-09 18:05:32] [WARNING] [DECISION] Retraining decision: YES - drift detected and accuracy degraded
+[2026-05-09 18:05:32] [INFO] [RETRAINING] Starting retraining with 284807 samples
+[2026-05-09 18:11:47] [INFO] [MODEL_TRAINING] Model training completed
+[2026-05-09 18:11:48] [INFO] [BASELINE] Evaluation completed:
+[2026-05-09 18:11:48] [INFO] [BASELINE] accuracy: 0.9996
+[2026-05-09 18:11:48] [INFO] [BASELINE] precision: 0.9996
+[2026-05-09 18:11:48] [INFO] [BASELINE] recall: 0.9996
+[2026-05-09 18:11:48] [INFO] [BASELINE] f1: 0.9996
+[2026-05-09 18:11:48] [INFO] [DRIFT_SIMULATION] Drift simulation completed
+[2026-05-09 18:11:49] [WARNING] [DRIFT_DETECTION] Drift detected in 4 features
+[2026-05-09 18:11:49] [INFO] [ROOT_CAUSE] Feature importance analysis completed
+[2026-05-09 18:11:50] [INFO] [DRIFTED_DATA] Evaluation completed:
+[2026-05-09 18:11:50] [INFO] [DRIFTED_DATA] accuracy: 0.9995
+[2026-05-09 18:11:50] [INFO] [DRIFTED_DATA] precision: 0.9995
+[2026-05-09 18:11:50] [INFO] [DRIFTED_DATA] recall: 0.9995
+[2026-05-09 18:11:50] [INFO] [DRIFTED_DATA] f1: 0.9995
+[2026-05-09 18:11:50] [INFO] [DECISION] Drift detected: True
+[2026-05-09 18:11:50] [INFO] [DECISION] Accuracy degraded: False (0.9996 vs threshold 0.8000)
+[2026-05-09 18:11:50] [INFO] [DECISION] Retrain decision: True
+[2026-05-09 18:11:50] [WARNING] [DECISION] Retraining decision: YES - drift detected and accuracy degraded
+[2026-05-09 18:11:50] [INFO] [RETRAINING] Starting retraining with 284807 samples
+[2026-05-09 18:18:21] [INFO] [RETRAINING] ✅ Model retraining completed successfully
+[2026-05-09 18:18:22] [INFO] [POST_RETRAIN] Evaluation completed:
+[2026-05-09 18:18:22] [INFO] [POST_RETRAIN] accuracy: 1.0000
+[2026-05-09 18:18:22] [INFO] [POST_RETRAIN] precision: 1.0000
+[2026-05-09 18:18:22] [INFO] [POST_RETRAIN] recall: 1.0000
+[2026-05-09 18:18:22] [INFO] [POST_RETRAIN] f1: 1.0000
+[2026-05-09 18:18:22] [SUCCESS] [IMPROVEMENT] Model improvement: +0.05%
+[2026-05-09 18:18:22] [SUCCESS] [EXECUTION] ML Drift Detection System execution completed successfully
+[2026-05-09 18:24:58] [INFO] [RETRAINING] ✅ Model retraining completed successfully
+[2026-05-09 18:24:59] [INFO] [POST_RETRAIN] Evaluation completed:
+[2026-05-09 18:24:59] [INFO] [POST_RETRAIN] accuracy: 1.0000
+[2026-05-09 18:24:59] [INFO] [POST_RETRAIN] precision: 1.0000
+[2026-05-09 18:24:59] [INFO] [POST_RETRAIN] recall: 1.0000
+[2026-05-09 18:24:59] [INFO] [POST_RETRAIN] f1: 1.0000
+[2026-05-09 18:24:59] [SUCCESS] [IMPROVEMENT] Model improvement: +0.05%
+[2026-05-09 18:24:59] [SUCCESS] [EXECUTION] ML Drift Detection System execution completed successfully
