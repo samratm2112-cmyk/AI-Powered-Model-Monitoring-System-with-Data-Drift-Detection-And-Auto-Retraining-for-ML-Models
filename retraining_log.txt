@@ -149,3 +149,186 @@
 [2026-05-09 18:24:59] [INFO] [POST_RETRAIN] f1: 1.0000
 [2026-05-09 18:24:59] [SUCCESS] [IMPROVEMENT] Model improvement: +0.05%
 [2026-05-09 18:24:59] [SUCCESS] [EXECUTION] ML Drift Detection System execution completed successfully
+[2026-07-24 14:38:06] [INFO] [INITIALIZATION] Starting ML Drift Detection System (Hybrid Ensemble)
+[2026-07-24 14:38:35] [INFO] [INITIALIZATION] Starting ML Drift Detection System (Hybrid Ensemble)
+[2026-07-24 14:38:35] [INFO] [DATA_LOADING] Data loaded: 30000 samples, 30 features
+[2026-07-24 14:38:35] [INFO] [PREPROCESSING] Data preprocessing completed
+[2026-07-24 14:38:38] [INFO] [MODEL_TRAINING] Global model training completed
+[2026-07-24 14:38:38] [INFO] [BASELINE] Evaluation completed:
+[2026-07-24 14:38:38] [INFO] [BASELINE] accuracy: 0.9995
+[2026-07-24 14:38:38] [INFO] [BASELINE] precision: 0.9995
+[2026-07-24 14:38:38] [INFO] [BASELINE] recall: 0.9995
+[2026-07-24 14:38:38] [INFO] [BASELINE] f1: 0.9995
+[2026-07-24 14:38:38] [INFO] [DRIFT_SIMULATION] Drift simulation completed
+[2026-07-24 14:38:38] [WARNING] [DRIFT_DETECTION] Drift detected in 4 features
+[2026-07-24 14:38:38] [INFO] [ROOT_CAUSE] Feature importance analysis completed
+[2026-07-24 14:38:38] [INFO] [DRIFTED_DATA_GLOBAL] Evaluation completed:
+[2026-07-24 14:38:38] [INFO] [DRIFTED_DATA_GLOBAL] accuracy: 0.9970
+[2026-07-24 14:38:38] [INFO] [DRIFTED_DATA_GLOBAL] precision: 0.9986
+[2026-07-24 14:38:38] [INFO] [DRIFTED_DATA_GLOBAL] recall: 0.9970
+[2026-07-24 14:38:38] [INFO] [DRIFTED_DATA_GLOBAL] f1: 0.9976
+[2026-07-24 14:38:38] [INFO] [DECISION] Drift detected: True
+[2026-07-24 14:38:38] [INFO] [DECISION] Accuracy degraded: False (0.9995 vs threshold 0.8000)
+[2026-07-24 14:38:38] [INFO] [DECISION] Retrain decision: True
+[2026-07-24 14:38:38] [WARNING] [DECISION] Retraining decision: YES - trigger fast Local Expert training
+[2026-07-24 14:38:38] [INFO] [RETRAINING] Starting retraining/updating with 6000 samples
+[2026-07-24 14:38:38] [INFO] [RETRAINING] ✅ Local Expert retrained successfully (Buffer: 5000 samples)
+[2026-07-24 14:38:38] [INFO] [POST_ENSEMBLE_ADAPTATION] Evaluation completed:
+[2026-07-24 14:38:38] [INFO] [POST_ENSEMBLE_ADAPTATION] accuracy: 0.9995
+[2026-07-24 14:38:38] [INFO] [POST_ENSEMBLE_ADAPTATION] precision: 0.9995
+[2026-07-24 14:38:38] [INFO] [POST_ENSEMBLE_ADAPTATION] recall: 0.9995
+[2026-07-24 14:38:38] [INFO] [POST_ENSEMBLE_ADAPTATION] f1: 0.9995
+[2026-07-24 14:38:38] [SUCCESS] [IMPROVEMENT] Ensemble improvement: +0.25%
+[2026-07-24 14:38:38] [SUCCESS] [EXECUTION] ML Drift Detection System execution completed successfully
+[2026-07-24 14:38:44] [INFO] [INITIALIZATION] Starting ML Drift Detection System with Global-Local Ensemble
+[2026-07-24 14:38:46] [INFO] [INITIALIZATION] ✅ Initial Global Model trained on 20000 samples
+[2026-07-24 14:38:46] [INFO] [BASELINE_GLOBAL] Evaluation completed:
+[2026-07-24 14:38:46] [INFO] [BASELINE_GLOBAL] accuracy: 0.9955
+[2026-07-24 14:38:46] [INFO] [BASELINE_GLOBAL] precision: 0.9985
+[2026-07-24 14:38:46] [INFO] [BASELINE_GLOBAL] recall: 0.9955
+[2026-07-24 14:38:46] [INFO] [BASELINE_GLOBAL] f1: 0.9967
+[2026-07-24 14:38:46] [INFO] [DECISION] Drift detected: True
+[2026-07-24 14:38:46] [INFO] [DECISION] Accuracy degraded: False (0.9955 vs threshold 0.8000)
+[2026-07-24 14:38:46] [INFO] [DECISION] Retrain decision: True
+[2026-07-24 14:38:46] [INFO] [RETRAINING] 🔄 Retraining Local Expert on drifted data stream
+[2026-07-24 14:38:46] [INFO] [RETRAINING] Starting retraining/updating with 10000 samples
+[2026-07-24 14:38:47] [INFO] [RETRAINING] ✅ Local Expert retrained successfully (Buffer: 5000 samples)
+[2026-07-24 14:38:47] [INFO] [POST_ENSEMBLE_ADAPTATION] Evaluation completed:
+[2026-07-24 14:38:47] [INFO] [POST_ENSEMBLE_ADAPTATION] accuracy: 0.9995
+[2026-07-24 14:38:47] [INFO] [POST_ENSEMBLE_ADAPTATION] precision: 0.9995
+[2026-07-24 14:38:47] [INFO] [POST_ENSEMBLE_ADAPTATION] recall: 0.9995
+[2026-07-24 14:38:47] [INFO] [POST_ENSEMBLE_ADAPTATION] f1: 0.9995
+[2026-07-24 14:38:47] [INFO] [LOGGING] ✅ Decision log saved to decision_log.json
+[2026-07-24 14:45:40] [INFO] [INITIALIZATION] Starting ML Drift System (Multi-Pattern Fraud & Hybrid Ensemble)
+[2026-07-24 14:45:40] [INFO] [DATA_LOADING] Data loaded: 30000 samples, 30 features, 600 fraud events
+[2026-07-24 14:45:40] [INFO] [PREPROCESSING] Data preprocessing completed
+[2026-07-24 14:45:45] [INFO] [MODEL_TRAINING] Global model training completed on historical fraud types
+[2026-07-24 14:45:45] [INFO] [BASELINE] Evaluation completed:
+[2026-07-24 14:45:45] [INFO] [BASELINE] accuracy: 0.9990
+[2026-07-24 14:45:45] [INFO] [BASELINE] precision: 0.9990
+[2026-07-24 14:45:45] [INFO] [BASELINE] recall: 0.9990
+[2026-07-24 14:45:45] [INFO] [BASELINE] f1: 0.9990
+[2026-07-24 14:45:45] [INFO] [DRIFT_SIMULATION] Drift & novel fraud simulation completed
+[2026-07-24 14:45:45] [WARNING] [DRIFT_DETECTION] Drift detected in 4 features
+[2026-07-24 14:45:45] [INFO] [ROOT_CAUSE] Feature importance analysis completed
+[2026-07-24 14:45:45] [INFO] [DRIFTED_DATA_GLOBAL] Evaluation completed:
+[2026-07-24 14:45:45] [INFO] [DRIFTED_DATA_GLOBAL] accuracy: 0.9860
+[2026-07-24 14:45:45] [INFO] [DRIFTED_DATA_GLOBAL] precision: 0.9918
+[2026-07-24 14:45:45] [INFO] [DRIFTED_DATA_GLOBAL] recall: 0.9860
+[2026-07-24 14:45:45] [INFO] [DRIFTED_DATA_GLOBAL] f1: 0.9878
+[2026-07-24 14:45:45] [INFO] [DECISION] Drift detected: True
+[2026-07-24 14:45:45] [INFO] [DECISION] Accuracy degraded: True (0.9860 vs threshold 0.9900)
+[2026-07-24 14:45:45] [INFO] [DECISION] Retrain decision: True
+[2026-07-24 14:45:45] [WARNING] [DECISION] Retraining decision: YES - trigger fast Local Expert training
+[2026-07-24 14:45:45] [INFO] [RETRAINING] Starting retraining/updating with 6000 samples
+[2026-07-24 14:45:46] [INFO] [RETRAINING] ✅ Local Expert retrained successfully (Buffer: 5000 samples)
+[2026-07-24 14:45:46] [INFO] [POST_ENSEMBLE_ADAPTATION] Evaluation completed:
+[2026-07-24 14:45:46] [INFO] [POST_ENSEMBLE_ADAPTATION] accuracy: 0.9942
+[2026-07-24 14:45:46] [INFO] [POST_ENSEMBLE_ADAPTATION] precision: 0.9955
+[2026-07-24 14:45:46] [INFO] [POST_ENSEMBLE_ADAPTATION] recall: 0.9942
+[2026-07-24 14:45:46] [INFO] [POST_ENSEMBLE_ADAPTATION] f1: 0.9945
+[2026-07-24 14:45:46] [SUCCESS] [IMPROVEMENT] Ensemble improvement: +0.82%
+[2026-07-24 14:45:46] [SUCCESS] [EXECUTION] ML Drift Detection System execution completed successfully
+[2026-07-24 16:19:22] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-07-24 16:19:27] [INFO] [INITIALIZATION] Global baseline model training completed successfully
+[2026-07-24 16:19:27] [WARNING] [DECISION] Batch 1: Retraining required -> Statistical drift in 4 features
+[2026-07-24 16:19:27] [SUCCESS] [RETRAINING] Batch 1: Local Model updated (Buffer: 1000)
+[2026-07-24 16:19:27] [WARNING] [DECISION] Batch 2: Retraining required -> Statistical drift in 8 features
+[2026-07-24 16:19:27] [SUCCESS] [RETRAINING] Batch 2: Local Model updated (Buffer: 2000)
+[2026-07-24 16:19:27] [WARNING] [DECISION] Batch 3: Retraining required -> Statistical drift in 6 features
+[2026-07-24 16:19:27] [SUCCESS] [RETRAINING] Batch 3: Local Model updated (Buffer: 3000)
+[2026-07-24 16:19:27] [WARNING] [DECISION] Batch 4: Retraining required -> Statistical drift in 7 features
+[2026-07-24 16:19:28] [SUCCESS] [RETRAINING] Batch 4: Local Model updated (Buffer: 4000)
+[2026-07-24 16:19:28] [WARNING] [DECISION] Batch 5: Retraining required -> Statistical drift in 9 features
+[2026-07-24 16:19:28] [SUCCESS] [RETRAINING] Batch 5: Local Model updated (Buffer: 5000)
+[2026-07-24 16:19:28] [WARNING] [DECISION] Batch 6: Retraining required -> Statistical drift in 6 features
+[2026-07-24 16:19:29] [SUCCESS] [RETRAINING] Batch 6: Local Model updated (Buffer: 5000)
+[2026-07-24 16:19:29] [WARNING] [DECISION] Batch 7: Retraining required -> Statistical drift in 5 features
+[2026-07-24 16:19:29] [SUCCESS] [RETRAINING] Batch 7: Local Model updated (Buffer: 5000)
+[2026-07-24 16:19:29] [WARNING] [DECISION] Batch 8: Retraining required -> Statistical drift in 6 features
+[2026-07-24 16:19:29] [SUCCESS] [RETRAINING] Batch 8: Local Model updated (Buffer: 5000)
+[2026-07-24 16:19:29] [WARNING] [DECISION] Batch 9: Retraining required -> Statistical drift in 5 features
+[2026-07-24 16:19:30] [SUCCESS] [RETRAINING] Batch 9: Local Model updated (Buffer: 5000)
+[2026-07-24 16:19:30] [WARNING] [DECISION] Batch 10: Retraining required -> Statistical drift in 7 features
+[2026-07-24 16:19:30] [SUCCESS] [RETRAINING] Batch 10: Local Model updated (Buffer: 5000)
+[2026-07-24 16:19:30] [SUCCESS] [PIPELINE] Continuous ML Monitoring Pipeline execution completed successfully
+[2026-07-24 16:28:49] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-07-24 16:28:54] [INFO] [INITIALIZATION] Global baseline model training completed successfully
+[2026-07-24 16:28:54] [WARNING] [DECISION] Batch 1: Retraining required -> Statistical drift in 3 features
+[2026-07-24 16:28:54] [SUCCESS] [RETRAINING] Batch 1: Local Model updated (Buffer: 1000)
+[2026-07-24 16:28:54] [WARNING] [DECISION] Batch 2: Retraining required -> Statistical drift in 7 features
+[2026-07-24 16:28:54] [SUCCESS] [RETRAINING] Batch 2: Local Model updated (Buffer: 2000)
+[2026-07-24 16:28:54] [WARNING] [DECISION] Batch 3: Retraining required -> Statistical drift in 5 features
+[2026-07-24 16:28:55] [SUCCESS] [RETRAINING] Batch 3: Local Model updated (Buffer: 3000)
+[2026-07-24 16:28:55] [WARNING] [DECISION] Batch 4: Retraining required -> Statistical drift in 6 features
+[2026-07-24 16:28:55] [SUCCESS] [RETRAINING] Batch 4: Local Model updated (Buffer: 4000)
+[2026-07-24 16:28:55] [WARNING] [DECISION] Batch 5: Retraining required -> Statistical drift in 8 features
+[2026-07-24 16:28:56] [SUCCESS] [RETRAINING] Batch 5: Local Model updated (Buffer: 5000)
+[2026-07-24 16:28:56] [WARNING] [DECISION] Batch 6: Retraining required -> Statistical drift in 5 features
+[2026-07-24 16:28:56] [SUCCESS] [RETRAINING] Batch 6: Local Model updated (Buffer: 5000)
+[2026-07-24 16:28:56] [WARNING] [DECISION] Batch 7: Retraining required -> Statistical drift in 4 features
+[2026-07-24 16:28:56] [SUCCESS] [RETRAINING] Batch 7: Local Model updated (Buffer: 5000)
+[2026-07-24 16:28:56] [WARNING] [DECISION] Batch 8: Retraining required -> Statistical drift in 5 features
+[2026-07-24 16:28:56] [SUCCESS] [RETRAINING] Batch 8: Local Model updated (Buffer: 5000)
+[2026-07-24 16:28:56] [WARNING] [DECISION] Batch 9: Retraining required -> Statistical drift in 4 features
+[2026-07-24 16:28:57] [SUCCESS] [RETRAINING] Batch 9: Local Model updated (Buffer: 5000)
+[2026-07-24 16:28:57] [WARNING] [DECISION] Batch 10: Retraining required -> Statistical drift in 6 features
+[2026-07-24 16:28:57] [SUCCESS] [RETRAINING] Batch 10: Local Model updated (Buffer: 5000)
+[2026-07-24 16:28:57] [SUCCESS] [PIPELINE] Continuous ML Monitoring Pipeline execution completed successfully
+[2026-07-24 16:30:59] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-07-24 16:31:04] [INFO] [INITIALIZATION] Global baseline model training completed successfully
+[2026-07-24 16:31:04] [WARNING] [DECISION] Batch 1: Retraining required -> Statistical drift in 3 features
+[2026-07-24 16:31:04] [SUCCESS] [RETRAINING] Batch 1: Local Model updated (Buffer: 1000)
+[2026-07-24 16:31:04] [WARNING] [DECISION] Batch 2: Retraining required -> Statistical drift in 2 features
+[2026-07-24 16:31:04] [SUCCESS] [RETRAINING] Batch 2: Local Model updated (Buffer: 2000)
+[2026-07-24 16:31:04] [WARNING] [DECISION] Batch 3: Retraining required -> Statistical drift in 1 features
+[2026-07-24 16:31:04] [SUCCESS] [RETRAINING] Batch 3: Local Model updated (Buffer: 3000)
+[2026-07-24 16:31:04] [WARNING] [DECISION] Batch 4: Retraining required -> Statistical drift in 3 features
+[2026-07-24 16:31:05] [SUCCESS] [RETRAINING] Batch 4: Local Model updated (Buffer: 4000)
+[2026-07-24 16:31:05] [WARNING] [DECISION] Batch 5: Retraining required -> Statistical drift in 3 features
+[2026-07-24 16:31:06] [SUCCESS] [RETRAINING] Batch 5: Local Model updated (Buffer: 5000)
+[2026-07-24 16:31:06] [WARNING] [DECISION] Batch 6: Retraining required -> Statistical drift in 4 features
+[2026-07-24 16:31:06] [SUCCESS] [RETRAINING] Batch 6: Local Model updated (Buffer: 5000)
+[2026-07-24 16:31:06] [WARNING] [DECISION] Batch 7: Retraining required -> Statistical drift in 1 features
+[2026-07-24 16:31:07] [SUCCESS] [RETRAINING] Batch 7: Local Model updated (Buffer: 5000)
+[2026-07-24 16:31:07] [WARNING] [DECISION] Batch 8: Retraining required -> Statistical drift in 1 features
+[2026-07-24 16:31:08] [SUCCESS] [RETRAINING] Batch 8: Local Model updated (Buffer: 5000)
+[2026-07-24 16:31:08] [WARNING] [DECISION] Batch 10: Retraining required -> Statistical drift in 6 features, Accuracy (0.9890) dropped below threshold (0.9900)
+[2026-07-24 16:31:08] [SUCCESS] [RETRAINING] Batch 10: Local Model updated (Buffer: 5000)
+[2026-07-24 16:31:08] [SUCCESS] [PIPELINE] Continuous ML Monitoring Pipeline execution completed successfully
+[2026-07-24 16:33:19] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-07-24 16:33:24] [INFO] [INITIALIZATION] Global baseline model training completed successfully
+[2026-07-24 16:33:24] [WARNING] [DECISION] Batch 1 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3)
+[2026-07-24 16:33:24] [SUCCESS] [RETRAINING] Batch 1: Local Model updated (Buffer: 1000)
+[2026-07-24 16:33:24] [INFO] [DECISION] Batch 2 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (0.9990) stable
+[2026-07-24 16:33:24] [INFO] [DECISION] Batch 3 [YELLOW]: Warning logged -> Minor variation in 1 features (< threshold 3) - Accuracy (1.0000) stable
+[2026-07-24 16:33:24] [WARNING] [DECISION] Batch 4 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3)
+[2026-07-24 16:33:24] [SUCCESS] [RETRAINING] Batch 4: Local Model updated (Buffer: 2000)
+[2026-07-24 16:33:24] [WARNING] [DECISION] Batch 5 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3)
+[2026-07-24 16:33:24] [SUCCESS] [RETRAINING] Batch 5: Local Model updated (Buffer: 3000)
+[2026-07-24 16:33:25] [WARNING] [DECISION] Batch 6 [RED]: Retraining triggered -> Significant drift in 4 features (>= threshold 3)
+[2026-07-24 16:33:25] [SUCCESS] [RETRAINING] Batch 6: Local Model updated (Buffer: 4000)
+[2026-07-24 16:33:25] [INFO] [DECISION] Batch 7 [YELLOW]: Warning logged -> Minor variation in 1 features (< threshold 3) - Accuracy (0.9990) stable
+[2026-07-24 16:33:25] [INFO] [DECISION] Batch 8 [YELLOW]: Warning logged -> Minor variation in 1 features (< threshold 3) - Accuracy (0.9990) stable
+[2026-07-24 16:33:25] [INFO] [DECISION] Batch 9 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-07-24 16:33:25] [WARNING] [DECISION] Batch 10 [RED]: Retraining triggered -> Significant drift in 6 features (>= threshold 3)
+[2026-07-24 16:33:26] [SUCCESS] [RETRAINING] Batch 10: Local Model updated (Buffer: 5000)
+[2026-07-24 16:33:26] [SUCCESS] [PIPELINE] Pipeline finished: GREEN=1, YELLOW=4, RED=5
+[2026-07-24 16:44:06] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-07-24 16:44:10] [INFO] [INITIALIZATION] Global baseline model training completed successfully
+[2026-07-24 16:44:10] [WARNING] [DECISION] Batch 1 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3)
+[2026-07-24 16:44:10] [SUCCESS] [RETRAINING] Batch 1: Local Model updated (Buffer: 1000)
+[2026-07-24 16:44:10] [INFO] [DECISION] Batch 2 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (0.9990) stable
+[2026-07-24 16:44:10] [INFO] [DECISION] Batch 3 [YELLOW]: Warning logged -> Minor variation in 1 features (< threshold 3) - Accuracy (1.0000) stable
+[2026-07-24 16:44:10] [WARNING] [DECISION] Batch 4 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3)
+[2026-07-24 16:44:11] [SUCCESS] [RETRAINING] Batch 4: Local Model updated (Buffer: 2000)
+[2026-07-24 16:44:11] [WARNING] [DECISION] Batch 5 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3)
+[2026-07-24 16:44:11] [SUCCESS] [RETRAINING] Batch 5: Local Model updated (Buffer: 3000)
+[2026-07-24 16:44:11] [WARNING] [DECISION] Batch 6 [RED]: Retraining triggered -> Significant drift in 4 features (>= threshold 3)
+[2026-07-24 16:44:11] [SUCCESS] [RETRAINING] Batch 6: Local Model updated (Buffer: 4000)
+[2026-07-24 16:44:11] [INFO] [DECISION] Batch 7 [YELLOW]: Warning logged -> Minor variation in 1 features (< threshold 3) - Accuracy (0.9990) stable
+[2026-07-24 16:44:12] [INFO] [DECISION] Batch 8 [YELLOW]: Warning logged -> Minor variation in 1 features (< threshold 3) - Accuracy (0.9990) stable
+[2026-07-24 16:44:12] [INFO] [DECISION] Batch 9 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-07-24 16:44:12] [WARNING] [DECISION] Batch 10 [RED]: Retraining triggered -> Significant drift in 6 features (>= threshold 3)
+[2026-07-24 16:44:12] [SUCCESS] [RETRAINING] Batch 10: Local Model updated (Buffer: 5000)
+[2026-07-24 16:44:12] [SUCCESS] [PIPELINE] Pipeline finished: GREEN=1, YELLOW=4, RED=5

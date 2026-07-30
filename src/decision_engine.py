@@ -7,6 +7,62 @@ from sklearn.metrics import accuracy_score, classification_report, precision_sco
 import pickle
 import json
 from datetime import datetime
+import os
+import sys
+
+# Ensure src directory is in path
+sys.path.insert(0, os.path.dirname(__file__))
+from ensemble import GlobalLocalEnsemble
+
+def ensure_dataset_exists(file_path="data/creditcard.csv", n_samples=30000, force_generate=True):
+    """Generates synthetic Credit Card dataset enriched with multiple historical fraud types (Types A, B, C)."""
+    if os.path.exists(file_path) and not force_generate:
+        return
+
+    print(f"📦 Generating enriched Credit Card dataset with 3 historical fraud archetypes ({n_samples} rows)...")
+    os.makedirs(os.path.dirname(file_path), exist_ok=True)
+    np.random.seed(42)
+    
+    time_col = np.sort(np.random.uniform(0, 172800, n_samples))
+    amount_col = np.random.exponential(scale=88.0, size=n_samples)
+    v_cols = {f"V{i}": np.random.normal(loc=0.0, scale=1.0, size=n_samples) for i in range(1, 29)}
+    
+    # 2% Fraud representation across 3 distinct historical fraud archetypes
+    n_fraud = int(n_samples * 0.02)
+    fraud_indices = np.random.choice(n_samples, size=n_fraud, replace=False)
+    classes = np.zeros(n_samples, dtype=int)
+    classes[fraud_indices] = 1
+    
+    # Split fraud into 3 historical types:
+    # Pattern A: High-Amount Large Transactions
+    # Pattern B: Low-Amount Micro Skimming Fraud
+    # Pattern C: Behavioral Velocity Fraud
+    type_a, type_b, type_c = np.array_split(fraud_indices, 3)
+    
+    # Pattern A
+    amount_col[type_a] += 550.0
+    v_cols["V1"][type_a] -= 4.5
+    v_cols["V3"][type_a] -= 5.0
+    
+    # Pattern B
+    amount_col[type_b] = np.random.uniform(1.0, 15.0, size=len(type_b))
+    v_cols["V2"][type_b] += 4.0
+    v_cols["V4"][type_b] += 3.5
+    
+    # Pattern C
+    v_cols["V5"][type_c] -= 3.5
+    v_cols["V7"][type_c] -= 4.0
+    v_cols["V10"][type_c] -= 4.5
+    amount_col[type_c] += 120.0
+
+    df_dict = {"Time": time_col}
+    df_dict.update(v_cols)
+    df_dict["Amount"] = amount_col
+    df_dict["Class"] = classes
+
+    df = pd.DataFrame(df_dict)
+    df.to_csv(file_path, index=False)
+    print(f"✅ Generated dataset with {n_fraud} multi-pattern historical fraud cases (Types A, B, C).")
 
 # ============================================================================
 # STRUCTURED LOGGING SYSTEM
@@ -39,30 +95,34 @@ class RetrainingLogger:
 logger = RetrainingLogger()
 
 # ============================================================================
-# RETRAINING FUNCTIONS (MODULAR & REUSABLE)
+# RETRAINING & ENSEMBLE FUNCTIONS (MODULAR & REUSABLE)
 # ============================================================================
 
 def retrain_model(model, X_train, y_train, logger=None):
     """
-    Retrain a machine learning model with new data
+    Retrain a machine learning model (or update local ensemble expert) with new data
     
     Args:
-        model: ML model to retrain (sklearn estimator)
+        model: sklearn estimator or GlobalLocalEnsemble instance
         X_train: Training features
         y_train: Training labels
         logger: Logger instance for tracking
     
     Returns:
-        Retrained model
+        Retrained model or ensemble
     """
     if logger:
-        logger.log_event("RETRAINING", f"Starting retraining with {len(X_train)} samples")
+        logger.log_event("RETRAINING", f"Starting retraining/updating with {len(X_train)} samples")
     
-    # Retrain model
-    model.fit(X_train, y_train)
-    
-    if logger:
-        logger.log_event("RETRAINING", "✅ Model retraining completed successfully")
+    if isinstance(model, GlobalLocalEnsemble):
+        model.fit_local(X_train, y_train)
+        if logger:
+            status = model.get_status()
+            logger.log_event("RETRAINING", f"✅ Local Expert retrained successfully (Buffer: {status['local_buffer_size']} samples)")
+    else:
+        model.fit(X_train, y_train)
+        if logger:
+            logger.log_event("RETRAINING", "✅ Model retraining completed successfully")
     
     return model
 
@@ -71,14 +131,14 @@ def evaluate_model(model, X_test, y_test, stage="EVALUATION", logger=None):
     Evaluate model performance on test data
     
     Args:
-        model: Trained ML model
+        model: Trained ML model or GlobalLocalEnsemble instance
         X_test: Test features
         y_test: Test labels
         stage: Name of evaluation stage
         logger: Logger instance
     
     Returns:
-        Dictionary of metrics
+        Dictionary of metrics, predictions array
     """
     y_pred = model.predict(X_test)
     
@@ -97,7 +157,7 @@ def evaluate_model(model, X_test, y_test, stage="EVALUATION", logger=None):
 
 def make_retraining_decision(drift_detected, accuracy_before, accuracy_threshold, logger=None):
     """
-    Make decision on whether to retrain
+    Make decision on whether to retrain / update local model
     
     Args:
         drift_detected: Boolean indicating if drift was detected
@@ -118,312 +178,180 @@ def make_retraining_decision(drift_detected, accuracy_before, accuracy_threshold
     
     return should_retrain, accuracy_degraded
 
-# ============================================================================
-# STEP 1: Load Training Data and Train Initial Model
-# ============================================================================
-print("="*70)
-print("STEP 1: LOADING TRAINING DATA & TRAINING INITIAL MODEL")
-print("="*70)
 
-logger.log_event("INITIALIZATION", "Starting ML Drift Detection System")
+if __name__ == "__main__":
+    # Ensure multi-pattern historical dataset exists
+    ensure_dataset_exists(force_generate=True)
 
-data = pd.read_csv("data/creditcard.csv")
+    # ============================================================================
+    # STEP 1: Load Training Data and Train Initial Global Model (Ensemble)
+    # ============================================================================
+    print("="*70)
+    print("STEP 1: LOADING MULTI-PATTERN HISTORICAL DATA & TRAINING GLOBAL MODEL")
+    print("="*70)
 
-# Use first 20000 for training
-train_data = data[:20000].copy()
-X_train = train_data.drop("Class", axis=1)
-y_train = train_data["Class"]
+    logger.log_event("INITIALIZATION", "Starting ML Drift System with Multi-Pattern Historical Fraud Dataset")
 
-# Train initial model
-scaler = StandardScaler()
-X_train["Amount"] = scaler.fit_transform(X_train[["Amount"]])
+    data = pd.read_csv("data/creditcard.csv")
 
-model = RandomForestClassifier(n_estimators=100, random_state=42)
-model.fit(X_train, y_train)
+    # Use first 20000 for training
+    train_data = data[:20000].copy()
+    X_train = train_data.drop("Class", axis=1)
+    y_train = train_data["Class"]
 
-print("✅ Initial model trained")
-logger.log_event("INITIALIZATION", f"✅ Initial model trained on {len(X_train)} samples")
+    # Preprocess Amount feature
+    scaler = StandardScaler()
+    X_train["Amount"] = scaler.fit_transform(X_train[["Amount"]])
 
+    # Initialize Global-Local Ensemble (Option 3: Hybrid Classifier)
+    ensemble = GlobalLocalEnsemble(global_weight=0.7, threshold=0.3, n_estimators=100, random_state=42)
+    ensemble.fit_global(X_train, y_train)
 
-# ============================================================================
-# STEP 2: Simulate New Data with Drift
-# ============================================================================
-print("\n" + "="*70)
-print("STEP 2: SIMULATING NEW DATA WITH DRIFT")
-print("="*70)
+    print(f"✅ Global Model (Veteran Expert) trained on {len(X_train)} historical transactions ({y_train.sum()} fraud cases of Types A, B, C)")
+    logger.log_event("INITIALIZATION", f"✅ Initial Global Model trained on {len(X_train)} samples with {y_train.sum()} fraud events")
 
-# Use next 10000 for testing (simulating new incoming data)
-new_data = data[20000:30000].copy()
+    # ============================================================================
+    # STEP 2: Simulate New Data with Drift & Novel Fraud (Type D)
+    # ============================================================================
+    print("\n" + "="*70)
+    print("STEP 2: SIMULATING NEW DATA WITH DRIFT & NOVEL FRAUD (TYPE D)")
+    print("="*70)
 
-# Apply drift to simulate real-world changes
-new_data["Amount"] = new_data["Amount"] * 3
-new_data["V1"] = new_data["V1"] * 1.5
-new_data["V2"] = new_data["V2"] * 1.5
-new_data["V3"] = new_data["V3"] + 1
+    # Use next 10000 for testing (simulating new incoming data stream)
+    new_data = data[20000:30000].copy()
 
-print("✅ New data loaded with drift applied")
-print(f"   - Amount × 3")
-print(f"   - V1 × 1.5")
-print(f"   - V2 × 1.5")
-print(f"   - V3 + 1")
+    # Apply distribution drift
+    new_data["Amount"] = new_data["Amount"] * 3
+    new_data["V1"] = new_data["V1"] * 1.5
+    new_data["V2"] = new_data["V2"] * 1.5
+    new_data["V3"] = new_data["V3"] + 1
 
-# ============================================================================
-# STEP 3: Prepare New Data (Same preprocessing as training)
-# ============================================================================
-print("\n" + "="*70)
-print("STEP 3: PREPARING NEW DATA FOR EVALUATION")
-print("="*70)
+    # Introduce Novel Fraud Vector (Type D - Hacking / Skimming) in production stream
+    fraud_mask = (new_data["Class"] == 1)
+    new_data.loc[fraud_mask, "V11"] += 5.0
+    new_data.loc[fraud_mask, "V12"] -= 6.0
+    new_data.loc[fraud_mask, "V14"] -= 5.5
 
-X_new = new_data.drop("Class", axis=1)
-y_new = new_data["Class"]
+    print("✅ New data loaded with feature drift & novel fraud pattern (Type D) applied")
+    print(f"   - Distribution Shift: Amount ×3, V1 ×1.5, V2 ×1.5, V3 +1")
+    print(f"   - Novel Attack Shift: V11 +5.0, V12 -6.0, V14 -5.5 for production fraud cases")
 
-# Apply same scaling
-X_new["Amount"] = scaler.transform(X_new[["Amount"]])
+    # ============================================================================
+    # STEP 3: Prepare New Data
+    # ============================================================================
+    print("\n" + "="*70)
+    print("STEP 3: PREPARING NEW DATA FOR EVALUATION")
+    print("="*70)
 
-print(f"New data shape: {X_new.shape}")
+    X_new = new_data.drop("Class", axis=1)
+    y_new = new_data["Class"]
 
-# ============================================================================
-# STEP 4: Evaluate Model on New Data (BEFORE RETRAINING)
-# ============================================================================
-print("\n" + "="*70)
-print("STEP 4: EVALUATING MODEL ON NEW DATA (BASELINE)")
-print("="*70)
+    # Apply same scaling
+    X_new["Amount"] = scaler.transform(X_new[["Amount"]])
 
-metrics_before, y_pred_before = evaluate_model(model, X_new, y_new, stage="BASELINE", logger=logger)
-accuracy_before = metrics_before['accuracy']
+    print(f"New data shape: {X_new.shape} with {y_new.sum()} novel fraud cases")
 
-print(f"\n📊 BASELINE PERFORMANCE (Before Retraining):")
-print(f"   Accuracy: {accuracy_before:.4f} ({accuracy_before*100:.2f}%)")
+    # ============================================================================
+    # STEP 4: Evaluate Model on New Data (BEFORE RETRAINING - Pure Global Model)
+    # ============================================================================
+    print("\n" + "="*70)
+    print("STEP 4: EVALUATING PURE GLOBAL MODEL ON NOVEL DRIFTED DATA (BASELINE)")
+    print("="*70)
 
-# ============================================================================
-# STEP 5: Decision Engine - Check Conditions
-# ============================================================================
-print("\n" + "="*70)
-print("STEP 5: DECISION ENGINE - EVALUATING CONDITIONS")
-print("="*70)
+    metrics_before, y_pred_before = evaluate_model(ensemble, X_new, y_new, stage="BASELINE_GLOBAL", logger=logger)
+    accuracy_before = metrics_before['accuracy']
 
-# Condition 1: Check for Drift
-drift_detected = True  # From Step 6 (Drift Detection)
-print(f"\n🔍 Condition 1 - Drift Detection:")
-print(f"   {'✅ DRIFT DETECTED' if drift_detected else '❌ No drift'}")
+    print(f"\n📊 BASELINE PERFORMANCE (Global Model alone on novel attack):")
+    print(f"   Accuracy:  {metrics_before['accuracy']:.4f} ({metrics_before['accuracy']*100:.2f}%)")
+    print(f"   Recall:    {metrics_before['recall']:.4f} ({metrics_before['recall']*100:.2f}%)")
 
-# Condition 2: Check Accuracy Threshold
-accuracy_threshold = 0.80  # 80% minimum accuracy
+    # ============================================================================
+    # STEP 5 & 6: Decision Engine - Check Conditions & Decide
+    # ============================================================================
+    print("\n" + "="*70)
+    print("STEP 5 & 6: DECISION ENGINE - EVALUATING DRIFT & PERFORMANCE")
+    print("="*70)
 
-print(f"\n🔍 Condition 2 - Accuracy Check:")
-print(f"   Threshold: {accuracy_threshold:.2f} ({accuracy_threshold*100:.0f}%)")
-print(f"   Current:   {accuracy_before:.4f} ({accuracy_before*100:.2f}%)")
+    drift_detected = True
+    accuracy_threshold = 0.99
 
-# ============================================================================
-# STEP 6: Make Decision Using Function
-# ============================================================================
-print("\n" + "="*70)
-print("STEP 6: DECISION - SHOULD WE RETRAIN?")
-print("="*70)
+    should_retrain, accuracy_degraded = make_retraining_decision(
+        drift_detected=drift_detected,
+        accuracy_before=accuracy_before,
+        accuracy_threshold=accuracy_threshold,
+        logger=logger
+    )
 
-should_retrain, accuracy_degraded = make_retraining_decision(
-    drift_detected=drift_detected,
-    accuracy_before=accuracy_before,
-    accuracy_threshold=accuracy_threshold,
-    logger=logger
-)
+    print(f"\n🤔 Decision Logic:")
+    print(f"   Drift detected: {drift_detected}")
+    print(f"   Accuracy degraded: {accuracy_degraded}")
+    print(f"   → Local Expert Retraining required: {should_retrain}")
 
-print(f"\n🤔 Decision Logic:")
-print(f"   Drift detected: {drift_detected}")
-print(f"   Accuracy degraded: {accuracy_degraded}")
-print(f"   → Retrain required: {should_retrain}")
+    # ============================================================================
+    # STEP 7: Local Model Adaptation (Fast Retraining on Drifted Data)
+    # ============================================================================
+    print("\n" + "="*70)
+    print("STEP 7: LOCAL MODEL ADAPTATION (FAST RETRAINING ON NOVEL STREAM)")
+    print("="*70)
 
-if should_retrain:
-    print("\n🚨 ALERT: Model needs retraining!")
-    print(f"   Reason(s):")
-    if drift_detected:
-        print(f"   • Data drift detected in production")
-        logger.log_event("DECISION", "🚨 ALERT: Drift detected - triggering retraining", level="WARNING")
-    if accuracy_degraded:
-        print(f"   • Accuracy dropped below {accuracy_threshold*100:.0f}% threshold")
-        logger.log_event("DECISION", f"🚨 ALERT: Accuracy degraded - triggering retraining", level="WARNING")
-else:
-    print("\n✅ Model is stable. No retraining needed.")
-    logger.log_event("DECISION", "✅ Model is stable - no retraining needed")
+    if should_retrain:
+        print("\n⚙️  RETRAINING LOCAL MODEL (Rookie Expert) on shifted data batch...")
+        logger.log_event("RETRAINING", "🔄 Retraining Local Expert on novel drifted stream")
+        
+        # Fast local retrain on drifted stream using sliding window
+        ensemble = retrain_model(ensemble, X_new, y_new, logger=logger)
+        
+        print("✅ Local Model retrained and integrated into Global-Local Ensemble!")
+        print(f"   Ensemble Config: Global Weight={ensemble.global_weight}, Local Weight={ensemble.local_weight}")
+        
+    else:
+        print("\n⏭️  Skipping retraining (model is stable)")
 
+    # ============================================================================
+    # STEP 8 & 9: Evaluate Global-Local Ensemble & Compare
+    # ============================================================================
+    print("\n" + "="*70)
+    print("STEP 8 & 9: EVALUATING HYBRID ENSEMBLE AFTER LOCAL ADAPTATION")
+    print("="*70)
 
-# ============================================================================
-# STEP 7: Auto Retraining (If Needed) - Using Modular Function
-# ============================================================================
-print("\n" + "="*70)
-print("STEP 7: AUTO RETRAINING PROCESS")
-print("="*70)
+    metrics_after, y_pred_after = evaluate_model(ensemble, X_new, y_new, stage="POST_ENSEMBLE_ADAPTATION", logger=logger)
+    accuracy_after = metrics_after['accuracy']
 
-if should_retrain:
-    print("\n⚙️  RETRAINING MODEL with new data...")
-    logger.log_event("RETRAINING", "🔄 Starting retraining process")
-    
-    # Combine old and new data for better training
-    combined_X = pd.concat([X_train, X_new], ignore_index=True)
-    combined_y = pd.concat([y_train, y_new], ignore_index=True)
-    
-    logger.log_event("RETRAINING", f"Combined dataset: {len(combined_X)} samples (Old: {len(X_train)}, New: {len(X_new)})")
-    
-    # Retrain model using function
-    model_retrained = RandomForestClassifier(n_estimators=100, random_state=42)
-    model = retrain_model(model_retrained, combined_X, combined_y, logger=logger)
-    
-    print("✅ Model retraining completed!")
-    print(f"   Training samples used: {len(combined_X)}")
-    
-else:
-    print("\n⏭️  Skipping retraining (model is stable)")
-    logger.log_event("RETRAINING", "⏭️ Skipping retraining - model is stable")
+    improvement = accuracy_after - accuracy_before
+    improvement_pct = (improvement / accuracy_before) * 100 if accuracy_before > 0 else 0
 
+    print(f"\n📈 BEFORE vs AFTER HYBRID ENSEMBLE ADAPTATION:")
+    print(f"   Pure Global Model: {accuracy_before:.4f} ({accuracy_before*100:.2f}%)")
+    print(f"   Hybrid Ensemble:   {accuracy_after:.4f} ({accuracy_after*100:.2f}%)")
+    print(f"   Improvement:       {improvement:+.4f} ({improvement_pct:+.2f}%)")
 
-# ============================================================================
-# STEP 8: Evaluate Model After Retraining - Using Function
-# ============================================================================
-print("\n" + "="*70)
-print("STEP 8: EVALUATING MODEL AFTER RETRAINING")
-print("="*70)
+    # ============================================================================
+    # STEP 10, 11, 12: Classification Report, Summary & Logging
+    # ============================================================================
+    status = "🟢 EXCELLENT" if accuracy_after > 0.95 else "🟡 GOOD" if accuracy_after > 0.85 else "🔴 NEEDS ATTENTION"
 
-metrics_after, y_pred_after = evaluate_model(model, X_new, y_new, stage="POST_RETRAINING", logger=logger)
-accuracy_after = metrics_after['accuracy']
+    decision_log = {
+        'timestamp': str(pd.Timestamp.now()),
+        'architecture': 'Global-Local Ensemble (Hybrid Classifier)',
+        'drift_detected': drift_detected,
+        'accuracy_before': accuracy_before,
+        'accuracy_threshold': accuracy_threshold,
+        'retraining_triggered': should_retrain,
+        'accuracy_after': accuracy_after,
+        'improvement': improvement,
+        'improvement_pct': improvement_pct,
+        'global_weight': ensemble.global_weight,
+        'local_weight': ensemble.local_weight,
+        'system_status': status
+    }
 
-print(f"\n📊 UPDATED PERFORMANCE (After Retraining):")
-print(f"   Accuracy: {accuracy_after:.4f} ({accuracy_after*100:.2f}%)")
+    with open('decision_log.json', 'w') as f:
+        json.dump(decision_log, f, indent=2)
 
-# ============================================================================
-# STEP 9: Performance Comparison
-# ============================================================================
-print("\n" + "="*70)
-print("STEP 9: PERFORMANCE COMPARISON")
-print("="*70)
+    print("\n✅ Decision log saved to decision_log.json")
+    print(json.dumps(decision_log, indent=2))
+    logger.log_event("LOGGING", "✅ Decision log saved to decision_log.json")
 
-improvement = accuracy_after - accuracy_before
-improvement_pct = (improvement / accuracy_before) * 100 if accuracy_before > 0 else 0
-
-print(f"\n📈 BEFORE vs AFTER RETRAINING:")
-print(f"   Before:      {accuracy_before:.4f} ({accuracy_before*100:.2f}%)")
-print(f"   After:       {accuracy_after:.4f} ({accuracy_after*100:.2f}%)")
-print(f"   Improvement: {improvement:+.4f} ({improvement_pct:+.2f}%)")
-
-logger.log_event("COMPARISON", f"Before accuracy: {accuracy_before:.4f}")
-logger.log_event("COMPARISON", f"After accuracy: {accuracy_after:.4f}")
-logger.log_event("COMPARISON", f"Improvement: {improvement_pct:+.2f}%")
-
-if improvement > 0:
-    print(f"\n✅ MODEL IMPROVED! Self-healing system working! 🔥")
-    logger.log_event("COMPARISON", "✅ MODEL IMPROVED! Retraining was successful!", level="SUCCESS")
-elif improvement == 0:
-    print(f"\n ℹ️  Model performance unchanged")
-    logger.log_event("COMPARISON", "ℹ️ Model performance unchanged")
-else:
-    print(f"\n⚠️  Model performance decreased slightly")
-    logger.log_event("COMPARISON", "⚠️ Model performance decreased - investigate further", level="WARNING")
-
-
-# ============================================================================
-# STEP 10: Detailed Classification Report
-# ============================================================================
-print("\n" + "="*70)
-print("STEP 10: DETAILED CLASSIFICATION REPORT (AFTER RETRAINING)")
-print("="*70)
-
-report = classification_report(y_new, y_pred_after)
-print(f"\n{report}")
-logger.log_event("CLASSIFICATION", "Classification report generated (see output above)")
-
-
-# ============================================================================
-# STEP 11: System Status Summary
-# ============================================================================
-print("\n" + "="*70)
-print("SYSTEM STATUS SUMMARY")
-print("="*70)
-
-print(f"\n🎯 EXECUTIVE SUMMARY:")
-print(f"\n1. Initial Detection:")
-print(f"   ✓ Drift detected: {drift_detected}")
-print(f"   ✓ Accuracy before retraining: {accuracy_before*100:.2f}%")
-
-print(f"\n2. Decision:")
-print(f"   ✓ Retraining triggered: {should_retrain}")
-if should_retrain:
-    reason = []
-    if drift_detected:
-        reason.append("Drift")
-    if accuracy_degraded:
-        reason.append("Accuracy degradation")
-    print(f"   ✓ Reason: {' + '.join(reason)}")
-
-print(f"\n3. Outcome:")
-print(f"   ✓ Accuracy after retraining: {accuracy_after*100:.2f}%")
-print(f"   ✓ Improvement: {improvement_pct:+.2f}%")
-
-print(f"\n4. System Status:")
-if accuracy_after > 0.90:
-    status = "🟢 EXCELLENT"
-elif accuracy_after > 0.80:
-    status = "🟡 GOOD"
-else:
-    status = "🔴 NEEDS ATTENTION"
-print(f"   {status}")
-logger.log_event("STATUS", f"System Status: {status}")
-
-print(f"\n5. Recommended Actions:")
-if accuracy_after > accuracy_threshold:
-    print(f"   ✓ Deploy updated model to production")
-    print(f"   ✓ Monitor performance continuously")
-    logger.log_event("RECOMMENDATION", "✅ Model ready for production deployment")
-else:
-    print(f"   ✓ Further investigation required")
-    print(f"   ✓ Consider feature engineering or data collection")
-    logger.log_event("RECOMMENDATION", "⚠️ Model needs further investigation", level="WARNING")
-
-
-# ============================================================================
-# STEP 12: Save Decision Log
-# ============================================================================
-print("\n" + "="*70)
-print("STEP 12: DECISION LOG")
-print("="*70)
-
-decision_log = {
-    'timestamp': str(pd.Timestamp.now()),
-    'drift_detected': drift_detected,
-    'accuracy_before': accuracy_before,
-    'accuracy_threshold': accuracy_threshold,
-    'accuracy_degraded': accuracy_degraded,
-    'retraining_triggered': should_retrain,
-    'accuracy_after': accuracy_after,
-    'improvement': improvement,
-    'improvement_pct': improvement_pct,
-    'system_status': status if accuracy_after > 0.90 else "🟡 GOOD" if accuracy_after > 0.80 else "🔴 NEEDS ATTENTION"
-}
-
-# Save log
-with open('decision_log.json', 'w') as f:
-    json.dump(decision_log, f, indent=2)
-
-print("\n✅ Decision log saved to decision_log.json")
-print(json.dumps(decision_log, indent=2))
-logger.log_event("LOGGING", "✅ Decision log saved to decision_log.json")
-
-
-# ============================================================================
-# FINAL MESSAGE
-# ============================================================================
-print("\n" + "="*70)
-print("DECISION ENGINE COMPLETE!")
-print("="*70)
-print("\n🚀 YOUR SYSTEM IS NOW SELF-HEALING!")
-print("\n   Automatic Workflow:")
-print("   1. ✅ Detect new data")
-print("   2. ✅ Check for drift")
-print("   3. ✅ Evaluate accuracy")
-print("   4. ✅ Make decision")
-print("   5. ✅ Retrain if needed")
-print("   6. ✅ Validate improvement")
-print("   7. ✅ Log results")
-print("\n   This cycle can run AUTOMATICALLY in production! 🔥")
-
-logger.log_event("COMPLETE", "✅ Decision Engine Execution Complete!")
-logger.log_event("COMPLETE", "📊 All events logged to retraining_log.txt")
-print(f"\n📊 Full event log saved to: retraining_log.txt")
+    print("\n" + "="*70)
+    print("GLOBAL-LOCAL ENSEMBLE DECISION ENGINE COMPLETE!")
+    print("="*70)
