@@ -23,7 +23,7 @@ from src.pipeline.evaluator import ModelEvaluator
 from src.pipeline.decision_engine import RetrainingDecisionEngine
 from src.pipeline.logger import PipelineLogger
 
-def main():
+def main(data_path=None):
     print("=" * 80)
     print("🚀 CONTINUOUS ML DRIFT MONITORING PIPELINE - INITIALIZING")
     print("=" * 80)
@@ -31,8 +31,9 @@ def main():
     logger = PipelineLogger(text_log_path=config.LOG_FILE, json_log_path=config.JSON_LOG_FILE)
     logger.log_event("PIPELINE", "Starting Continuous ML Drift Monitoring Pipeline", "INFO")
     
-    # 1. Dataset Generation / Checks
-    data_path = ensure_dataset_exists(file_path=config.DATA_FILE, force_generate=True)
+    # 1. Dataset Generation / Checks (skip if custom data_path provided)
+    if data_path is None:
+        data_path = ensure_dataset_exists(file_path=config.DATA_FILE, force_generate=True)
     
     # 2. Ingestion Setup & Baseline Train Split
     ingestion = BatchStreamIngestion(

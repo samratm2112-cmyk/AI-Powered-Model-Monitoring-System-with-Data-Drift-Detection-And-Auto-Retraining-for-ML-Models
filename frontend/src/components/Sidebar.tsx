@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import {
   LayoutDashboard,
+  Upload,
   Layers,
   Activity,
   TrendingUp,
@@ -19,6 +20,7 @@ interface SidebarItem {
 
 const navItems: SidebarItem[] = [
   { name: 'Dashboard', path: '/', icon: LayoutDashboard },
+  { name: 'Data Upload', path: '/upload', icon: Upload },
   { name: 'Batch Monitoring', path: '/batches', icon: Layers },
   { name: 'Drift Analytics', path: '/drift', icon: Activity },
   { name: 'Accuracy Trends', path: '/accuracy', icon: TrendingUp },

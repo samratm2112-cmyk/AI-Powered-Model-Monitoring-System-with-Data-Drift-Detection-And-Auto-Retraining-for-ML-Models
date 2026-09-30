@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 920 950" width="920" height="950"
+     style="background:#FFFFFF">
+<defs>
+  <marker id="ah" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="strokeWidth">
+    <polygon points="0 0, 10 3.5, 0 7" fill="#374151"/>
+  </marker>
+  <marker id="ah-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="strokeWidth">
+    <polygon points="0 0, 10 3.5, 0 7" fill="#DC2626"/>
+  </marker>
+  <marker id="ah-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="strokeWidth">
+    <polygon points="0 0, 10 3.5, 0 7" fill="#059669"/>
+  </marker>
+  <marker id="ah-yellow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="strokeWidth">
+    <polygon points="0 0, 10 3.5, 0 7" fill="#D97706"/>
+  </marker>
+  <marker id="ah-purple" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="strokeWidth">
+    <polygon points="0 0, 10 3.5, 0 7" fill="#7C3AED"/>
+  </marker>
+  <marker id="ah-indigo" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" markerUnits="strokeWidth">
+    <polygon points="0 0, 10 3.5, 0 7" fill="#4F46E5"/>
+  </marker>
+</defs>
+<text x="460.0" y="22" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="14" font-weight="700" fill="#111827" text-anchor="middle">System Architecture of the AI-Based Data Drift Detection</text>
+<text x="460.0" y="38" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="14" font-weight="700" fill="#111827" text-anchor="middle">and Automated Model Retraining System</text>
+<rect x="310.0" y="58" width="300" height="42" rx="6" ry="6" fill="#F5F3FF" stroke="#7C3AED" stroke-width="1.5"/>
+<text x="460.0" y="83.5" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="12" font-weight="600" fill="#1F2937" text-anchor="middle">Credit Card Transaction Stream</text>
+<line x1="460.0" y1="100" x2="460.0" y2="116" stroke="#374151" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+<rect x="310.0" y="116" width="300" height="56" rx="6" ry="6" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.5"/>
+<text x="460.0" y="140.0" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="12" font-weight="600" fill="#1F2937" text-anchor="middle">Data Ingestion Layer</text>
+<text x="460.0" y="155.0" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="10" font-weight="400" fill="#4B5563" text-anchor="middle">Batch–Stream Partitioning</text>
+<line x1="460.0" y1="172" x2="460.0" y2="188" stroke="#374151" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+<rect x="310.0" y="188" width="300" height="56" rx="6" ry="6" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.5"/>
+<text x="460.0" y="212.0" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="12" font-weight="600" fill="#1F2937" text-anchor="middle">Data Validation &amp;</text>
+<text x="460.0" y="227.0" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="10" font-weight="400" fill="#4B5563" text-anchor="middle">Feature Preprocessing</text>
+<path d="M 460.0,244 L 460.0,254 L 195,254 L 195,272" stroke="#374151" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+<path d="M 460.0,244 L 460.0,254 L 725,254 L 725,272" stroke="#374151" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+<rect x="65.0" y="272" width="260" height="42" rx="6" ry="6" fill="#FFF7ED" stroke="#EA580C" stroke-width="1.5"/>
+<text x="195.0" y="297.5" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="12" font-weight="600" fill="#1F2937" text-anchor="middle">Historical Training Data</text>
+<line x1="195" y1="314" x2="195" y2="328" stroke="#374151" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+<rect x="595.0" y="272" width="260" height="42" rx="6" ry="6" fill="#FFF7ED" stroke="#EA580C" stroke-width="1.5"/>
+<text x="725.0" y="297.5" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="12" font-weight="600" fill="#1F2937" text-anchor="middle">Production Batch Data</text>
+<line x1="725" y1="314" x2="725" y2="328" stroke="#374151" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+<rect x="65.0" y="328" width="260" height="56" rx="6" ry="6" fill="#EEF2FF" stroke="#4F46E5" stroke-width="1.5"/>
+<text x="195.0" y="352.0" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="12" font-weight="600" fill="#1F2937" text-anchor="middle">Global Fraud Detection Model</text>
+<text x="195.0" y="367.0" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="10" font-weight="400" fill="#4B5563" text-anchor="middle">Static Random Forest Classifier</text>
+<rect x="595.0" y="328" width="260" height="56" rx="6" ry="6" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.5"/>
+<text x="725.0" y="352.0" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="12" font-weight="600" fill="#1F2937" text-anchor="middle">Model Performance Evaluation</text>
+<text x="725.0" y="367.0" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="10" font-weight="400" fill="#4B5563" text-anchor="middle">Accuracy · Precision · Recall · F1</text>
+<line x1="725" y1="384" x2="725" y2="398" stroke="#374151" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+<rect x="595.0" y="398" width="260" height="56" rx="6" ry="6" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.5"/>
+<text x="725.0" y="422.0" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="12" font-weight="600" fill="#1F2937" text-anchor="middle">KS Drift Detection Engine</text>
+<text x="725.0" y="437.0" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="10" font-weight="400" fill="#4B5563" text-anchor="middle">Two-Sample Kolmogorov–Smirnov Test</text>
+<line x1="725" y1="454" x2="725" y2="468" stroke="#374151" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+<rect x="595.0" y="468" width="260" height="62" rx="6" ry="6" fill="#FFFBEB" stroke="#D97706" stroke-width="1.5"/>
+<text x="725" y="488" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="12" font-weight="600" fill="#1F2937" text-anchor="middle">Decision Engine</text>
+<text x="725" y="502" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="10" font-weight="400" fill="#4B5563" text-anchor="middle">3-Tier Production Policy</text>
+<circle cx="685" cy="518" r="6" fill="#059669" stroke="#065F46" stroke-width="1"/>
+<text x="685" y="517" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="7" font-weight="700" fill="#FFFFFF" text-anchor="middle">G</text>
+<circle cx="725" cy="518" r="6" fill="#D97706" stroke="#92400E" stroke-width="1"/>
+<text x="725" y="517" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="7" font-weight="700" fill="#FFFFFF" text-anchor="middle">Y</text>
+<circle cx="765" cy="518" r="6" fill="#DC2626" stroke="#991B1B" stroke-width="1"/>
+<text x="765" y="517" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="7" font-weight="700" fill="#FFFFFF" text-anchor="middle">R</text>
+<path d="M 685,530 L 685,545" stroke="#059669" stroke-width="1.5" fill="none" marker-end="url(#ah-green)"/>
+<rect x="656.0" y="549" width="58" height="13" rx="2" fill="#FFFFFF" stroke="none"/>
+<text x="685" y="558" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="8" font-weight="400" fill="#059669" text-anchor="middle">No Retrain</text>
+<path d="M 725,530 L 725,545" stroke="#D97706" stroke-width="1.5" fill="none" marker-end="url(#ah-yellow)"/>
+<rect x="693.5" y="549" width="63" height="13" rx="2" fill="#FFFFFF" stroke="none"/>
+<text x="725" y="558" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="8" font-weight="400" fill="#D97706" text-anchor="middle">Log Warning</text>
+<path d="M 765,530 L 765,545" stroke="#DC2626" stroke-width="1.5" fill="none" marker-end="url(#ah-red)"/>
+<rect x="743.5" y="549" width="43" height="13" rx="2" fill="#FFFFFF" stroke="none"/>
+<text x="765" y="558" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="8" font-weight="400" fill="#DC2626" text-anchor="middle">Retrain</text>
+<rect x="705" y="566" width="220" height="56" rx="6" ry="6" fill="#FEF2F2" stroke="#DC2626" stroke-width="1.5"/>
+<text x="815.0" y="590.0" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="12" font-weight="600" fill="#1F2937" text-anchor="middle">Local Adaptive Model</text>
+<text x="815.0" y="605.0" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="10" font-weight="400" fill="#4B5563" text-anchor="middle">Sliding Window Random Forest</text>
+<rect x="300.0" y="652" width="320" height="60" rx="6" ry="6" fill="#EEF2FF" stroke="#4F46E5" stroke-width="1.5"/>
+<text x="460.0" y="678.0" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="12" font-weight="600" fill="#1F2937" text-anchor="middle">Global–Local Ensemble</text>
+<text x="460.0" y="693.0" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="10" font-weight="400" fill="#4B5563" text-anchor="middle">70% Global + 30% Local · Soft Voting Fusion</text>
+<path d="M 195,384 L 195,682.0 L 300.0,682.0" stroke="#4F46E5" stroke-width="1.5" fill="none" marker-end="url(#ah-indigo)"/>
+<path d="M 825.0,622 L 825.0,682.0 L 620.0,682.0" stroke="#4F46E5" stroke-width="1.5" fill="none" marker-end="url(#ah-indigo)"/>
+<path d="M 685,562 L 685,644" stroke="#059669" stroke-width="1" stroke-dasharray="5,3" fill="none"/>
+<path d="M 725,562 L 725,644" stroke="#D97706" stroke-width="1" stroke-dasharray="5,3" fill="none"/>
+<line x1="460.0" y1="712" x2="460.0" y2="728" stroke="#374151" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+<rect x="310.0" y="728" width="300" height="48" rx="6" ry="6" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.5"/>
+<text x="460.0" y="756.5" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="12" font-weight="600" fill="#1F2937" text-anchor="middle">Prediction &amp; Post-Adaptation Evaluation</text>
+<line x1="460.0" y1="776" x2="460.0" y2="792" stroke="#374151" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+<rect x="310.0" y="792" width="300" height="48" rx="6" ry="6" fill="#F9FAFB" stroke="#6B7280" stroke-width="1.5"/>
+<text x="460.0" y="820.5" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="12" font-weight="600" fill="#1F2937" text-anchor="middle">Monitoring &amp; Audit Layer</text>
+<line x1="460.0" y1="840" x2="460.0" y2="856" stroke="#374151" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+<rect x="310.0" y="856" width="300" height="56" rx="6" ry="6" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.5"/>
+<text x="460.0" y="880.0" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="12" font-weight="600" fill="#1F2937" text-anchor="middle">FastAPI REST Backend</text>
+<text x="460.0" y="895.0" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="10" font-weight="400" fill="#4B5563" text-anchor="middle">API Service Layer</text>
+<line x1="460.0" y1="912" x2="460.0" y2="928" stroke="#374151" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+<rect x="310.0" y="928" width="300" height="48" rx="6" ry="6" fill="#F5F3FF" stroke="#7C3AED" stroke-width="1.5"/>
+<text x="460.0" y="956.5" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="12" font-weight="600" fill="#1F2937" text-anchor="middle">React Monitoring Dashboard</text>
+<text x="460.0" y="1000" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="9" font-weight="400" fill="#6B7280" text-anchor="middle">Fig. 1. System architecture illustrating the layered interaction among data ingestion,</text>
+<text x="460.0" y="1013" font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif" font-size="9" font-weight="400" fill="#6B7280" text-anchor="middle">model monitoring, drift detection, adaptive retraining, and the React-based monitoring interface.</text>
+</svg>
