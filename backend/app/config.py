@@ -15,7 +15,7 @@ PROJECT_VERSION = "1.0"
 # CSV Upload Configuration
 TEMPLATE_CSV_PATH = os.path.join(BASE_DIR, "data", "creditcard.csv")
 USER_UPLOAD_PATH = os.path.join(BASE_DIR, "data", "user_upload.csv")
-MAX_UPLOAD_SIZE_MB = 50
+MAX_UPLOAD_SIZE_MB = 300
 TEMPLATE_COLUMNS = [
     "Time", "V1", "V2", "V3", "V4", "V5", "V6", "V7", "V8", "V9",
     "V10", "V11", "V12", "V13", "V14", "V15", "V16", "V17", "V18", "V19",

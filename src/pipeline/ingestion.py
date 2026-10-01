@@ -23,22 +23,36 @@ class BatchStreamIngestion:
     def load_and_split(self):
         """Loads dataset and splits into historical training set and production stream."""
         self.df = pd.read_csv(self.data_path)
+        total_records = len(self.df)
         
+        # Adapt train size if dataset is smaller than baseline train size
+        if total_records <= self.train_size * 1.5:
+            effective_train_size = max(100, int(total_records * 0.2))
+        else:
+            effective_train_size = self.train_size
+
         # Historical baseline data
-        train_df = self.df.iloc[:self.train_size].copy()
+        train_df = self.df.iloc[:effective_train_size].copy()
         self.X_train = train_df.drop(columns=["Class"])
         self.y_train = train_df["Class"]
         
         # Production stream (remaining records)
-        self.production_df = self.df.iloc[self.train_size:].copy()
-        self.num_batches = int(np.ceil(len(self.production_df) / self.batch_size))
+        self.production_df = self.df.iloc[effective_train_size:].copy()
+        prod_len = len(self.production_df)
+
+        # Adaptive batch sizing: target ~20 batches so processing large datasets is ultra-fast
+        if prod_len > 0:
+            adaptive_batch_size = max(1000, int(np.ceil(prod_len / 20)))
+            self.batch_size = adaptive_batch_size
+
+        self.num_batches = int(np.ceil(prod_len / self.batch_size))
         
         return self.X_train, self.y_train
         
     def get_batch_iterator(self, apply_drift=True):
         """
         Yields sequential batches (X_batch, y_batch, batch_id, metadata).
-        Simulates a realistic production schedule: mixture of normal and drifted batches.
+        Simulates a realistic production schedule with cyclic drift patterns.
         """
         for i in range(self.num_batches):
             start_idx = i * self.batch_size
@@ -46,31 +60,32 @@ class BatchStreamIngestion:
             
             batch_df = self.production_df.iloc[start_idx:end_idx].copy()
             batch_id = i + 1
+            pattern_id = (batch_id - 1) % 10 + 1
             drift_type = "Normal"
             
             if apply_drift:
-                if batch_id in [1, 2, 3, 5, 7, 9]:
+                if pattern_id in [1, 2, 3, 5, 7, 9]:
                     # Completely Normal Batches (No Drift Injected)
                     drift_type = "Normal"
-                elif batch_id == 4:
+                elif pattern_id == 4:
                     # Mild Distribution Drift
                     drift_type = "Mild Drift"
                     batch_df["Amount"] = batch_df["Amount"] * 1.8
                     batch_df["V1"] = batch_df["V1"] * 1.2
-                elif batch_id == 6:
+                elif pattern_id == 6:
                     # Moderate Distribution Drift
                     drift_type = "Moderate Drift"
                     batch_df["Amount"] = batch_df["Amount"] * 2.5
                     batch_df["V1"] = batch_df["V1"] * 1.5
                     batch_df["V2"] = batch_df["V2"] * 1.5
-                elif batch_id == 8:
+                elif pattern_id == 8:
                     # Novel Fraud Pattern D Attack Vector
                     drift_type = "Novel Fraud Pattern D"
                     fraud_mask = (batch_df["Class"] == 1)
                     batch_df.loc[fraud_mask, "V11"] += 5.0
                     batch_df.loc[fraud_mask, "V12"] -= 6.0
                     batch_df.loc[fraud_mask, "V14"] -= 5.5
-                elif batch_id == 10:
+                elif pattern_id == 10:
                     # Strong Distribution Drift + Novel Fraud Attack
                     drift_type = "Strong Drift + Novel Fraud"
                     batch_df["Amount"] = batch_df["Amount"] * 3.5

@@ -90,7 +90,7 @@ export const uploadService = {
     formData.append('column_mapping', JSON.stringify(mapping));
     const response = await apiClient.post<UploadPipelineResponse>('/upload/execute', formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
-      timeout: 120000, // 2-minute timeout for pipeline execution
+      timeout: 600000, // 10-minute timeout for large dataset pipeline execution
     });
     return response.data;
   },
