@@ -14,7 +14,8 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
 # Output directory
-OUTPUT_DIR = "/Users/sam/Desktop/Major1/Documentation/diagrams"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+OUTPUT_DIR = os.path.join(BASE_DIR, "docs", "diagrams")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 plt.rcParams['font.sans-serif'] = ['DejaVu Sans', 'Arial', 'Helvetica']

@@ -158,8 +158,8 @@ def main(data_path=None):
     yellow_count = sum(1 for r in batch_records if r['decision_level'] == "YELLOW")
     red_count = sum(1 for r in batch_records if r['decision_level'] == "RED")
     
-    avg_pre_acc = sum(r['accuracy_before'] for r in batch_records) / total_batches
-    avg_post_acc = sum(r['accuracy_after'] for r in batch_records) / total_batches
+    avg_pre_acc = (sum(r['accuracy_before'] for r in batch_records) / total_batches) if total_batches > 0 else 1.0
+    avg_post_acc = (sum(r['accuracy_after'] for r in batch_records) / total_batches) if total_batches > 0 else 1.0
     
     print(f"""
 🎯 PIPELINE EXECUTION COMPLETE

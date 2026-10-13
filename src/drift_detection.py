@@ -1,12 +1,21 @@
+import os
 import pandas as pd
 import numpy as np
 from scipy import stats
 import matplotlib.pyplot as plt
 
 # ============================================================================
+# BASE & OUTPUT PATH RESOLUTION
+# ============================================================================
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_PATH = os.path.join(BASE_DIR, "data", "creditcard.csv")
+OUTPUTS_DIR = os.path.join(BASE_DIR, "outputs")
+os.makedirs(OUTPUTS_DIR, exist_ok=True)
+
+# ============================================================================
 # STEP 1: Load Data
 # ============================================================================
-data = pd.read_csv("data/creditcard.csv")
+data = pd.read_csv(DATA_PATH)
 
 print("="*70)
 print("STEP 1: LOADING DATA")
@@ -153,8 +162,9 @@ ax.legend()
 ax.grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig('drift_report.png', dpi=300, bbox_inches='tight')
-print("✅ Visualization saved as: drift_report.png")
+output_image_path = os.path.join(OUTPUTS_DIR, "drift_report.png")
+plt.savefig(output_image_path, dpi=300, bbox_inches='tight')
+print(f"✅ Visualization saved as: {output_image_path}")
 
 # ============================================================================
 # STEP 7: Summary
@@ -166,7 +176,7 @@ print("="*70)
 print(f"\n📊 Summary:")
 print(f"  ✅ Features with drift detected: {drift_detected_count}")
 print(f"  ✅ Drift detection method: Kolmogorov-Smirnov Test")
-print(f"  ✅ Visualization saved: drift_report.png")
+print(f"  ✅ Visualization saved: {output_image_path}")
 print(f"\n🎯 Interpretation:")
 print(f"  • KS Statistic > 0.1 and P-value < 0.05 = Significant drift")
 print(f"  • P-value indicates probability that distributions are same")

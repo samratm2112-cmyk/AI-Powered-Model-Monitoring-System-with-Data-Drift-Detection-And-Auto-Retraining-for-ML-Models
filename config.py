@@ -8,8 +8,16 @@ import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "data")
 DATA_FILE = os.path.join(DATA_DIR, "creditcard.csv")
-LOG_FILE = os.path.join(BASE_DIR, "retraining_log.txt")
-JSON_LOG_FILE = os.path.join(BASE_DIR, "decision_log.json")
+MODELS_DIR = os.path.join(BASE_DIR, "models")
+OUTPUTS_DIR = os.path.join(BASE_DIR, "outputs")
+DOCS_DIR = os.path.join(BASE_DIR, "docs")
+TESTS_DIR = os.path.join(BASE_DIR, "tests")
+
+# Artifact / Log Paths
+LOG_FILE = os.path.join(OUTPUTS_DIR, "retraining_log.txt")
+JSON_LOG_FILE = os.path.join(OUTPUTS_DIR, "decision_log.json")
+VALIDATION_REPORT_JSON = os.path.join(OUTPUTS_DIR, "validation_report.json")
+VALIDATION_REPORT_MD = os.path.join(OUTPUTS_DIR, "validation_report.md")
 
 # Data Partitioning Settings
 HISTORICAL_TRAIN_SIZE = 20000

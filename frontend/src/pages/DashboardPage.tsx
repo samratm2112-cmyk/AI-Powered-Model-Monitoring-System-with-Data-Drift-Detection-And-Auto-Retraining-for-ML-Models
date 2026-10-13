@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDashboardData } from '../hooks/useDashboardData';
+import { useDeploymentStatus } from '../hooks/useDeploymentStatus';
 import { DashboardSkeleton } from '../components/DashboardSkeleton';
 import { AnimatedNumber } from '../components/AnimatedNumber';
+import { EnsembleMonitor } from '../components/EnsembleMonitor';
 import {
   PieChart,
   Pie,
@@ -33,11 +36,30 @@ import {
   Minus,
   AlertOctagon,
   Check,
+  ShieldCheck,
+  ShieldAlert,
+  ArrowRight,
 } from 'lucide-react';
 
 export const DashboardPage: React.FC = () => {
+  const navigate = useNavigate();
   const { data, isLoading, isError, error, refetch, isFetching, dataUpdatedAt } = useDashboardData();
+  const { data: deploymentStatus, approveDeployment, isApproving } = useDeploymentStatus();
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  const handleQuickApprove = async () => {
+    try {
+      await approveDeployment({
+        reviewer: 'Executive Dashboard',
+        notes: 'One-click HITL Approval from Executive Dashboard',
+      });
+      setToastMessage('✅ Candidate Model approved and deployed to production!');
+      setTimeout(() => setToastMessage(null), 4000);
+    } catch (err: any) {
+      setToastMessage(`Failed to approve deployment: ${err?.message || 'Server error'}`);
+      setTimeout(() => setToastMessage(null), 4000);
+    }
+  };
 
   const handleManualRefresh = async () => {
     try {
@@ -163,6 +185,95 @@ export const DashboardPage: React.FC = () => {
         {/* Ambient glow decoration */}
         <div className="absolute -right-10 -top-10 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
       </div>
+
+      {/* ============================================================================ */}
+      {/* HUMAN-IN-THE-LOOP (HITL) PENDING APPROVAL ALERT BANNER */}
+      {/* ============================================================================ */}
+      {deploymentStatus?.has_pending_deployment && (
+        <div className="p-6 rounded-2xl bg-gradient-to-r from-amber-500/10 via-rose-500/10 to-amber-500/10 border-2 border-amber-500/40 dark:border-amber-500/50 shadow-lg relative overflow-hidden animate-pulse">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+            <div className="flex items-start space-x-4">
+              <div className="p-3 rounded-2xl bg-amber-500 text-white shadow-md shrink-0">
+                <ShieldAlert className="w-7 h-7" />
+              </div>
+              <div className="space-y-1">
+                <div className="flex items-center space-x-2">
+                  <span className="px-2.5 py-0.5 rounded-full text-xs font-extrabold uppercase bg-amber-500 text-white">
+                    HITL Governance Gate
+                  </span>
+                  <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">
+                    Model: {deploymentStatus.model_candidate || 'GlobalLocalEnsemble'}
+                  </span>
+                </div>
+                <h2 className="text-xl font-black text-slate-900 dark:text-slate-100">
+                  New Retrained Model Awaiting Human Approval
+                </h2>
+                <p className="text-sm text-slate-600 dark:text-slate-300 max-w-2xl">
+                  {deploymentStatus.message || deploymentStatus.validation_report?.recommendation_rationale || 'Data drift exceeded tolerance thresholds. The automated retraining pipeline generated a candidate model and validated it against production criteria.'}
+                </p>
+                {deploymentStatus.validation_report && (
+                  <div className="flex flex-wrap items-center gap-4 text-xs font-semibold pt-1">
+                    {deploymentStatus.validation_report.metrics_comparison?.f1_score && (
+                      <span className="text-slate-600 dark:text-slate-400">
+                        F1-Score:{' '}
+                        <strong className="text-slate-500 line-through">
+                          {(deploymentStatus.validation_report.metrics_comparison.f1_score.old_model * 100).toFixed(2)}%
+                        </strong>{' '}
+                        →{' '}
+                        <strong className="text-emerald-600 dark:text-emerald-400 font-bold">
+                          {(deploymentStatus.validation_report.metrics_comparison.f1_score.new_model * 100).toFixed(2)}%
+                        </strong>
+                      </span>
+                    )}
+                    {deploymentStatus.validation_report.metrics_comparison?.accuracy && (
+                      <span className="text-slate-600 dark:text-slate-400">
+                        Accuracy:{' '}
+                        <strong className="text-slate-500 line-through">
+                          {(deploymentStatus.validation_report.metrics_comparison.accuracy.old_model * 100).toFixed(2)}%
+                        </strong>{' '}
+                        →{' '}
+                        <strong className="text-emerald-600 dark:text-emerald-400 font-bold">
+                          {(deploymentStatus.validation_report.metrics_comparison.accuracy.new_model * 100).toFixed(2)}%
+                        </strong>
+                      </span>
+                    )}
+                    <span className="text-emerald-600 dark:text-emerald-400 font-bold">
+                      ✓ Recommendation: {deploymentStatus.validation_report.recommendation}
+                    </span>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3 shrink-0 w-full lg:w-auto">
+              <button
+                onClick={() => navigate('/governance')}
+                className="flex-1 lg:flex-none px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-sm transition-all shadow-xs inline-flex items-center justify-center space-x-2"
+              >
+                <span>Review Audit Metrics</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+              <button
+                onClick={handleQuickApprove}
+                disabled={isApproving}
+                className="flex-1 lg:flex-none px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold text-sm transition-all shadow-md inline-flex items-center justify-center space-x-2 disabled:opacity-50"
+              >
+                {isApproving ? (
+                  <>
+                    <RefreshCw className="w-4 h-4 animate-spin" />
+                    <span>Deploying...</span>
+                  </>
+                ) : (
+                  <>
+                    <ShieldCheck className="w-4 h-4" />
+                    <span>Approve Deployment</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ============================================================================ */}
       {/* SECTION 2: EXECUTIVE KPI CARDS */}
@@ -354,7 +465,12 @@ export const DashboardPage: React.FC = () => {
       </div>
 
       {/* ============================================================================ */}
-      {/* SECTIONS 3 & 4: CHARTS GRID */}
+      {/* SECTION 3: TWO-STAGE ADVANCED ENSEMBLE PIPELINE (VAE + XGBOOST) */}
+      {/* ============================================================================ */}
+      <EnsembleMonitor />
+
+      {/* ============================================================================ */}
+      {/* SECTIONS 4 & 5: CHARTS GRID */}
       {/* ============================================================================ */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* SECTION 3: DECISION POLICY DISTRIBUTION */}

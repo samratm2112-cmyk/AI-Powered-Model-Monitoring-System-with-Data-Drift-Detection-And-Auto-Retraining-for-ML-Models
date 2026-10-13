@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { TopNavbar } from '../components/TopNavbar';
 import { Sidebar } from '../components/Sidebar';
+import { ModelUpdateRequiredModal } from '../components/ModelUpdateRequiredModal';
 
 export const DashboardLayout: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ export const DashboardLayout: React.FC = () => {
           </div>
         </main>
       </div>
+      <ModelUpdateRequiredModal />
     </div>
   );
 };

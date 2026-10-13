@@ -4,7 +4,7 @@ Defines all production endpoints using FastAPI APIRouter and Pydantic response m
 """
 
 from fastapi import APIRouter, Response, status, UploadFile, File, Form
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 import json
 from backend.app.config import PROJECT_NAME, PROJECT_VERSION
 from backend.app.schemas.monitoring_schema import (
@@ -22,8 +22,17 @@ from backend.app.schemas.upload_schema import (
     TransformPreviewResponse,
     UploadPipelineResponse,
 )
+from backend.app.schemas.explain_schema import ExplainTransactionResponse
+from backend.app.schemas.governance_schema import (
+    DeploymentStatusResponse,
+    DeploymentApproveRequest,
+    DeploymentApproveResponse,
+    SystemHealthResponse
+)
 from backend.app.services.monitoring_service import MonitoringService
 from backend.app.services.upload_service import UploadService
+from backend.app.services.explainability_service import ExplainabilityService
+from backend.app.services.governance_service import GovernanceService
 
 router = APIRouter()
 
@@ -81,6 +90,22 @@ def run_monitoring():
 # ─────────────────────────────────────────────────────────────────────
 # CSV UPLOAD & COLUMN MAPPING ENDPOINTS
 # ─────────────────────────────────────────────────────────────────────
+
+@router.post(
+    "/upload",
+    summary="Upload Dataset & Trigger Decision Engine",
+    tags=["CSV Upload"]
+)
+async def upload_dataset_direct(file: UploadFile = File(...)):
+    """
+    Direct endpoint for dataset upload. Preprocesses data, runs drift detection,
+    and executes make_retraining_decision. If retraining is needed, sets system status
+    to PENDING_APPROVAL and generates validation_report.json.
+    """
+    df = await UploadService.parse_uploaded_csv(file)
+    result = UploadService.process_and_evaluate_dataset(df)
+    return result
+
 
 @router.post(
     "/upload/preview",
@@ -205,4 +230,100 @@ async def execute_upload_pipeline(
         "smart_filled_columns": smart_filled_cols,
         "pipeline_summary": pipeline_summary,
     }
+
+
+# ─────────────────────────────────────────────────────────────────────
+# SHAP INTERPRETABILITY & LOCAL EXPLANATION ENDPOINTS
+# ─────────────────────────────────────────────────────────────────────
+
+@router.get(
+    "/explain/{transaction_id}",
+    response_model=ExplainTransactionResponse,
+    summary="SHAP Local Transaction Explanation",
+    tags=["Explainability"]
+)
+def explain_transaction(transaction_id: int):
+    """
+    Computes exact SHAP values for a transaction using TreeExplainer on the Stage 2 Classifier.
+    Returns JSON feature attributions for dynamic UI waterfall / bar rendering.
+    """
+    return ExplainabilityService.explain_transaction(transaction_id)
+
+
+@router.get(
+    "/explain",
+    response_model=ExplainTransactionResponse,
+    summary="Default SHAP Explanation",
+    tags=["Explainability"]
+)
+def explain_default():
+    """Default explanation endpoint returning a prominent flagged transaction (#42)."""
+    return ExplainabilityService.explain_transaction(42)
+
+
+# ─────────────────────────────────────────────────────────────────────
+# HUMAN-IN-THE-LOOP (HITL) GOVERNANCE GATE ENDPOINTS
+# ─────────────────────────────────────────────────────────────────────
+
+@router.get(
+    "/deployment/status",
+    response_model=DeploymentStatusResponse,
+    summary="Check HITL Pending Deployment Status",
+    tags=["Governance"]
+)
+def get_deployment_status():
+    """
+    Checks if a retrained model candidate is awaiting human deployment approval
+    and returns metrics comparison and drift analysis.
+    """
+    return GovernanceService.get_deployment_status()
+
+
+@router.post(
+    "/deployment/approve",
+    response_model=DeploymentApproveResponse,
+    summary="Approve Model Deployment",
+    tags=["Governance"]
+)
+def approve_deployment(body: Optional[DeploymentApproveRequest] = None):
+    """
+    Triggers the governance gate approval logic:
+    Promotes and saves the new model to /models/deployed_model.pkl and updates audit logs.
+    """
+    reviewer = body.reviewer if body and body.reviewer else "Human Compliance Officer"
+    notes = body.notes if body and body.notes else "Approved via MLOps Governance Portal"
+    return GovernanceService.approve_deployment(reviewer=reviewer, notes=notes)
+
+
+@router.post(
+    "/deployment/reject",
+    summary="Reject Model Deployment",
+    tags=["Governance"]
+)
+def reject_deployment(body: Optional[DeploymentApproveRequest] = None):
+    """
+    Rejects the candidate model, keeping the active model in production as a fail-safe.
+    """
+    reviewer = body.reviewer if body and body.reviewer else "Human Compliance Officer"
+    notes = body.notes if body and body.notes else "Rejected by human reviewer"
+    return GovernanceService.reject_deployment(reviewer=reviewer, notes=notes)
+
+
+# ─────────────────────────────────────────────────────────────────────
+# TWO-STAGE ENSEMBLE & SYSTEM HEALTH ENDPOINT
+# ─────────────────────────────────────────────────────────────────────
+
+@router.get(
+    "/system/health",
+    response_model=SystemHealthResponse,
+    summary="Ensemble Architecture State & VAE Filter Status",
+    tags=["System"]
+)
+def get_system_health():
+    """
+    Returns the real-time status of the Two-Stage Pipeline (Stage 1: VAE/Anomaly Filter,
+    Stage 2: XGBoost Classifier) and Global/Local Ensemble weights (70%/30%).
+    """
+    return GovernanceService.get_system_health()
+
 

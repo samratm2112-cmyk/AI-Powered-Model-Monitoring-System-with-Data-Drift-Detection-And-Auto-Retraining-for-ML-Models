@@ -1,0 +1,55 @@
+{
+  "timestamp": "2026-10-13 12:20:33",
+  "metrics_comparison": {
+    "accuracy": {
+      "old_model": 0.9313,
+      "new_model": 0.9313,
+      "delta": 0.0,
+      "delta_pct": 0.0,
+      "improved": true
+    },
+    "precision": {
+      "old_model": 0.9607,
+      "new_model": 0.9607,
+      "delta": 0.0,
+      "delta_pct": 0.0,
+      "improved": true
+    },
+    "recall": {
+      "old_model": 0.9313,
+      "new_model": 0.9313,
+      "delta": 0.0,
+      "delta_pct": 0.0,
+      "improved": true
+    },
+    "f1": {
+      "old_model": 0.9457,
+      "new_model": 0.9457,
+      "delta": 0.0,
+      "delta_pct": 0.0,
+      "improved": true
+    }
+  },
+  "top_drifted_features": [
+    {
+      "feature": "Amount",
+      "ks_statistic": 0.90411,
+      "p_value": 0.0,
+      "drift_detected": true
+    },
+    {
+      "feature": "V3",
+      "ks_statistic": 0.026590000000000003,
+      "p_value": 1.1386038876346823e-10,
+      "drift_detected": true
+    },
+    {
+      "feature": "V1",
+      "ks_statistic": 0.01962999999999998,
+      "p_value": 5.2060451552992654e-06,
+      "drift_detected": true
+    }
+  ],
+  "recommendation": "Strongly Recommend Deployment",
+  "recommendation_rationale": "The retrained model demonstrates superior or stable performance over the old model (F1: 0.9457 vs 0.9457, Accuracy: 0.9313 vs 0.9313) and effectively counteracts the distribution drift detected in primary features: Amount, V3, V1."
+}

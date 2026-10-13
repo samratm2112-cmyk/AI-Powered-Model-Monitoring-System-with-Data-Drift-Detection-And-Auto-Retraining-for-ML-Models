@@ -11,6 +11,8 @@ import { FeatureAnalysisPage } from './pages/FeatureAnalysisPage';
 import { LogsPage } from './pages/LogsPage';
 import { ArchitecturePage } from './pages/ArchitecturePage';
 import { SettingsPage } from './pages/SettingsPage';
+import { ExplainabilityHubPage } from './pages/ExplainabilityHubPage';
+import { GovernancePage } from './pages/GovernancePage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import './styles/globals.css';
 
@@ -35,6 +37,8 @@ export const App: React.FC = () => {
             <Route path="drift" element={<DriftAnalyticsPage />} />
             <Route path="accuracy" element={<AccuracyTrendsPage />} />
             <Route path="features" element={<FeatureAnalysisPage />} />
+            <Route path="explain" element={<ExplainabilityHubPage />} />
+            <Route path="governance" element={<GovernancePage />} />
             <Route path="logs" element={<LogsPage />} />
             <Route path="architecture" element={<ArchitecturePage />} />
             <Route path="settings" element={<SettingsPage />} />

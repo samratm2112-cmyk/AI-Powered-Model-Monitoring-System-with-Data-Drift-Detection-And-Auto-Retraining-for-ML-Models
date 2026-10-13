@@ -22,8 +22,9 @@ st.set_page_config(
 
 # Paths
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-JSON_LOG_PATH = os.path.join(BASE_DIR, "decision_log.json")
-TEXT_LOG_PATH = os.path.join(BASE_DIR, "retraining_log.txt")
+OUTPUTS_DIR = os.path.join(BASE_DIR, "outputs")
+JSON_LOG_PATH = os.path.join(OUTPUTS_DIR, "decision_log.json") if os.path.exists(os.path.join(OUTPUTS_DIR, "decision_log.json")) else os.path.join(BASE_DIR, "decision_log.json")
+TEXT_LOG_PATH = os.path.join(OUTPUTS_DIR, "retraining_log.txt") if os.path.exists(os.path.join(OUTPUTS_DIR, "retraining_log.txt")) else os.path.join(BASE_DIR, "retraining_log.txt")
 
 # ============================================================================
 # CUSTOM LIGHT THEME STYLING

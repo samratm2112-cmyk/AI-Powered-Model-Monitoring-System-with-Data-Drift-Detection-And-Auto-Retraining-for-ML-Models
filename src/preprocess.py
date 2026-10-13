@@ -1,9 +1,14 @@
+import os
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
+# Define dataset path relative to project root
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_PATH = os.path.join(BASE_DIR, "data", "creditcard.csv")
+
 # Load data
-data = pd.read_csv("data/creditcard.csv")
+data = pd.read_csv(DATA_PATH)
 
 # Check missing values
 print(data.isnull().sum())

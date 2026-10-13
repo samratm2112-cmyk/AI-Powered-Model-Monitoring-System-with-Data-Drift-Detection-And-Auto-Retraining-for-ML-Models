@@ -4,10 +4,14 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report
 
+import os
+
 # ============================================================================
 # STEP 1: Load and prepare original data (same as training)
 # ============================================================================
-data = pd.read_csv("data/creditcard.csv")
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_PATH = os.path.join(BASE_DIR, "data", "creditcard.csv")
+data = pd.read_csv(DATA_PATH)
 
 # Split features and target
 X = data.drop("Class", axis=1)

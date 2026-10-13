@@ -27,7 +27,9 @@ class BatchStreamIngestion:
         
         # Adapt train size if dataset is smaller than baseline train size
         if total_records <= self.train_size * 1.5:
-            effective_train_size = max(100, int(total_records * 0.2))
+            effective_train_size = max(5, int(total_records * 0.2))
+            if effective_train_size >= total_records:
+                effective_train_size = max(1, int(total_records * 0.5))
         else:
             effective_train_size = self.train_size
 
@@ -40,12 +42,16 @@ class BatchStreamIngestion:
         self.production_df = self.df.iloc[effective_train_size:].copy()
         prod_len = len(self.production_df)
 
-        # Adaptive batch sizing: target ~20 batches so processing large datasets is ultra-fast
+        # Adaptive batch sizing: target ~5-20 batches so processing is robust for any size
         if prod_len > 0:
-            adaptive_batch_size = max(1000, int(np.ceil(prod_len / 20)))
-            self.batch_size = adaptive_batch_size
-
-        self.num_batches = int(np.ceil(prod_len / self.batch_size))
+            if prod_len < 500:
+                self.batch_size = max(5, int(np.ceil(prod_len / 5)))
+            else:
+                adaptive_batch_size = max(100, int(np.ceil(prod_len / 20)))
+                self.batch_size = adaptive_batch_size
+            self.num_batches = int(np.ceil(prod_len / self.batch_size))
+        else:
+            self.num_batches = 0
         
         return self.X_train, self.y_train
         

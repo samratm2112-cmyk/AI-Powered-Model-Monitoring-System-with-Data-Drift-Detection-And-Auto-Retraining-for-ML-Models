@@ -33,8 +33,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Mount API Endpoints Router
+# Mount API Endpoints Router (both root and /api prefix)
 app.include_router(api_router)
+app.include_router(api_router, prefix="/api")
 
 if __name__ == "__main__":
     import uvicorn

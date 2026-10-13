@@ -2238,3 +2238,976 @@
 [2026-10-01 13:11:24] [WARNING] [DECISION] Batch 20 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3)
 [2026-10-01 13:11:24] [SUCCESS] [RETRAINING] Batch 20: Local Model updated (Buffer: 4221)
 [2026-10-01 13:11:24] [SUCCESS] [PIPELINE] Pipeline finished: GREEN=13, YELLOW=2, RED=5
+[2026-10-01 13:56:16] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-10-01 13:56:16] [INFO] [INITIALIZATION] Global baseline model training completed successfully
+[2026-10-01 13:56:16] [INFO] [DECISION] Batch 1 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-01 13:56:16] [INFO] [DECISION] Batch 2 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-01 13:56:16] [INFO] [DECISION] Batch 3 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-01 13:56:16] [WARNING] [DECISION] Batch 4 [RED]: Retraining triggered -> Significant drift in 29 features (>= threshold 3)
+[2026-10-01 13:56:16] [SUCCESS] [RETRAINING] Batch 4: Local Model updated (Buffer: 1000)
+[2026-10-01 13:56:16] [INFO] [DECISION] Batch 5 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-01 13:56:16] [WARNING] [DECISION] Batch 6 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3)
+[2026-10-01 13:56:16] [SUCCESS] [RETRAINING] Batch 6: Local Model updated (Buffer: 2000)
+[2026-10-01 13:56:16] [INFO] [DECISION] Batch 7 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-01 13:56:16] [INFO] [DECISION] Batch 8 [YELLOW]: Warning logged -> Minor variation in 1 features (< threshold 3) - Accuracy (1.0000) stable
+[2026-10-01 13:56:16] [INFO] [DECISION] Batch 9 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-01 13:56:16] [SUCCESS] [PIPELINE] Pipeline finished: GREEN=6, YELLOW=1, RED=2
+[2026-10-02 19:59:18] [INFO] [INITIALIZATION] Starting ML Drift System (Multi-Pattern Fraud & Hybrid Ensemble)
+[2026-10-02 19:59:18] [INFO] [DATA_LOADING] Data loaded: 30000 samples, 30 features, 600 fraud events
+[2026-10-02 19:59:18] [INFO] [PREPROCESSING] Data preprocessing completed
+[2026-10-02 19:59:23] [INFO] [MODEL_TRAINING] Global model training completed on historical fraud types
+[2026-10-02 19:59:23] [INFO] [BASELINE] Evaluation completed:
+[2026-10-02 19:59:23] [INFO] [BASELINE] accuracy: 0.9990
+[2026-10-02 19:59:23] [INFO] [BASELINE] precision: 0.9990
+[2026-10-02 19:59:23] [INFO] [BASELINE] recall: 0.9990
+[2026-10-02 19:59:23] [INFO] [BASELINE] f1: 0.9990
+[2026-10-02 19:59:23] [INFO] [DRIFT_SIMULATION] Drift & novel fraud simulation completed
+[2026-10-02 19:59:23] [WARNING] [DRIFT_DETECTION] Drift detected in 4 features
+[2026-10-02 19:59:23] [INFO] [ROOT_CAUSE] Feature importance analysis completed
+[2026-10-02 19:59:23] [INFO] [DRIFTED_DATA_GLOBAL] Evaluation completed:
+[2026-10-02 19:59:23] [INFO] [DRIFTED_DATA_GLOBAL] accuracy: 0.9860
+[2026-10-02 19:59:23] [INFO] [DRIFTED_DATA_GLOBAL] precision: 0.9918
+[2026-10-02 19:59:23] [INFO] [DRIFTED_DATA_GLOBAL] recall: 0.9860
+[2026-10-02 19:59:23] [INFO] [DRIFTED_DATA_GLOBAL] f1: 0.9878
+[2026-10-02 19:59:23] [INFO] [DECISION] Drift detected: True
+[2026-10-02 19:59:23] [INFO] [DECISION] Accuracy degraded: True (0.9860 vs threshold 0.9900)
+[2026-10-02 19:59:23] [INFO] [DECISION] Retrain decision: True
+[2026-10-02 19:59:23] [WARNING] [DECISION] Retraining decision: YES - trigger fast Local Expert training
+[2026-10-02 19:59:23] [INFO] [RETRAINING] Starting retraining/updating with 6000 samples
+[2026-10-02 19:59:24] [INFO] [RETRAINING] ✅ Local Expert retrained successfully (Buffer: 5000 samples)
+[2026-10-02 19:59:24] [INFO] [POST_ENSEMBLE_ADAPTATION] Evaluation completed:
+[2026-10-02 19:59:24] [INFO] [POST_ENSEMBLE_ADAPTATION] accuracy: 0.9942
+[2026-10-02 19:59:24] [INFO] [POST_ENSEMBLE_ADAPTATION] precision: 0.9955
+[2026-10-02 19:59:24] [INFO] [POST_ENSEMBLE_ADAPTATION] recall: 0.9942
+[2026-10-02 19:59:24] [INFO] [POST_ENSEMBLE_ADAPTATION] f1: 0.9945
+[2026-10-02 19:59:24] [SUCCESS] [IMPROVEMENT] Ensemble improvement: +0.82%
+[2026-10-02 19:59:24] [SUCCESS] [EXECUTION] ML Drift Detection System execution completed successfully
+[2026-10-03 22:42:15] [INFO] [INITIALIZATION] Starting ML Drift System (Multi-Pattern Fraud & Hybrid Ensemble)
+[2026-10-03 22:42:15] [INFO] [DATA_LOADING] Data loaded: 30000 samples, 30 features, 600 fraud events
+[2026-10-03 22:42:15] [INFO] [PREPROCESSING] Data preprocessing completed
+[2026-10-03 22:42:15] [INFO] [MODEL_TRAINING] Global model training completed on historical fraud types
+[2026-10-03 22:42:15] [INFO] [BASELINE] Evaluation completed:
+[2026-10-03 22:42:15] [INFO] [BASELINE] accuracy: 0.9993
+[2026-10-03 22:42:15] [INFO] [BASELINE] precision: 0.9993
+[2026-10-03 22:42:15] [INFO] [BASELINE] recall: 0.9993
+[2026-10-03 22:42:15] [INFO] [BASELINE] f1: 0.9993
+[2026-10-03 22:42:15] [INFO] [DRIFT_SIMULATION] Drift & novel fraud simulation completed
+[2026-10-03 22:42:15] [WARNING] [DRIFT_DETECTION] Drift detected in 4 features
+[2026-10-03 22:42:15] [INFO] [ROOT_CAUSE] Feature importance analysis completed
+[2026-10-03 22:42:15] [INFO] [DRIFTED_DATA_GLOBAL] Evaluation completed:
+[2026-10-03 22:42:15] [INFO] [DRIFTED_DATA_GLOBAL] accuracy: 0.9957
+[2026-10-03 22:42:15] [INFO] [DRIFTED_DATA_GLOBAL] precision: 0.9962
+[2026-10-03 22:42:15] [INFO] [DRIFTED_DATA_GLOBAL] recall: 0.9957
+[2026-10-03 22:42:15] [INFO] [DRIFTED_DATA_GLOBAL] f1: 0.9958
+[2026-10-03 22:42:15] [INFO] [DECISION] Drift detected: True
+[2026-10-03 22:42:15] [INFO] [DECISION] Accuracy degraded: False (0.9957 vs threshold 0.9900)
+[2026-10-03 22:42:15] [INFO] [DECISION] Retrain decision: True
+[2026-10-03 22:42:15] [WARNING] [DECISION] Retraining decision: YES - trigger fast Local Expert training
+[2026-10-03 22:42:15] [INFO] [RETRAINING] Starting retraining/updating with 6000 samples
+[2026-10-03 22:42:16] [INFO] [RETRAINING] ✅ Local Expert retrained successfully (Buffer: 5000 samples)
+[2026-10-03 22:42:16] [INFO] [POST_ENSEMBLE_ADAPTATION] Evaluation completed:
+[2026-10-03 22:42:16] [INFO] [POST_ENSEMBLE_ADAPTATION] accuracy: 0.9967
+[2026-10-03 22:42:16] [INFO] [POST_ENSEMBLE_ADAPTATION] precision: 0.9971
+[2026-10-03 22:42:16] [INFO] [POST_ENSEMBLE_ADAPTATION] recall: 0.9967
+[2026-10-03 22:42:16] [INFO] [POST_ENSEMBLE_ADAPTATION] f1: 0.9968
+[2026-10-03 22:42:16] [SUCCESS] [IMPROVEMENT] Ensemble improvement: +0.10%
+[2026-10-03 22:42:16] [SUCCESS] [EXECUTION] ML Drift Detection System execution completed successfully
+[2026-10-03 22:51:54] [INFO] [INITIALIZATION] Starting ML Drift System with Multi-Pattern Historical Fraud Dataset
+[2026-10-03 22:51:55] [INFO] [INITIALIZATION] ✅ Initial Global Model trained on 20000 samples with 406 fraud events
+[2026-10-03 22:51:55] [INFO] [BASELINE_GLOBAL] Evaluation completed:
+[2026-10-03 22:51:55] [INFO] [BASELINE_GLOBAL] accuracy: 0.9975
+[2026-10-03 22:51:55] [INFO] [BASELINE_GLOBAL] precision: 0.9976
+[2026-10-03 22:51:55] [INFO] [BASELINE_GLOBAL] recall: 0.9975
+[2026-10-03 22:51:55] [INFO] [BASELINE_GLOBAL] f1: 0.9975
+[2026-10-03 22:51:55] [INFO] [DECISION] Drift detected: True
+[2026-10-03 22:51:55] [INFO] [DECISION] Accuracy degraded: False (0.9975 vs threshold 0.9900)
+[2026-10-03 22:51:55] [INFO] [DECISION] Retrain decision: True
+[2026-10-03 22:51:55] [INFO] [RETRAINING] 🔄 Retraining Local Expert on novel drifted stream
+[2026-10-03 22:51:55] [INFO] [RETRAINING] Starting retraining/updating with 10000 samples
+[2026-10-03 22:51:55] [INFO] [RETRAINING] ✅ Local Expert retrained successfully (Buffer: 5000 samples)
+[2026-10-03 22:51:55] [INFO] [POST_ENSEMBLE_ADAPTATION] Evaluation completed:
+[2026-10-03 22:51:55] [INFO] [POST_ENSEMBLE_ADAPTATION] accuracy: 0.9990
+[2026-10-03 22:51:55] [INFO] [POST_ENSEMBLE_ADAPTATION] precision: 0.9990
+[2026-10-03 22:51:55] [INFO] [POST_ENSEMBLE_ADAPTATION] recall: 0.9990
+[2026-10-03 22:51:55] [INFO] [POST_ENSEMBLE_ADAPTATION] f1: 0.9990
+[2026-10-03 22:51:55] [INFO] [LOGGING] ✅ Decision log saved to decision_log.json
+[2026-10-03 22:52:18] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-10-03 22:52:19] [INFO] [INITIALIZATION] Global baseline model training completed successfully
+[2026-10-03 22:52:19] [INFO] [DECISION] Batch 1 [YELLOW]: Warning logged -> Minor variation in 1 features (< threshold 3) - Accuracy (0.9967) stable
+[2026-10-03 22:52:19] [INFO] [DECISION] Batch 2 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-03 22:52:19] [WARNING] [DECISION] Batch 3 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3)
+[2026-10-03 22:52:19] [SUCCESS] [RETRAINING] Batch 3: Local Model updated (Buffer: 1200)
+[2026-10-03 22:52:19] [WARNING] [DECISION] Batch 4 [RED]: Retraining triggered -> Significant drift in 4 features (>= threshold 3)
+[2026-10-03 22:52:20] [SUCCESS] [RETRAINING] Batch 4: Local Model updated (Buffer: 2400)
+[2026-10-03 22:52:20] [INFO] [DECISION] Batch 5 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (0.9983) stable
+[2026-10-03 22:52:20] [WARNING] [DECISION] Batch 6 [RED]: Retraining triggered -> Significant drift in 4 features (>= threshold 3)
+[2026-10-03 22:52:20] [SUCCESS] [RETRAINING] Batch 6: Local Model updated (Buffer: 3600)
+[2026-10-03 22:52:20] [INFO] [DECISION] Batch 7 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-03 22:52:20] [INFO] [DECISION] Batch 8 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-03 22:52:20] [INFO] [DECISION] Batch 9 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (1.0000) stable
+[2026-10-03 22:52:20] [WARNING] [DECISION] Batch 10 [RED]: Retraining triggered -> Significant drift in 4 features (>= threshold 3)
+[2026-10-03 22:52:20] [SUCCESS] [RETRAINING] Batch 10: Local Model updated (Buffer: 4800)
+[2026-10-03 22:52:20] [INFO] [DECISION] Batch 11 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (1.0000) stable
+[2026-10-03 22:52:20] [INFO] [DECISION] Batch 12 [YELLOW]: Warning logged -> Minor variation in 1 features (< threshold 3) - Accuracy (0.9992) stable
+[2026-10-03 22:52:20] [WARNING] [DECISION] Batch 13 [RED]: Retraining triggered -> Significant drift in 5 features (>= threshold 3)
+[2026-10-03 22:52:21] [SUCCESS] [RETRAINING] Batch 13: Local Model updated (Buffer: 5000)
+[2026-10-03 22:52:21] [INFO] [DECISION] Batch 14 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (0.9983) stable
+[2026-10-03 22:52:21] [INFO] [DECISION] Batch 15 [YELLOW]: Warning logged -> Minor variation in 1 features (< threshold 3) - Accuracy (0.9983) stable
+[2026-10-03 22:52:21] [WARNING] [DECISION] Batch 16 [RED]: Retraining triggered -> Significant drift in 6 features (>= threshold 3)
+[2026-10-03 22:52:21] [SUCCESS] [RETRAINING] Batch 16: Local Model updated (Buffer: 5000)
+[2026-10-03 22:52:21] [INFO] [DECISION] Batch 17 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-03 22:52:21] [INFO] [DECISION] Batch 18 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (0.9992) stable
+[2026-10-03 22:52:21] [INFO] [DECISION] Batch 19 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (1.0000) stable
+[2026-10-03 22:52:21] [WARNING] [DECISION] Batch 20 [RED]: Retraining triggered -> Significant drift in 6 features (>= threshold 3)
+[2026-10-03 22:52:21] [SUCCESS] [RETRAINING] Batch 20: Local Model updated (Buffer: 5000)
+[2026-10-03 22:52:21] [SUCCESS] [PIPELINE] Pipeline finished: GREEN=4, YELLOW=9, RED=7
+[2026-10-04 12:42:13] [INFO] [INITIALIZATION] Starting ML Drift System with Multi-Pattern Historical Fraud Dataset
+[2026-10-04 12:42:13] [INFO] [INITIALIZATION] ✅ Initial Global Model trained on 20000 samples with 406 fraud events
+[2026-10-04 12:42:13] [INFO] [BASELINE_OLD_MODEL] Evaluation completed:
+[2026-10-04 12:42:13] [INFO] [BASELINE_OLD_MODEL] accuracy: 0.9975
+[2026-10-04 12:42:13] [INFO] [BASELINE_OLD_MODEL] precision: 0.9976
+[2026-10-04 12:42:13] [INFO] [BASELINE_OLD_MODEL] recall: 0.9975
+[2026-10-04 12:42:13] [INFO] [BASELINE_OLD_MODEL] f1: 0.9975
+[2026-10-04 12:42:13] [INFO] [DECISION] Drift detected: True
+[2026-10-04 12:42:13] [INFO] [DECISION] Accuracy degraded: False (0.9975 vs threshold 0.9900)
+[2026-10-04 12:42:13] [INFO] [DECISION] Retrain decision: True
+[2026-10-04 12:42:13] [INFO] [RETRAINING] 🔄 Training candidate model in sandbox for validation review
+[2026-10-04 12:42:13] [INFO] [RETRAINING] Starting retraining/updating with 10000 samples
+[2026-10-04 12:42:13] [INFO] [RETRAINING] ✅ Local Expert retrained successfully (Buffer: 5000 samples)
+[2026-10-04 12:42:13] [INFO] [CANDIDATE_MODEL_EVALUATION] Evaluation completed:
+[2026-10-04 12:42:13] [INFO] [CANDIDATE_MODEL_EVALUATION] accuracy: 0.9990
+[2026-10-04 12:42:13] [INFO] [CANDIDATE_MODEL_EVALUATION] precision: 0.9990
+[2026-10-04 12:42:13] [INFO] [CANDIDATE_MODEL_EVALUATION] recall: 0.9990
+[2026-10-04 12:42:13] [INFO] [CANDIDATE_MODEL_EVALUATION] f1: 0.9990
+[2026-10-04 12:42:13] [WARNING] [GOVERNANCE] Deployment Rejected (user input: 'no'). Fail-safe engaged: Old model remains active in production.
+[2026-10-04 12:42:13] [INFO] [LOGGING] ✅ Decision log saved to decision_log.json
+[2026-10-04 12:43:05] [INFO] [INITIALIZATION] Starting ML Drift System with Multi-Pattern Historical Fraud Dataset
+[2026-10-04 12:43:05] [INFO] [INITIALIZATION] ✅ Initial Global Model trained on 20000 samples with 406 fraud events
+[2026-10-04 12:43:06] [INFO] [BASELINE_OLD_MODEL] Evaluation completed:
+[2026-10-04 12:43:06] [INFO] [BASELINE_OLD_MODEL] accuracy: 0.9975
+[2026-10-04 12:43:06] [INFO] [BASELINE_OLD_MODEL] precision: 0.9976
+[2026-10-04 12:43:06] [INFO] [BASELINE_OLD_MODEL] recall: 0.9975
+[2026-10-04 12:43:06] [INFO] [BASELINE_OLD_MODEL] f1: 0.9975
+[2026-10-04 12:43:06] [INFO] [DECISION] Drift detected: True
+[2026-10-04 12:43:06] [INFO] [DECISION] Accuracy degraded: False (0.9975 vs threshold 0.9900)
+[2026-10-04 12:43:06] [INFO] [DECISION] Retrain decision: True
+[2026-10-04 12:43:06] [INFO] [RETRAINING] 🔄 Training candidate model in sandbox for validation review
+[2026-10-04 12:43:06] [INFO] [RETRAINING] Starting retraining/updating with 10000 samples
+[2026-10-04 12:43:06] [INFO] [RETRAINING] ✅ Local Expert retrained successfully (Buffer: 5000 samples)
+[2026-10-04 12:43:06] [INFO] [CANDIDATE_MODEL_EVALUATION] Evaluation completed:
+[2026-10-04 12:43:06] [INFO] [CANDIDATE_MODEL_EVALUATION] accuracy: 0.9990
+[2026-10-04 12:43:06] [INFO] [CANDIDATE_MODEL_EVALUATION] precision: 0.9990
+[2026-10-04 12:43:06] [INFO] [CANDIDATE_MODEL_EVALUATION] recall: 0.9990
+[2026-10-04 12:43:06] [INFO] [CANDIDATE_MODEL_EVALUATION] f1: 0.9990
+[2026-10-04 12:43:06] [INFO] [GOVERNANCE] Deployed by Human Approval.
+[2026-10-04 12:43:06] [INFO] [LOGGING] ✅ Decision log saved to decision_log.json
+[2026-10-04 12:43:35] [INFO] [INITIALIZATION] Starting ML Drift System with Multi-Pattern Historical Fraud Dataset
+[2026-10-04 12:43:35] [INFO] [INITIALIZATION] ✅ Initial Global Model trained on 20000 samples with 406 fraud events
+[2026-10-04 12:43:35] [INFO] [BASELINE_OLD_MODEL] Evaluation completed:
+[2026-10-04 12:43:35] [INFO] [BASELINE_OLD_MODEL] accuracy: 0.9975
+[2026-10-04 12:43:35] [INFO] [BASELINE_OLD_MODEL] precision: 0.9976
+[2026-10-04 12:43:35] [INFO] [BASELINE_OLD_MODEL] recall: 0.9975
+[2026-10-04 12:43:35] [INFO] [BASELINE_OLD_MODEL] f1: 0.9975
+[2026-10-04 12:43:35] [INFO] [DECISION] Drift detected: True
+[2026-10-04 12:43:35] [INFO] [DECISION] Accuracy degraded: False (0.9975 vs threshold 0.9900)
+[2026-10-04 12:43:35] [INFO] [DECISION] Retrain decision: True
+[2026-10-04 12:43:35] [INFO] [RETRAINING] 🔄 Training candidate model in sandbox for validation review
+[2026-10-04 12:43:35] [INFO] [RETRAINING] Starting retraining/updating with 10000 samples
+[2026-10-04 12:43:35] [INFO] [RETRAINING] ✅ Local Expert retrained successfully (Buffer: 5000 samples)
+[2026-10-04 12:43:35] [INFO] [CANDIDATE_MODEL_EVALUATION] Evaluation completed:
+[2026-10-04 12:43:35] [INFO] [CANDIDATE_MODEL_EVALUATION] accuracy: 0.9990
+[2026-10-04 12:43:35] [INFO] [CANDIDATE_MODEL_EVALUATION] precision: 0.9990
+[2026-10-04 12:43:35] [INFO] [CANDIDATE_MODEL_EVALUATION] recall: 0.9990
+[2026-10-04 12:43:35] [INFO] [CANDIDATE_MODEL_EVALUATION] f1: 0.9990
+[2026-10-04 12:43:35] [WARNING] [GOVERNANCE] Deployment Rejected (user input: 'maybe'). Fail-safe engaged: Old model remains active in production.
+[2026-10-04 12:43:35] [INFO] [LOGGING] ✅ Decision log saved to decision_log.json
+[2026-10-04 12:44:01] [INFO] [INITIALIZATION] Starting ML Drift System (Multi-Pattern Fraud & Hybrid Ensemble)
+[2026-10-04 12:44:01] [INFO] [DATA_LOADING] Data loaded: 30000 samples, 30 features, 600 fraud events
+[2026-10-04 12:44:01] [INFO] [PREPROCESSING] Data preprocessing completed
+[2026-10-04 12:44:01] [INFO] [MODEL_TRAINING] Global model training completed on historical fraud types
+[2026-10-04 12:44:02] [INFO] [BASELINE] Evaluation completed:
+[2026-10-04 12:44:02] [INFO] [BASELINE] accuracy: 0.9993
+[2026-10-04 12:44:02] [INFO] [BASELINE] precision: 0.9993
+[2026-10-04 12:44:02] [INFO] [BASELINE] recall: 0.9993
+[2026-10-04 12:44:02] [INFO] [BASELINE] f1: 0.9993
+[2026-10-04 12:44:02] [INFO] [DRIFT_SIMULATION] Drift & novel fraud simulation completed
+[2026-10-04 12:44:02] [WARNING] [DRIFT_DETECTION] Drift detected in 4 features
+[2026-10-04 12:44:02] [INFO] [ROOT_CAUSE] Feature importance analysis completed
+[2026-10-04 12:44:02] [INFO] [DRIFTED_DATA_GLOBAL] Evaluation completed:
+[2026-10-04 12:44:02] [INFO] [DRIFTED_DATA_GLOBAL] accuracy: 0.9957
+[2026-10-04 12:44:02] [INFO] [DRIFTED_DATA_GLOBAL] precision: 0.9962
+[2026-10-04 12:44:02] [INFO] [DRIFTED_DATA_GLOBAL] recall: 0.9957
+[2026-10-04 12:44:02] [INFO] [DRIFTED_DATA_GLOBAL] f1: 0.9958
+[2026-10-04 12:44:02] [INFO] [DECISION] Drift detected: True
+[2026-10-04 12:44:02] [INFO] [DECISION] Accuracy degraded: False (0.9957 vs threshold 0.9900)
+[2026-10-04 12:44:02] [INFO] [DECISION] Retrain decision: True
+[2026-10-04 12:44:02] [WARNING] [DECISION] Retraining decision: YES - trigger fast Local Expert training
+[2026-10-04 12:44:02] [INFO] [RETRAINING] Starting retraining/updating with 6000 samples
+[2026-10-04 12:44:02] [INFO] [RETRAINING] ✅ Local Expert retrained successfully (Buffer: 5000 samples)
+[2026-10-04 12:44:02] [INFO] [POST_ENSEMBLE_ADAPTATION] Evaluation completed:
+[2026-10-04 12:44:02] [INFO] [POST_ENSEMBLE_ADAPTATION] accuracy: 0.9967
+[2026-10-04 12:44:02] [INFO] [POST_ENSEMBLE_ADAPTATION] precision: 0.9971
+[2026-10-04 12:44:02] [INFO] [POST_ENSEMBLE_ADAPTATION] recall: 0.9967
+[2026-10-04 12:44:02] [INFO] [POST_ENSEMBLE_ADAPTATION] f1: 0.9968
+[2026-10-04 12:44:02] [SUCCESS] [IMPROVEMENT] Ensemble improvement: +0.10%
+[2026-10-04 12:44:02] [SUCCESS] [EXECUTION] ML Drift Detection System execution completed successfully
+[2026-10-04 12:44:52] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-10-04 12:44:52] [INFO] [INITIALIZATION] Global baseline model training completed successfully
+[2026-10-04 12:44:52] [INFO] [DECISION] Batch 1 [YELLOW]: Warning logged -> Minor variation in 1 features (< threshold 3) - Accuracy (0.9967) stable
+[2026-10-04 12:44:52] [INFO] [DECISION] Batch 2 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-04 12:44:52] [WARNING] [DECISION] Batch 3 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3)
+[2026-10-04 12:44:53] [SUCCESS] [RETRAINING] Batch 3: Local Model updated (Buffer: 1200)
+[2026-10-04 12:44:53] [WARNING] [DECISION] Batch 4 [RED]: Retraining triggered -> Significant drift in 4 features (>= threshold 3)
+[2026-10-04 12:44:53] [SUCCESS] [RETRAINING] Batch 4: Local Model updated (Buffer: 2400)
+[2026-10-04 12:44:53] [INFO] [DECISION] Batch 5 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (0.9983) stable
+[2026-10-04 12:44:53] [WARNING] [DECISION] Batch 6 [RED]: Retraining triggered -> Significant drift in 4 features (>= threshold 3)
+[2026-10-04 12:44:53] [SUCCESS] [RETRAINING] Batch 6: Local Model updated (Buffer: 3600)
+[2026-10-04 12:44:53] [INFO] [DECISION] Batch 7 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-04 12:44:53] [INFO] [DECISION] Batch 8 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-04 12:44:53] [INFO] [DECISION] Batch 9 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (1.0000) stable
+[2026-10-04 12:44:53] [WARNING] [DECISION] Batch 10 [RED]: Retraining triggered -> Significant drift in 4 features (>= threshold 3)
+[2026-10-04 12:44:53] [SUCCESS] [RETRAINING] Batch 10: Local Model updated (Buffer: 4800)
+[2026-10-04 12:44:54] [INFO] [DECISION] Batch 11 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (1.0000) stable
+[2026-10-04 12:44:54] [INFO] [DECISION] Batch 12 [YELLOW]: Warning logged -> Minor variation in 1 features (< threshold 3) - Accuracy (0.9992) stable
+[2026-10-04 12:44:54] [WARNING] [DECISION] Batch 13 [RED]: Retraining triggered -> Significant drift in 5 features (>= threshold 3)
+[2026-10-04 12:44:54] [SUCCESS] [RETRAINING] Batch 13: Local Model updated (Buffer: 5000)
+[2026-10-04 12:44:54] [INFO] [DECISION] Batch 14 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (0.9983) stable
+[2026-10-04 12:44:54] [INFO] [DECISION] Batch 15 [YELLOW]: Warning logged -> Minor variation in 1 features (< threshold 3) - Accuracy (0.9983) stable
+[2026-10-04 12:44:54] [WARNING] [DECISION] Batch 16 [RED]: Retraining triggered -> Significant drift in 6 features (>= threshold 3)
+[2026-10-04 12:44:54] [SUCCESS] [RETRAINING] Batch 16: Local Model updated (Buffer: 5000)
+[2026-10-04 12:44:54] [INFO] [DECISION] Batch 17 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-04 12:44:54] [INFO] [DECISION] Batch 18 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (0.9992) stable
+[2026-10-04 12:44:54] [INFO] [DECISION] Batch 19 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (1.0000) stable
+[2026-10-04 12:44:55] [WARNING] [DECISION] Batch 20 [RED]: Retraining triggered -> Significant drift in 6 features (>= threshold 3)
+[2026-10-04 12:44:55] [SUCCESS] [RETRAINING] Batch 20: Local Model updated (Buffer: 5000)
+[2026-10-04 12:44:55] [SUCCESS] [PIPELINE] Pipeline finished: GREEN=4, YELLOW=9, RED=7
+[2026-10-06 20:17:57] [INFO] [INITIALIZATION] Starting ML Drift System (Multi-Pattern Fraud & Hybrid Ensemble)
+[2026-10-06 20:17:57] [INFO] [DATA_LOADING] Data loaded: 30000 samples, 30 features, 600 fraud events
+[2026-10-06 20:17:57] [INFO] [PREPROCESSING] Data preprocessing completed
+[2026-10-06 20:17:58] [INFO] [MODEL_TRAINING] Global model training completed on historical fraud types
+[2026-10-06 20:17:58] [INFO] [BASELINE] Evaluation completed:
+[2026-10-06 20:17:58] [INFO] [BASELINE] accuracy: 0.9993
+[2026-10-06 20:17:58] [INFO] [BASELINE] precision: 0.9993
+[2026-10-06 20:17:58] [INFO] [BASELINE] recall: 0.9993
+[2026-10-06 20:17:58] [INFO] [BASELINE] f1: 0.9993
+[2026-10-06 20:17:58] [INFO] [DRIFT_SIMULATION] Drift & novel fraud simulation completed
+[2026-10-06 20:17:58] [WARNING] [DRIFT_DETECTION] Drift detected in 4 features
+[2026-10-06 20:17:58] [INFO] [ROOT_CAUSE] Feature importance analysis completed
+[2026-10-06 20:17:58] [INFO] [DRIFTED_DATA_GLOBAL] Evaluation completed:
+[2026-10-06 20:17:58] [INFO] [DRIFTED_DATA_GLOBAL] accuracy: 0.9957
+[2026-10-06 20:17:58] [INFO] [DRIFTED_DATA_GLOBAL] precision: 0.9962
+[2026-10-06 20:17:58] [INFO] [DRIFTED_DATA_GLOBAL] recall: 0.9957
+[2026-10-06 20:17:58] [INFO] [DRIFTED_DATA_GLOBAL] f1: 0.9958
+[2026-10-06 20:17:58] [INFO] [DECISION] Drift detected: True
+[2026-10-06 20:17:58] [INFO] [DECISION] Accuracy degraded: False (0.9957 vs threshold 0.9900)
+[2026-10-06 20:17:58] [INFO] [DECISION] Retrain decision: True
+[2026-10-06 20:17:58] [WARNING] [DECISION] Retraining decision: YES - trigger fast Local Expert training
+[2026-10-06 20:17:58] [INFO] [RETRAINING] Starting retraining/updating with 6000 samples
+[2026-10-06 20:18:26] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-10-06 20:18:27] [INFO] [INITIALIZATION] Global baseline model training completed successfully
+[2026-10-06 20:18:27] [INFO] [DECISION] Batch 1 [YELLOW]: Warning logged -> Minor variation in 1 features (< threshold 3) - Accuracy (0.9967) stable
+[2026-10-06 20:18:27] [INFO] [DECISION] Batch 2 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-06 20:18:27] [WARNING] [DECISION] Batch 3 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3)
+[2026-10-06 20:18:27] [SUCCESS] [RETRAINING] Batch 3: Local Model updated (Buffer: 1200)
+[2026-10-06 20:18:27] [WARNING] [DECISION] Batch 4 [RED]: Retraining triggered -> Significant drift in 4 features (>= threshold 3)
+[2026-10-06 20:18:27] [SUCCESS] [RETRAINING] Batch 4: Local Model updated (Buffer: 2400)
+[2026-10-06 20:18:28] [INFO] [DECISION] Batch 5 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (0.9983) stable
+[2026-10-06 20:18:28] [WARNING] [DECISION] Batch 6 [RED]: Retraining triggered -> Significant drift in 4 features (>= threshold 3)
+[2026-10-06 20:18:28] [SUCCESS] [RETRAINING] Batch 6: Local Model updated (Buffer: 3600)
+[2026-10-06 20:18:28] [INFO] [DECISION] Batch 7 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-06 20:18:28] [INFO] [DECISION] Batch 8 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-06 20:18:28] [INFO] [DECISION] Batch 9 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (1.0000) stable
+[2026-10-06 20:18:28] [WARNING] [DECISION] Batch 10 [RED]: Retraining triggered -> Significant drift in 4 features (>= threshold 3)
+[2026-10-06 20:18:28] [SUCCESS] [RETRAINING] Batch 10: Local Model updated (Buffer: 4800)
+[2026-10-06 20:18:28] [INFO] [DECISION] Batch 11 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (1.0000) stable
+[2026-10-06 20:18:28] [INFO] [DECISION] Batch 12 [YELLOW]: Warning logged -> Minor variation in 1 features (< threshold 3) - Accuracy (0.9992) stable
+[2026-10-06 20:18:28] [WARNING] [DECISION] Batch 13 [RED]: Retraining triggered -> Significant drift in 5 features (>= threshold 3)
+[2026-10-06 20:18:29] [SUCCESS] [RETRAINING] Batch 13: Local Model updated (Buffer: 5000)
+[2026-10-06 20:18:29] [INFO] [DECISION] Batch 14 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (0.9983) stable
+[2026-10-06 20:18:29] [INFO] [DECISION] Batch 15 [YELLOW]: Warning logged -> Minor variation in 1 features (< threshold 3) - Accuracy (0.9983) stable
+[2026-10-06 20:18:29] [WARNING] [DECISION] Batch 16 [RED]: Retraining triggered -> Significant drift in 6 features (>= threshold 3)
+[2026-10-06 20:18:29] [SUCCESS] [RETRAINING] Batch 16: Local Model updated (Buffer: 5000)
+[2026-10-06 20:18:29] [INFO] [DECISION] Batch 17 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-06 20:18:29] [INFO] [DECISION] Batch 18 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (0.9992) stable
+[2026-10-06 20:18:29] [INFO] [DECISION] Batch 19 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (1.0000) stable
+[2026-10-06 20:18:29] [WARNING] [DECISION] Batch 20 [RED]: Retraining triggered -> Significant drift in 6 features (>= threshold 3)
+[2026-10-06 20:18:29] [SUCCESS] [RETRAINING] Batch 20: Local Model updated (Buffer: 5000)
+[2026-10-06 20:18:29] [SUCCESS] [PIPELINE] Pipeline finished: GREEN=4, YELLOW=9, RED=7
+[2026-10-06 20:53:13] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-10-06 20:53:13] [INFO] [INITIALIZATION] Global baseline model training completed successfully
+[2026-10-06 20:53:13] [WARNING] [DECISION] Batch 1 [RED]: Retraining triggered -> Accuracy (0.9710) dropped below threshold (0.9900)
+[2026-10-06 20:53:13] [SUCCESS] [RETRAINING] Batch 1: Local Model updated (Buffer: 1000)
+[2026-10-06 20:53:13] [WARNING] [DECISION] Batch 2 [RED]: Retraining triggered -> Accuracy (0.9780) dropped below threshold (0.9900)
+[2026-10-06 20:53:13] [SUCCESS] [RETRAINING] Batch 2: Local Model updated (Buffer: 2000)
+[2026-10-06 20:53:13] [WARNING] [DECISION] Batch 3 [RED]: Retraining triggered -> Accuracy (0.9720) dropped below threshold (0.9900)
+[2026-10-06 20:53:13] [SUCCESS] [RETRAINING] Batch 3: Local Model updated (Buffer: 3000)
+[2026-10-06 20:53:13] [WARNING] [DECISION] Batch 4 [RED]: Retraining triggered -> Accuracy (0.9810) dropped below threshold (0.9900)
+[2026-10-06 20:53:13] [SUCCESS] [RETRAINING] Batch 4: Local Model updated (Buffer: 4000)
+[2026-10-06 20:53:13] [WARNING] [DECISION] Batch 5 [RED]: Retraining triggered -> Accuracy (0.9790) dropped below threshold (0.9900)
+[2026-10-06 20:53:14] [SUCCESS] [RETRAINING] Batch 5: Local Model updated (Buffer: 5000)
+[2026-10-06 20:53:14] [WARNING] [DECISION] Batch 6 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.9720) dropped below threshold (0.9900)
+[2026-10-06 20:53:14] [SUCCESS] [RETRAINING] Batch 6: Local Model updated (Buffer: 5000)
+[2026-10-06 20:53:14] [WARNING] [DECISION] Batch 7 [RED]: Retraining triggered -> Accuracy (0.9740) dropped below threshold (0.9900)
+[2026-10-06 20:53:14] [SUCCESS] [RETRAINING] Batch 7: Local Model updated (Buffer: 5000)
+[2026-10-06 20:53:14] [WARNING] [DECISION] Batch 8 [RED]: Retraining triggered -> Accuracy (0.9690) dropped below threshold (0.9900)
+[2026-10-06 20:53:14] [SUCCESS] [RETRAINING] Batch 8: Local Model updated (Buffer: 5000)
+[2026-10-06 20:53:14] [WARNING] [DECISION] Batch 9 [RED]: Retraining triggered -> Significant drift in 28 features (>= threshold 3), Accuracy (0.9760) dropped below threshold (0.9900)
+[2026-10-06 20:53:14] [SUCCESS] [RETRAINING] Batch 9: Local Model updated (Buffer: 5000)
+[2026-10-06 20:53:14] [WARNING] [DECISION] Batch 10 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.9670) dropped below threshold (0.9900)
+[2026-10-06 20:53:14] [SUCCESS] [RETRAINING] Batch 10: Local Model updated (Buffer: 5000)
+[2026-10-06 20:53:15] [WARNING] [DECISION] Batch 11 [RED]: Retraining triggered -> Accuracy (0.9640) dropped below threshold (0.9900)
+[2026-10-06 20:53:15] [SUCCESS] [RETRAINING] Batch 11: Local Model updated (Buffer: 5000)
+[2026-10-06 20:53:15] [WARNING] [DECISION] Batch 12 [RED]: Retraining triggered -> Accuracy (0.9780) dropped below threshold (0.9900)
+[2026-10-06 20:53:15] [SUCCESS] [RETRAINING] Batch 12: Local Model updated (Buffer: 5000)
+[2026-10-06 20:53:15] [WARNING] [DECISION] Batch 13 [RED]: Retraining triggered -> Accuracy (0.9660) dropped below threshold (0.9900)
+[2026-10-06 20:53:15] [SUCCESS] [RETRAINING] Batch 13: Local Model updated (Buffer: 5000)
+[2026-10-06 20:53:15] [WARNING] [DECISION] Batch 14 [RED]: Retraining triggered -> Accuracy (0.9720) dropped below threshold (0.9900)
+[2026-10-06 20:53:15] [SUCCESS] [RETRAINING] Batch 14: Local Model updated (Buffer: 5000)
+[2026-10-06 20:53:15] [WARNING] [DECISION] Batch 15 [RED]: Retraining triggered -> Accuracy (0.9640) dropped below threshold (0.9900)
+[2026-10-06 20:53:15] [SUCCESS] [RETRAINING] Batch 15: Local Model updated (Buffer: 5000)
+[2026-10-06 20:53:15] [WARNING] [DECISION] Batch 16 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.9690) dropped below threshold (0.9900)
+[2026-10-06 20:53:15] [SUCCESS] [RETRAINING] Batch 16: Local Model updated (Buffer: 5000)
+[2026-10-06 20:53:15] [WARNING] [DECISION] Batch 17 [RED]: Retraining triggered -> Accuracy (0.9760) dropped below threshold (0.9900)
+[2026-10-06 20:53:16] [SUCCESS] [RETRAINING] Batch 17: Local Model updated (Buffer: 5000)
+[2026-10-06 20:53:16] [WARNING] [DECISION] Batch 18 [RED]: Retraining triggered -> Accuracy (0.9830) dropped below threshold (0.9900)
+[2026-10-06 20:53:16] [SUCCESS] [RETRAINING] Batch 18: Local Model updated (Buffer: 5000)
+[2026-10-06 20:53:16] [WARNING] [DECISION] Batch 19 [RED]: Retraining triggered -> Accuracy (0.9730) dropped below threshold (0.9900)
+[2026-10-06 20:53:16] [SUCCESS] [RETRAINING] Batch 19: Local Model updated (Buffer: 5000)
+[2026-10-06 20:53:16] [WARNING] [DECISION] Batch 20 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.9502) dropped below threshold (0.9900)
+[2026-10-06 20:53:16] [SUCCESS] [RETRAINING] Batch 20: Local Model updated (Buffer: 5000)
+[2026-10-06 20:53:16] [SUCCESS] [PIPELINE] Pipeline finished: GREEN=0, YELLOW=0, RED=20
+[2026-10-07 11:19:01] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-10-07 11:19:01] [INFO] [INITIALIZATION] Global baseline model training completed successfully
+[2026-10-07 11:19:01] [WARNING] [DECISION] Batch 1 [RED]: Retraining triggered -> Accuracy (0.9690) dropped below threshold (0.9900)
+[2026-10-07 11:19:01] [SUCCESS] [RETRAINING] Batch 1: Local Model updated (Buffer: 1000)
+[2026-10-07 11:19:01] [WARNING] [DECISION] Batch 2 [RED]: Retraining triggered -> Accuracy (0.9690) dropped below threshold (0.9900)
+[2026-10-07 11:19:01] [SUCCESS] [RETRAINING] Batch 2: Local Model updated (Buffer: 2000)
+[2026-10-07 11:19:01] [WARNING] [DECISION] Batch 3 [RED]: Retraining triggered -> Accuracy (0.9700) dropped below threshold (0.9900)
+[2026-10-07 11:19:01] [SUCCESS] [RETRAINING] Batch 3: Local Model updated (Buffer: 3000)
+[2026-10-07 11:19:01] [WARNING] [DECISION] Batch 4 [RED]: Retraining triggered -> Significant drift in 29 features (>= threshold 3), Accuracy (0.9620) dropped below threshold (0.9900)
+[2026-10-07 11:19:01] [SUCCESS] [RETRAINING] Batch 4: Local Model updated (Buffer: 4000)
+[2026-10-07 11:19:01] [WARNING] [DECISION] Batch 5 [RED]: Retraining triggered -> Accuracy (0.9660) dropped below threshold (0.9900)
+[2026-10-07 11:19:02] [SUCCESS] [RETRAINING] Batch 5: Local Model updated (Buffer: 5000)
+[2026-10-07 11:19:02] [WARNING] [DECISION] Batch 6 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.9570) dropped below threshold (0.9900)
+[2026-10-07 11:19:02] [SUCCESS] [RETRAINING] Batch 6: Local Model updated (Buffer: 5000)
+[2026-10-07 11:19:02] [WARNING] [DECISION] Batch 7 [RED]: Retraining triggered -> Accuracy (0.9760) dropped below threshold (0.9900)
+[2026-10-07 11:19:02] [SUCCESS] [RETRAINING] Batch 7: Local Model updated (Buffer: 5000)
+[2026-10-07 11:19:02] [WARNING] [DECISION] Batch 8 [RED]: Retraining triggered -> Accuracy (0.9860) dropped below threshold (0.9900)
+[2026-10-07 11:19:02] [SUCCESS] [RETRAINING] Batch 8: Local Model updated (Buffer: 5000)
+[2026-10-07 11:19:02] [WARNING] [DECISION] Batch 9 [RED]: Retraining triggered -> Accuracy (0.9770) dropped below threshold (0.9900)
+[2026-10-07 11:19:02] [SUCCESS] [RETRAINING] Batch 9: Local Model updated (Buffer: 5000)
+[2026-10-07 11:19:02] [SUCCESS] [PIPELINE] Pipeline finished: GREEN=0, YELLOW=0, RED=9
+[2026-10-07 11:29:31] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-10-07 11:29:34] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-10-07 11:30:00] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-10-07 11:30:10] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-10-11 16:50:49] [INFO] [INITIALIZATION] Starting ML Drift System (Multi-Pattern Fraud & Hybrid Ensemble)
+[2026-10-11 16:50:49] [INFO] [DATA_LOADING] Data loaded: 30000 samples, 30 features, 600 fraud events
+[2026-10-11 16:50:49] [INFO] [PREPROCESSING] Data preprocessing completed
+[2026-10-11 16:50:50] [INFO] [MODEL_TRAINING] Global model training completed on historical fraud types
+[2026-10-11 16:50:50] [INFO] [BASELINE] Evaluation completed:
+[2026-10-11 16:50:50] [INFO] [BASELINE] accuracy: 0.9993
+[2026-10-11 16:50:50] [INFO] [BASELINE] precision: 0.9993
+[2026-10-11 16:50:50] [INFO] [BASELINE] recall: 0.9993
+[2026-10-11 16:50:50] [INFO] [BASELINE] f1: 0.9993
+[2026-10-11 16:50:50] [INFO] [DRIFT_SIMULATION] Drift & novel fraud simulation completed
+[2026-10-11 16:50:50] [WARNING] [DRIFT_DETECTION] Drift detected in 4 features
+[2026-10-11 16:50:50] [INFO] [ROOT_CAUSE] Feature importance analysis completed
+[2026-10-11 16:50:50] [INFO] [DRIFTED_DATA_GLOBAL] Evaluation completed:
+[2026-10-11 16:50:50] [INFO] [DRIFTED_DATA_GLOBAL] accuracy: 0.9957
+[2026-10-11 16:50:50] [INFO] [DRIFTED_DATA_GLOBAL] precision: 0.9962
+[2026-10-11 16:50:50] [INFO] [DRIFTED_DATA_GLOBAL] recall: 0.9957
+[2026-10-11 16:50:50] [INFO] [DRIFTED_DATA_GLOBAL] f1: 0.9958
+[2026-10-11 16:50:50] [INFO] [DECISION] Drift detected: True
+[2026-10-11 16:50:50] [INFO] [DECISION] Accuracy degraded: False (0.9957 vs threshold 0.9900)
+[2026-10-11 16:50:50] [INFO] [DECISION] Retrain decision: True
+[2026-10-11 16:50:50] [WARNING] [DECISION] Retraining decision: YES - trigger fast Local Expert training
+[2026-10-11 16:50:50] [INFO] [RETRAINING] Starting retraining/updating with 6000 samples
+[2026-10-11 16:57:26] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-10-11 16:57:26] [INFO] [INITIALIZATION] Global baseline model training completed successfully
+[2026-10-11 16:57:26] [INFO] [DECISION] Batch 1 [YELLOW]: Warning logged -> Minor variation in 1 features (< threshold 3) - Accuracy (0.9967) stable
+[2026-10-11 16:57:26] [INFO] [DECISION] Batch 2 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-11 16:57:26] [WARNING] [DECISION] Batch 3 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3)
+[2026-10-11 16:57:27] [SUCCESS] [RETRAINING] Batch 3: Local Model updated (Buffer: 1200)
+[2026-10-11 16:57:27] [WARNING] [DECISION] Batch 4 [RED]: Retraining triggered -> Significant drift in 4 features (>= threshold 3)
+[2026-10-11 16:57:27] [SUCCESS] [RETRAINING] Batch 4: Local Model updated (Buffer: 2400)
+[2026-10-11 16:57:27] [INFO] [DECISION] Batch 5 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (0.9983) stable
+[2026-10-11 16:57:27] [WARNING] [DECISION] Batch 6 [RED]: Retraining triggered -> Significant drift in 4 features (>= threshold 3)
+[2026-10-11 16:57:27] [SUCCESS] [RETRAINING] Batch 6: Local Model updated (Buffer: 3600)
+[2026-10-11 16:57:27] [INFO] [DECISION] Batch 7 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-11 16:57:27] [INFO] [DECISION] Batch 8 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-11 16:57:27] [INFO] [DECISION] Batch 9 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (1.0000) stable
+[2026-10-11 16:57:27] [WARNING] [DECISION] Batch 10 [RED]: Retraining triggered -> Significant drift in 4 features (>= threshold 3)
+[2026-10-11 16:57:28] [SUCCESS] [RETRAINING] Batch 10: Local Model updated (Buffer: 4800)
+[2026-10-11 16:57:28] [INFO] [DECISION] Batch 11 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (1.0000) stable
+[2026-10-11 16:57:28] [INFO] [DECISION] Batch 12 [YELLOW]: Warning logged -> Minor variation in 1 features (< threshold 3) - Accuracy (0.9992) stable
+[2026-10-11 16:57:28] [WARNING] [DECISION] Batch 13 [RED]: Retraining triggered -> Significant drift in 5 features (>= threshold 3)
+[2026-10-11 16:57:28] [SUCCESS] [RETRAINING] Batch 13: Local Model updated (Buffer: 5000)
+[2026-10-11 16:57:28] [INFO] [DECISION] Batch 14 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (0.9983) stable
+[2026-10-11 16:57:28] [INFO] [DECISION] Batch 15 [YELLOW]: Warning logged -> Minor variation in 1 features (< threshold 3) - Accuracy (0.9983) stable
+[2026-10-11 16:57:28] [WARNING] [DECISION] Batch 16 [RED]: Retraining triggered -> Significant drift in 6 features (>= threshold 3)
+[2026-10-11 16:57:28] [SUCCESS] [RETRAINING] Batch 16: Local Model updated (Buffer: 5000)
+[2026-10-11 16:57:28] [INFO] [DECISION] Batch 17 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-11 16:57:28] [INFO] [DECISION] Batch 18 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (0.9992) stable
+[2026-10-11 16:57:28] [INFO] [DECISION] Batch 19 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (1.0000) stable
+[2026-10-11 16:57:29] [WARNING] [DECISION] Batch 20 [RED]: Retraining triggered -> Significant drift in 6 features (>= threshold 3)
+[2026-10-11 16:57:29] [SUCCESS] [RETRAINING] Batch 20: Local Model updated (Buffer: 5000)
+[2026-10-11 16:57:29] [SUCCESS] [PIPELINE] Pipeline finished: GREEN=4, YELLOW=9, RED=7
+[2026-10-11 18:08:40] [INFO] [GOVERNANCE] Deployed by Human Approval. Reviewer: Sam Ratm. Notes: Approved via test curl
+[2026-10-11 18:41:10] [INFO] [GOVERNANCE] Deployed by Human Approval. Reviewer: Compliance Officer (Human). Notes: Approved via Governance Portal: Superior F1 metrics verified.
+[2026-10-11 19:44:29] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-10-11 19:44:43] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-10-11 19:44:56] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-10-11 19:45:04] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-10-11 19:45:10] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-10-11 21:13:57] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-10-11 21:16:08] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-10-11 21:16:08] [INFO] [INITIALIZATION] Global baseline model training completed successfully
+[2026-10-11 21:16:09] [WARNING] [DECISION] Batch 1 [RED]: Retraining triggered -> Accuracy (0.9770) dropped below threshold (0.9900)
+[2026-10-11 21:16:09] [SUCCESS] [RETRAINING] Batch 1: Local Model updated (Buffer: 4000)
+[2026-10-11 21:16:10] [WARNING] [DECISION] Batch 2 [RED]: Retraining triggered -> Accuracy (0.9750) dropped below threshold (0.9900)
+[2026-10-11 21:16:10] [SUCCESS] [RETRAINING] Batch 2: Local Model updated (Buffer: 5000)
+[2026-10-11 21:16:11] [WARNING] [DECISION] Batch 3 [RED]: Retraining triggered -> Accuracy (0.9732) dropped below threshold (0.9900)
+[2026-10-11 21:16:11] [SUCCESS] [RETRAINING] Batch 3: Local Model updated (Buffer: 5000)
+[2026-10-11 21:16:11] [WARNING] [DECISION] Batch 4 [RED]: Retraining triggered -> Significant drift in 29 features (>= threshold 3), Accuracy (0.9677) dropped below threshold (0.9900)
+[2026-10-11 21:16:11] [SUCCESS] [RETRAINING] Batch 4: Local Model updated (Buffer: 5000)
+[2026-10-11 21:16:12] [WARNING] [DECISION] Batch 5 [RED]: Retraining triggered -> Accuracy (0.9762) dropped below threshold (0.9900)
+[2026-10-11 21:16:12] [SUCCESS] [RETRAINING] Batch 5: Local Model updated (Buffer: 5000)
+[2026-10-11 21:16:12] [WARNING] [DECISION] Batch 6 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.9692) dropped below threshold (0.9900)
+[2026-10-11 21:16:13] [SUCCESS] [RETRAINING] Batch 6: Local Model updated (Buffer: 5000)
+[2026-10-11 21:16:13] [WARNING] [DECISION] Batch 7 [RED]: Retraining triggered -> Accuracy (0.9730) dropped below threshold (0.9900)
+[2026-10-11 21:16:13] [SUCCESS] [RETRAINING] Batch 7: Local Model updated (Buffer: 5000)
+[2026-10-11 21:16:13] [WARNING] [DECISION] Batch 8 [RED]: Retraining triggered -> Accuracy (0.9695) dropped below threshold (0.9900)
+[2026-10-11 21:16:13] [SUCCESS] [RETRAINING] Batch 8: Local Model updated (Buffer: 5000)
+[2026-10-11 21:16:13] [WARNING] [DECISION] Batch 9 [RED]: Retraining triggered -> Accuracy (0.9710) dropped below threshold (0.9900)
+[2026-10-11 21:16:14] [SUCCESS] [RETRAINING] Batch 9: Local Model updated (Buffer: 5000)
+[2026-10-11 21:16:14] [WARNING] [DECISION] Batch 10 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.9667) dropped below threshold (0.9900)
+[2026-10-11 21:16:14] [SUCCESS] [RETRAINING] Batch 10: Local Model updated (Buffer: 5000)
+[2026-10-11 21:16:14] [WARNING] [DECISION] Batch 11 [RED]: Retraining triggered -> Accuracy (0.9752) dropped below threshold (0.9900)
+[2026-10-11 21:16:14] [SUCCESS] [RETRAINING] Batch 11: Local Model updated (Buffer: 5000)
+[2026-10-11 21:16:15] [WARNING] [DECISION] Batch 12 [RED]: Retraining triggered -> Accuracy (0.9765) dropped below threshold (0.9900)
+[2026-10-11 21:16:15] [SUCCESS] [RETRAINING] Batch 12: Local Model updated (Buffer: 5000)
+[2026-10-11 21:16:15] [WARNING] [DECISION] Batch 13 [RED]: Retraining triggered -> Accuracy (0.9698) dropped below threshold (0.9900)
+[2026-10-11 21:16:16] [SUCCESS] [RETRAINING] Batch 13: Local Model updated (Buffer: 5000)
+[2026-10-11 21:16:16] [WARNING] [DECISION] Batch 14 [RED]: Retraining triggered -> Accuracy (0.9738) dropped below threshold (0.9900)
+[2026-10-11 21:16:16] [SUCCESS] [RETRAINING] Batch 14: Local Model updated (Buffer: 5000)
+[2026-10-11 21:16:16] [WARNING] [DECISION] Batch 15 [RED]: Retraining triggered -> Accuracy (0.9755) dropped below threshold (0.9900)
+[2026-10-11 21:16:17] [SUCCESS] [RETRAINING] Batch 15: Local Model updated (Buffer: 5000)
+[2026-10-11 21:16:17] [WARNING] [DECISION] Batch 16 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.9670) dropped below threshold (0.9900)
+[2026-10-11 21:16:17] [SUCCESS] [RETRAINING] Batch 16: Local Model updated (Buffer: 5000)
+[2026-10-11 21:16:17] [WARNING] [DECISION] Batch 17 [RED]: Retraining triggered -> Accuracy (0.9722) dropped below threshold (0.9900)
+[2026-10-11 21:16:18] [SUCCESS] [RETRAINING] Batch 17: Local Model updated (Buffer: 5000)
+[2026-10-11 21:16:18] [WARNING] [DECISION] Batch 18 [RED]: Retraining triggered -> Accuracy (0.9730) dropped below threshold (0.9900)
+[2026-10-11 21:16:18] [SUCCESS] [RETRAINING] Batch 18: Local Model updated (Buffer: 5000)
+[2026-10-11 21:16:18] [WARNING] [DECISION] Batch 19 [RED]: Retraining triggered -> Accuracy (0.9738) dropped below threshold (0.9900)
+[2026-10-11 21:16:19] [SUCCESS] [RETRAINING] Batch 19: Local Model updated (Buffer: 5000)
+[2026-10-11 21:16:19] [WARNING] [DECISION] Batch 20 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.9657) dropped below threshold (0.9900)
+[2026-10-11 21:16:19] [SUCCESS] [RETRAINING] Batch 20: Local Model updated (Buffer: 5000)
+[2026-10-11 21:16:19] [SUCCESS] [PIPELINE] Pipeline finished: GREEN=0, YELLOW=0, RED=20
+[2026-10-11 21:19:55] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-10-11 21:19:55] [INFO] [INITIALIZATION] Global baseline model training completed successfully
+[2026-10-11 21:19:55] [WARNING] [DECISION] Batch 1 [RED]: Retraining triggered -> Accuracy (0.9690) dropped below threshold (0.9900)
+[2026-10-11 21:19:56] [SUCCESS] [RETRAINING] Batch 1: Local Model updated (Buffer: 1000)
+[2026-10-11 21:19:56] [WARNING] [DECISION] Batch 2 [RED]: Retraining triggered -> Accuracy (0.9690) dropped below threshold (0.9900)
+[2026-10-11 21:19:56] [SUCCESS] [RETRAINING] Batch 2: Local Model updated (Buffer: 2000)
+[2026-10-11 21:19:56] [WARNING] [DECISION] Batch 3 [RED]: Retraining triggered -> Accuracy (0.9700) dropped below threshold (0.9900)
+[2026-10-11 21:19:56] [SUCCESS] [RETRAINING] Batch 3: Local Model updated (Buffer: 3000)
+[2026-10-11 21:19:56] [WARNING] [DECISION] Batch 4 [RED]: Retraining triggered -> Significant drift in 29 features (>= threshold 3), Accuracy (0.9620) dropped below threshold (0.9900)
+[2026-10-11 21:19:56] [SUCCESS] [RETRAINING] Batch 4: Local Model updated (Buffer: 4000)
+[2026-10-11 21:19:56] [WARNING] [DECISION] Batch 5 [RED]: Retraining triggered -> Accuracy (0.9660) dropped below threshold (0.9900)
+[2026-10-11 21:19:56] [SUCCESS] [RETRAINING] Batch 5: Local Model updated (Buffer: 5000)
+[2026-10-11 21:19:56] [WARNING] [DECISION] Batch 6 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.9570) dropped below threshold (0.9900)
+[2026-10-11 21:19:56] [SUCCESS] [RETRAINING] Batch 6: Local Model updated (Buffer: 5000)
+[2026-10-11 21:19:56] [WARNING] [DECISION] Batch 7 [RED]: Retraining triggered -> Accuracy (0.9760) dropped below threshold (0.9900)
+[2026-10-11 21:19:56] [SUCCESS] [RETRAINING] Batch 7: Local Model updated (Buffer: 5000)
+[2026-10-11 21:19:56] [WARNING] [DECISION] Batch 8 [RED]: Retraining triggered -> Accuracy (0.9860) dropped below threshold (0.9900)
+[2026-10-11 21:19:57] [SUCCESS] [RETRAINING] Batch 8: Local Model updated (Buffer: 5000)
+[2026-10-11 21:19:57] [WARNING] [DECISION] Batch 9 [RED]: Retraining triggered -> Accuracy (0.9770) dropped below threshold (0.9900)
+[2026-10-11 21:19:57] [SUCCESS] [RETRAINING] Batch 9: Local Model updated (Buffer: 5000)
+[2026-10-11 21:19:57] [SUCCESS] [PIPELINE] Pipeline finished: GREEN=0, YELLOW=0, RED=9
+[2026-10-11 23:47:27] [INFO] [BASELINE_BEFORE_UPLOAD] Evaluation completed:
+[2026-10-11 23:47:27] [INFO] [BASELINE_BEFORE_UPLOAD] accuracy: 0.9980
+[2026-10-11 23:47:27] [INFO] [BASELINE_BEFORE_UPLOAD] precision: 0.9980
+[2026-10-11 23:47:27] [INFO] [BASELINE_BEFORE_UPLOAD] recall: 0.9980
+[2026-10-11 23:47:27] [INFO] [BASELINE_BEFORE_UPLOAD] f1: 0.9979
+[2026-10-11 23:47:27] [INFO] [DECISION] Drift detected: True
+[2026-10-11 23:47:27] [INFO] [DECISION] Accuracy degraded: False (0.9980 vs threshold 0.9900)
+[2026-10-11 23:47:27] [INFO] [DECISION] Retrain decision: True
+[2026-10-11 23:47:27] [INFO] [RETRAINING] 🔄 Training candidate model in sandbox for validation review
+[2026-10-11 23:47:27] [INFO] [RETRAINING] Starting retraining/updating with 500 samples
+[2026-10-11 23:50:56] [INFO] [BASELINE_BEFORE_UPLOAD] Evaluation completed:
+[2026-10-11 23:50:56] [INFO] [BASELINE_BEFORE_UPLOAD] accuracy: 0.9980
+[2026-10-11 23:50:56] [INFO] [BASELINE_BEFORE_UPLOAD] precision: 0.9980
+[2026-10-11 23:50:56] [INFO] [BASELINE_BEFORE_UPLOAD] recall: 0.9980
+[2026-10-11 23:50:56] [INFO] [BASELINE_BEFORE_UPLOAD] f1: 0.9979
+[2026-10-11 23:50:56] [INFO] [DECISION] Drift detected: True
+[2026-10-11 23:50:56] [INFO] [DECISION] Accuracy degraded: False (0.9980 vs threshold 0.9900)
+[2026-10-11 23:50:56] [INFO] [DECISION] Retrain decision: True
+[2026-10-11 23:50:56] [INFO] [RETRAINING] 🔄 Training candidate model in sandbox for validation review
+[2026-10-11 23:50:56] [INFO] [RETRAINING] Starting retraining/updating with 500 samples
+[2026-10-11 23:50:56] [INFO] [RETRAINING] ✅ Local Expert retrained successfully (Buffer: 5000 samples)
+[2026-10-11 23:50:56] [INFO] [CANDIDATE_MODEL_EVALUATION] Evaluation completed:
+[2026-10-11 23:50:56] [INFO] [CANDIDATE_MODEL_EVALUATION] accuracy: 1.0000
+[2026-10-11 23:50:56] [INFO] [CANDIDATE_MODEL_EVALUATION] precision: 1.0000
+[2026-10-11 23:50:56] [INFO] [CANDIDATE_MODEL_EVALUATION] recall: 1.0000
+[2026-10-11 23:50:56] [INFO] [CANDIDATE_MODEL_EVALUATION] f1: 1.0000
+[2026-10-11 23:52:54] [INFO] [BASELINE_BEFORE_UPLOAD] Evaluation completed:
+[2026-10-11 23:52:54] [INFO] [BASELINE_BEFORE_UPLOAD] accuracy: 0.9980
+[2026-10-11 23:52:54] [INFO] [BASELINE_BEFORE_UPLOAD] precision: 0.9980
+[2026-10-11 23:52:54] [INFO] [BASELINE_BEFORE_UPLOAD] recall: 0.9980
+[2026-10-11 23:52:54] [INFO] [BASELINE_BEFORE_UPLOAD] f1: 0.9979
+[2026-10-11 23:52:54] [INFO] [DECISION] Drift detected: True
+[2026-10-11 23:52:54] [INFO] [DECISION] Accuracy degraded: False (0.9980 vs threshold 0.9900)
+[2026-10-11 23:52:54] [INFO] [DECISION] Retrain decision: True
+[2026-10-11 23:52:54] [INFO] [RETRAINING] 🔄 Training candidate model in sandbox for validation review
+[2026-10-11 23:52:54] [INFO] [RETRAINING] Starting retraining/updating with 500 samples
+[2026-10-11 23:52:54] [INFO] [RETRAINING] ✅ Local Expert retrained successfully (Buffer: 5000 samples)
+[2026-10-11 23:52:54] [INFO] [CANDIDATE_MODEL_EVALUATION] Evaluation completed:
+[2026-10-11 23:52:54] [INFO] [CANDIDATE_MODEL_EVALUATION] accuracy: 1.0000
+[2026-10-11 23:52:54] [INFO] [CANDIDATE_MODEL_EVALUATION] precision: 1.0000
+[2026-10-11 23:52:54] [INFO] [CANDIDATE_MODEL_EVALUATION] recall: 1.0000
+[2026-10-11 23:52:54] [INFO] [CANDIDATE_MODEL_EVALUATION] f1: 1.0000
+[2026-10-11 23:54:42] [INFO] [BASELINE_BEFORE_UPLOAD] Evaluation completed:
+[2026-10-11 23:54:42] [INFO] [BASELINE_BEFORE_UPLOAD] accuracy: 0.9980
+[2026-10-11 23:54:42] [INFO] [BASELINE_BEFORE_UPLOAD] precision: 0.9980
+[2026-10-11 23:54:42] [INFO] [BASELINE_BEFORE_UPLOAD] recall: 0.9980
+[2026-10-11 23:54:42] [INFO] [BASELINE_BEFORE_UPLOAD] f1: 0.9979
+[2026-10-11 23:54:42] [INFO] [DECISION] Drift detected: True
+[2026-10-11 23:54:42] [INFO] [DECISION] Accuracy degraded: False (0.9980 vs threshold 0.9900)
+[2026-10-11 23:54:42] [INFO] [DECISION] Retrain decision: True
+[2026-10-11 23:54:42] [INFO] [RETRAINING] 🔄 Training candidate model in sandbox for validation review
+[2026-10-11 23:54:42] [INFO] [RETRAINING] Starting retraining/updating with 500 samples
+[2026-10-11 23:54:42] [INFO] [RETRAINING] ✅ Local Expert retrained successfully (Buffer: 5000 samples)
+[2026-10-11 23:54:42] [INFO] [CANDIDATE_MODEL_EVALUATION] Evaluation completed:
+[2026-10-11 23:54:42] [INFO] [CANDIDATE_MODEL_EVALUATION] accuracy: 1.0000
+[2026-10-11 23:54:42] [INFO] [CANDIDATE_MODEL_EVALUATION] precision: 1.0000
+[2026-10-11 23:54:42] [INFO] [CANDIDATE_MODEL_EVALUATION] recall: 1.0000
+[2026-10-11 23:54:42] [INFO] [CANDIDATE_MODEL_EVALUATION] f1: 1.0000
+[2026-10-11 23:54:42] [WARNING] [GOVERNANCE] Uploaded dataset triggered retraining. Candidate model registered in outputs/pending_deployment.json with status PENDING_APPROVAL awaiting human governance.
+[2026-10-11 23:59:24] [INFO] [GOVERNANCE] Deployed by Human Approval. Reviewer: Test Officer. Notes: Approved test
+[2026-10-12 00:00:21] [INFO] [BASELINE_BEFORE_UPLOAD] Evaluation completed:
+[2026-10-12 00:00:21] [INFO] [BASELINE_BEFORE_UPLOAD] accuracy: 1.0000
+[2026-10-12 00:00:21] [INFO] [BASELINE_BEFORE_UPLOAD] precision: 1.0000
+[2026-10-12 00:00:21] [INFO] [BASELINE_BEFORE_UPLOAD] recall: 1.0000
+[2026-10-12 00:00:21] [INFO] [BASELINE_BEFORE_UPLOAD] f1: 1.0000
+[2026-10-12 00:00:21] [INFO] [DECISION] Drift detected: True
+[2026-10-12 00:00:21] [INFO] [DECISION] Accuracy degraded: False (1.0000 vs threshold 0.9900)
+[2026-10-12 00:00:21] [INFO] [DECISION] Retrain decision: True
+[2026-10-12 00:00:21] [INFO] [RETRAINING] 🔄 Training candidate model in sandbox for validation review
+[2026-10-12 00:00:21] [INFO] [RETRAINING] Starting retraining/updating with 500 samples
+[2026-10-12 00:00:21] [INFO] [RETRAINING] ✅ Local Expert retrained successfully (Buffer: 5000 samples)
+[2026-10-12 00:00:21] [INFO] [CANDIDATE_MODEL_EVALUATION] Evaluation completed:
+[2026-10-12 00:00:21] [INFO] [CANDIDATE_MODEL_EVALUATION] accuracy: 1.0000
+[2026-10-12 00:00:21] [INFO] [CANDIDATE_MODEL_EVALUATION] precision: 1.0000
+[2026-10-12 00:00:21] [INFO] [CANDIDATE_MODEL_EVALUATION] recall: 1.0000
+[2026-10-12 00:00:21] [INFO] [CANDIDATE_MODEL_EVALUATION] f1: 1.0000
+[2026-10-12 00:00:21] [WARNING] [GOVERNANCE] Uploaded dataset triggered retraining. Candidate model registered in outputs/pending_deployment.json with status PENDING_APPROVAL awaiting human governance.
+[2026-10-12 00:07:34] [INFO] [GOVERNANCE] Deployed by Human Approval. Reviewer: Human Compliance Officer. Notes: Approved via Model Update Required governance modal.
+[2026-10-12 00:09:50] [INFO] [BASELINE_BEFORE_UPLOAD] Evaluation completed:
+[2026-10-12 00:09:50] [INFO] [BASELINE_BEFORE_UPLOAD] accuracy: 0.8710
+[2026-10-12 00:09:50] [INFO] [BASELINE_BEFORE_UPLOAD] precision: 0.9613
+[2026-10-12 00:09:50] [INFO] [BASELINE_BEFORE_UPLOAD] recall: 0.8710
+[2026-10-12 00:09:50] [INFO] [BASELINE_BEFORE_UPLOAD] f1: 0.9130
+[2026-10-12 00:09:50] [INFO] [DECISION] Drift detected: True
+[2026-10-12 00:09:50] [INFO] [DECISION] Accuracy degraded: True (0.8710 vs threshold 0.9900)
+[2026-10-12 00:09:50] [INFO] [DECISION] Retrain decision: True
+[2026-10-12 00:09:50] [INFO] [RETRAINING] 🔄 Training candidate model in sandbox for validation review
+[2026-10-12 00:09:50] [INFO] [RETRAINING] Starting retraining/updating with 39221 samples
+[2026-10-12 00:09:50] [INFO] [RETRAINING] ✅ Local Expert retrained successfully (Buffer: 5000 samples)
+[2026-10-12 00:09:50] [INFO] [CANDIDATE_MODEL_EVALUATION] Evaluation completed:
+[2026-10-12 00:09:50] [INFO] [CANDIDATE_MODEL_EVALUATION] accuracy: 0.9378
+[2026-10-12 00:09:50] [INFO] [CANDIDATE_MODEL_EVALUATION] precision: 0.9610
+[2026-10-12 00:09:50] [INFO] [CANDIDATE_MODEL_EVALUATION] recall: 0.9378
+[2026-10-12 00:09:50] [INFO] [CANDIDATE_MODEL_EVALUATION] f1: 0.9491
+[2026-10-12 00:09:50] [WARNING] [GOVERNANCE] Uploaded dataset triggered retraining. Candidate model registered in outputs/pending_deployment.json with status PENDING_APPROVAL awaiting human governance.
+[2026-10-12 00:09:50] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-10-12 00:09:50] [INFO] [INITIALIZATION] Global baseline model training completed successfully
+[2026-10-12 00:09:50] [WARNING] [DECISION] Batch 1 [RED]: Retraining triggered -> Accuracy (0.9710) dropped below threshold (0.9900)
+[2026-10-12 00:09:50] [SUCCESS] [RETRAINING] Batch 1: Local Model updated (Buffer: 1000)
+[2026-10-12 00:09:50] [WARNING] [DECISION] Batch 2 [RED]: Retraining triggered -> Accuracy (0.9780) dropped below threshold (0.9900)
+[2026-10-12 00:09:50] [SUCCESS] [RETRAINING] Batch 2: Local Model updated (Buffer: 2000)
+[2026-10-12 00:09:51] [WARNING] [DECISION] Batch 3 [RED]: Retraining triggered -> Accuracy (0.9720) dropped below threshold (0.9900)
+[2026-10-12 00:09:51] [SUCCESS] [RETRAINING] Batch 3: Local Model updated (Buffer: 3000)
+[2026-10-12 00:09:51] [WARNING] [DECISION] Batch 4 [RED]: Retraining triggered -> Accuracy (0.9810) dropped below threshold (0.9900)
+[2026-10-12 00:09:51] [SUCCESS] [RETRAINING] Batch 4: Local Model updated (Buffer: 4000)
+[2026-10-12 00:09:51] [WARNING] [DECISION] Batch 5 [RED]: Retraining triggered -> Accuracy (0.9790) dropped below threshold (0.9900)
+[2026-10-12 00:09:51] [SUCCESS] [RETRAINING] Batch 5: Local Model updated (Buffer: 5000)
+[2026-10-12 00:09:51] [WARNING] [DECISION] Batch 6 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.9720) dropped below threshold (0.9900)
+[2026-10-12 00:09:51] [SUCCESS] [RETRAINING] Batch 6: Local Model updated (Buffer: 5000)
+[2026-10-12 00:09:51] [WARNING] [DECISION] Batch 7 [RED]: Retraining triggered -> Accuracy (0.9740) dropped below threshold (0.9900)
+[2026-10-12 00:09:51] [SUCCESS] [RETRAINING] Batch 7: Local Model updated (Buffer: 5000)
+[2026-10-12 00:09:51] [WARNING] [DECISION] Batch 8 [RED]: Retraining triggered -> Accuracy (0.9690) dropped below threshold (0.9900)
+[2026-10-12 00:09:51] [SUCCESS] [RETRAINING] Batch 8: Local Model updated (Buffer: 5000)
+[2026-10-12 00:09:52] [WARNING] [DECISION] Batch 9 [RED]: Retraining triggered -> Significant drift in 28 features (>= threshold 3), Accuracy (0.9760) dropped below threshold (0.9900)
+[2026-10-12 00:09:52] [SUCCESS] [RETRAINING] Batch 9: Local Model updated (Buffer: 5000)
+[2026-10-12 00:09:52] [WARNING] [DECISION] Batch 10 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.9670) dropped below threshold (0.9900)
+[2026-10-12 00:09:52] [SUCCESS] [RETRAINING] Batch 10: Local Model updated (Buffer: 5000)
+[2026-10-12 00:09:52] [WARNING] [DECISION] Batch 11 [RED]: Retraining triggered -> Accuracy (0.9640) dropped below threshold (0.9900)
+[2026-10-12 00:09:52] [SUCCESS] [RETRAINING] Batch 11: Local Model updated (Buffer: 5000)
+[2026-10-12 00:09:52] [WARNING] [DECISION] Batch 12 [RED]: Retraining triggered -> Accuracy (0.9780) dropped below threshold (0.9900)
+[2026-10-12 00:09:52] [SUCCESS] [RETRAINING] Batch 12: Local Model updated (Buffer: 5000)
+[2026-10-12 00:09:52] [WARNING] [DECISION] Batch 13 [RED]: Retraining triggered -> Accuracy (0.9660) dropped below threshold (0.9900)
+[2026-10-12 00:09:52] [SUCCESS] [RETRAINING] Batch 13: Local Model updated (Buffer: 5000)
+[2026-10-12 00:09:52] [WARNING] [DECISION] Batch 14 [RED]: Retraining triggered -> Accuracy (0.9720) dropped below threshold (0.9900)
+[2026-10-12 00:09:52] [SUCCESS] [RETRAINING] Batch 14: Local Model updated (Buffer: 5000)
+[2026-10-12 00:09:53] [WARNING] [DECISION] Batch 15 [RED]: Retraining triggered -> Accuracy (0.9640) dropped below threshold (0.9900)
+[2026-10-12 00:09:53] [SUCCESS] [RETRAINING] Batch 15: Local Model updated (Buffer: 5000)
+[2026-10-12 00:09:53] [WARNING] [DECISION] Batch 16 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.9690) dropped below threshold (0.9900)
+[2026-10-12 00:09:53] [SUCCESS] [RETRAINING] Batch 16: Local Model updated (Buffer: 5000)
+[2026-10-12 00:09:53] [WARNING] [DECISION] Batch 17 [RED]: Retraining triggered -> Accuracy (0.9760) dropped below threshold (0.9900)
+[2026-10-12 00:09:53] [SUCCESS] [RETRAINING] Batch 17: Local Model updated (Buffer: 5000)
+[2026-10-12 00:09:53] [WARNING] [DECISION] Batch 18 [RED]: Retraining triggered -> Accuracy (0.9830) dropped below threshold (0.9900)
+[2026-10-12 00:09:53] [SUCCESS] [RETRAINING] Batch 18: Local Model updated (Buffer: 5000)
+[2026-10-12 00:09:53] [WARNING] [DECISION] Batch 19 [RED]: Retraining triggered -> Accuracy (0.9730) dropped below threshold (0.9900)
+[2026-10-12 00:09:53] [SUCCESS] [RETRAINING] Batch 19: Local Model updated (Buffer: 5000)
+[2026-10-12 00:09:53] [WARNING] [DECISION] Batch 20 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.9502) dropped below threshold (0.9900)
+[2026-10-12 00:09:53] [SUCCESS] [RETRAINING] Batch 20: Local Model updated (Buffer: 5000)
+[2026-10-12 00:09:53] [SUCCESS] [PIPELINE] Pipeline finished: GREEN=0, YELLOW=0, RED=20
+[2026-10-12 00:11:27] [INFO] [GOVERNANCE] Deployed by Human Approval. Reviewer: Compliance Officer (Human). Notes: Approved via Governance Portal: Superior F1 metrics verified.
+[2026-10-12 00:15:06] [INFO] [BASELINE_BEFORE_UPLOAD] Evaluation completed:
+[2026-10-12 00:15:06] [INFO] [BASELINE_BEFORE_UPLOAD] accuracy: 0.0000
+[2026-10-12 00:15:06] [INFO] [BASELINE_BEFORE_UPLOAD] precision: 0.0000
+[2026-10-12 00:15:06] [INFO] [BASELINE_BEFORE_UPLOAD] recall: 0.0000
+[2026-10-12 00:15:06] [INFO] [BASELINE_BEFORE_UPLOAD] f1: 0.0000
+[2026-10-12 00:15:06] [INFO] [DECISION] Drift detected: True
+[2026-10-12 00:15:06] [INFO] [DECISION] Accuracy degraded: True (0.0000 vs threshold 0.9900)
+[2026-10-12 00:15:06] [INFO] [DECISION] Retrain decision: True
+[2026-10-12 00:15:06] [INFO] [RETRAINING] 🔄 Training candidate model in sandbox for validation review
+[2026-10-12 00:15:06] [INFO] [RETRAINING] Starting retraining/updating with 984 samples
+[2026-10-12 00:15:10] [INFO] [BASELINE_BEFORE_UPLOAD] Evaluation completed:
+[2026-10-12 00:15:10] [INFO] [BASELINE_BEFORE_UPLOAD] accuracy: 0.0000
+[2026-10-12 00:15:10] [INFO] [BASELINE_BEFORE_UPLOAD] precision: 0.0000
+[2026-10-12 00:15:10] [INFO] [BASELINE_BEFORE_UPLOAD] recall: 0.0000
+[2026-10-12 00:15:10] [INFO] [BASELINE_BEFORE_UPLOAD] f1: 0.0000
+[2026-10-12 00:15:10] [INFO] [DECISION] Drift detected: True
+[2026-10-12 00:15:10] [INFO] [DECISION] Accuracy degraded: True (0.0000 vs threshold 0.9900)
+[2026-10-12 00:15:10] [INFO] [DECISION] Retrain decision: True
+[2026-10-12 00:15:10] [INFO] [RETRAINING] 🔄 Training candidate model in sandbox for validation review
+[2026-10-12 00:15:10] [INFO] [RETRAINING] Starting retraining/updating with 984 samples
+[2026-10-12 00:15:48] [INFO] [BASELINE_BEFORE_UPLOAD] Evaluation completed:
+[2026-10-12 00:15:48] [INFO] [BASELINE_BEFORE_UPLOAD] accuracy: 0.0000
+[2026-10-12 00:15:48] [INFO] [BASELINE_BEFORE_UPLOAD] precision: 0.0000
+[2026-10-12 00:15:48] [INFO] [BASELINE_BEFORE_UPLOAD] recall: 0.0000
+[2026-10-12 00:15:48] [INFO] [BASELINE_BEFORE_UPLOAD] f1: 0.0000
+[2026-10-12 00:15:48] [INFO] [DECISION] Drift detected: True
+[2026-10-12 00:15:48] [INFO] [DECISION] Accuracy degraded: True (0.0000 vs threshold 0.9900)
+[2026-10-12 00:15:48] [INFO] [DECISION] Retrain decision: True
+[2026-10-12 00:15:48] [INFO] [RETRAINING] 🔄 Training candidate model in sandbox for validation review
+[2026-10-12 00:15:48] [INFO] [RETRAINING] Starting retraining/updating with 294588 samples
+[2026-10-12 00:16:10] [INFO] [BASELINE_BEFORE_UPLOAD] Evaluation completed:
+[2026-10-12 00:16:10] [INFO] [BASELINE_BEFORE_UPLOAD] accuracy: 0.0000
+[2026-10-12 00:16:10] [INFO] [BASELINE_BEFORE_UPLOAD] precision: 0.0000
+[2026-10-12 00:16:10] [INFO] [BASELINE_BEFORE_UPLOAD] recall: 0.0000
+[2026-10-12 00:16:10] [INFO] [BASELINE_BEFORE_UPLOAD] f1: 0.0000
+[2026-10-12 00:16:10] [INFO] [DECISION] Drift detected: True
+[2026-10-12 00:16:10] [INFO] [DECISION] Accuracy degraded: True (0.0000 vs threshold 0.9900)
+[2026-10-12 00:16:10] [INFO] [DECISION] Retrain decision: True
+[2026-10-12 00:16:10] [INFO] [RETRAINING] 🔄 Training candidate model in sandbox for validation review
+[2026-10-12 00:16:10] [INFO] [RETRAINING] Starting retraining/updating with 294588 samples
+[2026-10-12 00:16:53] [INFO] [BASELINE_BEFORE_UPLOAD] Evaluation completed:
+[2026-10-12 00:16:53] [INFO] [BASELINE_BEFORE_UPLOAD] accuracy: 0.9199
+[2026-10-12 00:16:53] [INFO] [BASELINE_BEFORE_UPLOAD] precision: 0.9607
+[2026-10-12 00:16:53] [INFO] [BASELINE_BEFORE_UPLOAD] recall: 0.9199
+[2026-10-12 00:16:53] [INFO] [BASELINE_BEFORE_UPLOAD] f1: 0.9396
+[2026-10-12 00:16:53] [INFO] [DECISION] Drift detected: True
+[2026-10-12 00:16:53] [INFO] [DECISION] Accuracy degraded: True (0.9199 vs threshold 0.9900)
+[2026-10-12 00:16:53] [INFO] [DECISION] Retrain decision: True
+[2026-10-12 00:16:53] [INFO] [RETRAINING] 🔄 Training candidate model in sandbox for validation review
+[2026-10-12 00:16:53] [INFO] [RETRAINING] Starting retraining/updating with 100000 samples
+[2026-10-12 00:16:53] [INFO] [RETRAINING] ✅ Local Expert retrained successfully (Buffer: 5000 samples)
+[2026-10-12 00:16:54] [INFO] [CANDIDATE_MODEL_EVALUATION] Evaluation completed:
+[2026-10-12 00:16:54] [INFO] [CANDIDATE_MODEL_EVALUATION] accuracy: 0.9313
+[2026-10-12 00:16:54] [INFO] [CANDIDATE_MODEL_EVALUATION] precision: 0.9607
+[2026-10-12 00:16:54] [INFO] [CANDIDATE_MODEL_EVALUATION] recall: 0.9313
+[2026-10-12 00:16:54] [INFO] [CANDIDATE_MODEL_EVALUATION] f1: 0.9457
+[2026-10-12 00:16:54] [WARNING] [GOVERNANCE] Uploaded dataset triggered retraining. Candidate model registered in outputs/pending_deployment.json with status PENDING_APPROVAL awaiting human governance.
+[2026-10-12 00:16:54] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-10-12 00:16:55] [INFO] [INITIALIZATION] Global baseline model training completed successfully
+[2026-10-12 00:16:55] [WARNING] [DECISION] Batch 1 [RED]: Retraining triggered -> Accuracy (0.9770) dropped below threshold (0.9900)
+[2026-10-12 00:16:55] [SUCCESS] [RETRAINING] Batch 1: Local Model updated (Buffer: 4000)
+[2026-10-12 00:16:55] [WARNING] [DECISION] Batch 2 [RED]: Retraining triggered -> Accuracy (0.9750) dropped below threshold (0.9900)
+[2026-10-12 00:16:55] [SUCCESS] [RETRAINING] Batch 2: Local Model updated (Buffer: 5000)
+[2026-10-12 00:16:55] [WARNING] [DECISION] Batch 3 [RED]: Retraining triggered -> Accuracy (0.9732) dropped below threshold (0.9900)
+[2026-10-12 00:16:56] [SUCCESS] [RETRAINING] Batch 3: Local Model updated (Buffer: 5000)
+[2026-10-12 00:16:56] [WARNING] [DECISION] Batch 4 [RED]: Retraining triggered -> Significant drift in 29 features (>= threshold 3), Accuracy (0.9677) dropped below threshold (0.9900)
+[2026-10-12 00:16:56] [SUCCESS] [RETRAINING] Batch 4: Local Model updated (Buffer: 5000)
+[2026-10-12 00:16:56] [WARNING] [DECISION] Batch 5 [RED]: Retraining triggered -> Accuracy (0.9762) dropped below threshold (0.9900)
+[2026-10-12 00:16:56] [SUCCESS] [RETRAINING] Batch 5: Local Model updated (Buffer: 5000)
+[2026-10-12 00:16:56] [WARNING] [DECISION] Batch 6 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.9692) dropped below threshold (0.9900)
+[2026-10-12 00:16:58] [SUCCESS] [RETRAINING] Batch 6: Local Model updated (Buffer: 5000)
+[2026-10-12 00:16:58] [WARNING] [DECISION] Batch 7 [RED]: Retraining triggered -> Accuracy (0.9730) dropped below threshold (0.9900)
+[2026-10-12 00:16:58] [SUCCESS] [RETRAINING] Batch 7: Local Model updated (Buffer: 5000)
+[2026-10-12 00:17:00] [WARNING] [DECISION] Batch 8 [RED]: Retraining triggered -> Accuracy (0.9695) dropped below threshold (0.9900)
+[2026-10-12 00:17:00] [SUCCESS] [RETRAINING] Batch 8: Local Model updated (Buffer: 5000)
+[2026-10-12 00:17:00] [WARNING] [DECISION] Batch 9 [RED]: Retraining triggered -> Accuracy (0.9710) dropped below threshold (0.9900)
+[2026-10-12 00:17:01] [SUCCESS] [RETRAINING] Batch 9: Local Model updated (Buffer: 5000)
+[2026-10-12 00:17:02] [WARNING] [DECISION] Batch 10 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.9667) dropped below threshold (0.9900)
+[2026-10-12 00:17:03] [SUCCESS] [RETRAINING] Batch 10: Local Model updated (Buffer: 5000)
+[2026-10-12 00:17:03] [WARNING] [DECISION] Batch 11 [RED]: Retraining triggered -> Accuracy (0.9752) dropped below threshold (0.9900)
+[2026-10-12 00:17:04] [SUCCESS] [RETRAINING] Batch 11: Local Model updated (Buffer: 5000)
+[2026-10-12 00:17:05] [WARNING] [DECISION] Batch 12 [RED]: Retraining triggered -> Accuracy (0.9765) dropped below threshold (0.9900)
+[2026-10-12 00:17:05] [SUCCESS] [RETRAINING] Batch 12: Local Model updated (Buffer: 5000)
+[2026-10-12 00:17:06] [WARNING] [DECISION] Batch 13 [RED]: Retraining triggered -> Accuracy (0.9698) dropped below threshold (0.9900)
+[2026-10-12 00:17:07] [SUCCESS] [RETRAINING] Batch 13: Local Model updated (Buffer: 5000)
+[2026-10-12 00:17:07] [WARNING] [DECISION] Batch 14 [RED]: Retraining triggered -> Accuracy (0.9738) dropped below threshold (0.9900)
+[2026-10-12 00:17:08] [SUCCESS] [RETRAINING] Batch 14: Local Model updated (Buffer: 5000)
+[2026-10-12 00:17:09] [WARNING] [DECISION] Batch 15 [RED]: Retraining triggered -> Accuracy (0.9755) dropped below threshold (0.9900)
+[2026-10-12 00:17:09] [SUCCESS] [RETRAINING] Batch 15: Local Model updated (Buffer: 5000)
+[2026-10-12 00:17:10] [WARNING] [DECISION] Batch 16 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.9670) dropped below threshold (0.9900)
+[2026-10-12 00:17:10] [SUCCESS] [RETRAINING] Batch 16: Local Model updated (Buffer: 5000)
+[2026-10-12 00:17:11] [WARNING] [DECISION] Batch 17 [RED]: Retraining triggered -> Accuracy (0.9722) dropped below threshold (0.9900)
+[2026-10-12 00:17:11] [SUCCESS] [RETRAINING] Batch 17: Local Model updated (Buffer: 5000)
+[2026-10-12 00:17:12] [WARNING] [DECISION] Batch 18 [RED]: Retraining triggered -> Accuracy (0.9730) dropped below threshold (0.9900)
+[2026-10-12 00:17:12] [SUCCESS] [RETRAINING] Batch 18: Local Model updated (Buffer: 5000)
+[2026-10-12 00:17:13] [WARNING] [DECISION] Batch 19 [RED]: Retraining triggered -> Accuracy (0.9738) dropped below threshold (0.9900)
+[2026-10-12 00:17:14] [SUCCESS] [RETRAINING] Batch 19: Local Model updated (Buffer: 5000)
+[2026-10-12 00:17:14] [WARNING] [DECISION] Batch 20 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.9657) dropped below threshold (0.9900)
+[2026-10-12 00:17:15] [SUCCESS] [RETRAINING] Batch 20: Local Model updated (Buffer: 5000)
+[2026-10-12 00:17:15] [SUCCESS] [PIPELINE] Pipeline finished: GREEN=0, YELLOW=0, RED=20
+[2026-10-12 00:23:11] [INFO] [GOVERNANCE] Deployed by Human Approval. Reviewer: Compliance Officer (Human). Notes: Approved via Governance Portal: Superior F1 metrics verified.
+[2026-10-12 10:50:32] [INFO] [BASELINE_BEFORE_UPLOAD] Evaluation completed:
+[2026-10-12 10:50:32] [INFO] [BASELINE_BEFORE_UPLOAD] accuracy: 1.0000
+[2026-10-12 10:50:32] [INFO] [BASELINE_BEFORE_UPLOAD] precision: 1.0000
+[2026-10-12 10:50:32] [INFO] [BASELINE_BEFORE_UPLOAD] recall: 1.0000
+[2026-10-12 10:50:32] [INFO] [BASELINE_BEFORE_UPLOAD] f1: 1.0000
+[2026-10-12 10:50:32] [INFO] [DECISION] Drift detected: True
+[2026-10-12 10:50:32] [INFO] [DECISION] Accuracy degraded: False (1.0000 vs threshold 0.9900)
+[2026-10-12 10:50:32] [INFO] [DECISION] Retrain decision: True
+[2026-10-12 10:50:32] [INFO] [RETRAINING] 🔄 Training candidate model in sandbox for validation review
+[2026-10-12 10:50:32] [INFO] [RETRAINING] Starting retraining/updating with 100 samples
+[2026-10-12 10:50:33] [INFO] [RETRAINING] ✅ Local Expert retrained successfully (Buffer: 5000 samples)
+[2026-10-12 10:50:33] [INFO] [CANDIDATE_MODEL_EVALUATION] Evaluation completed:
+[2026-10-12 10:50:33] [INFO] [CANDIDATE_MODEL_EVALUATION] accuracy: 1.0000
+[2026-10-12 10:50:33] [INFO] [CANDIDATE_MODEL_EVALUATION] precision: 1.0000
+[2026-10-12 10:50:33] [INFO] [CANDIDATE_MODEL_EVALUATION] recall: 1.0000
+[2026-10-12 10:50:33] [INFO] [CANDIDATE_MODEL_EVALUATION] f1: 1.0000
+[2026-10-12 10:50:33] [WARNING] [GOVERNANCE] Uploaded dataset triggered retraining. Candidate model registered in outputs/pending_deployment.json with status PENDING_APPROVAL awaiting human governance.
+[2026-10-12 11:03:16] [INFO] [BASELINE_BEFORE_UPLOAD] Evaluation completed:
+[2026-10-12 11:03:16] [INFO] [BASELINE_BEFORE_UPLOAD] accuracy: 1.0000
+[2026-10-12 11:03:16] [INFO] [BASELINE_BEFORE_UPLOAD] precision: 1.0000
+[2026-10-12 11:03:16] [INFO] [BASELINE_BEFORE_UPLOAD] recall: 1.0000
+[2026-10-12 11:03:16] [INFO] [BASELINE_BEFORE_UPLOAD] f1: 1.0000
+[2026-10-12 11:03:16] [INFO] [DECISION] Drift detected: True
+[2026-10-12 11:03:16] [INFO] [DECISION] Accuracy degraded: False (1.0000 vs threshold 0.9900)
+[2026-10-12 11:03:16] [INFO] [DECISION] Retrain decision: True
+[2026-10-12 11:03:16] [INFO] [RETRAINING] 🔄 Training candidate model in sandbox for validation review
+[2026-10-12 11:03:16] [INFO] [RETRAINING] Starting retraining/updating with 50 samples
+[2026-10-12 11:03:16] [INFO] [RETRAINING] ✅ Local Expert retrained successfully (Buffer: 5000 samples)
+[2026-10-12 11:03:16] [INFO] [CANDIDATE_MODEL_EVALUATION] Evaluation completed:
+[2026-10-12 11:03:16] [INFO] [CANDIDATE_MODEL_EVALUATION] accuracy: 1.0000
+[2026-10-12 11:03:16] [INFO] [CANDIDATE_MODEL_EVALUATION] precision: 1.0000
+[2026-10-12 11:03:16] [INFO] [CANDIDATE_MODEL_EVALUATION] recall: 1.0000
+[2026-10-12 11:03:16] [INFO] [CANDIDATE_MODEL_EVALUATION] f1: 1.0000
+[2026-10-12 11:03:16] [WARNING] [GOVERNANCE] Uploaded dataset triggered retraining. Candidate model registered in outputs/pending_deployment.json with status PENDING_APPROVAL awaiting human governance.
+[2026-10-12 11:03:16] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-10-12 11:03:16] [INFO] [INITIALIZATION] Global baseline model training completed successfully
+[2026-10-12 11:04:51] [INFO] [BASELINE_BEFORE_UPLOAD] Evaluation completed:
+[2026-10-12 11:04:51] [INFO] [BASELINE_BEFORE_UPLOAD] accuracy: 1.0000
+[2026-10-12 11:04:51] [INFO] [BASELINE_BEFORE_UPLOAD] precision: 1.0000
+[2026-10-12 11:04:51] [INFO] [BASELINE_BEFORE_UPLOAD] recall: 1.0000
+[2026-10-12 11:04:51] [INFO] [BASELINE_BEFORE_UPLOAD] f1: 1.0000
+[2026-10-12 11:04:51] [INFO] [DECISION] Drift detected: True
+[2026-10-12 11:04:51] [INFO] [DECISION] Accuracy degraded: False (1.0000 vs threshold 0.9900)
+[2026-10-12 11:04:51] [INFO] [DECISION] Retrain decision: True
+[2026-10-12 11:04:51] [INFO] [RETRAINING] 🔄 Training candidate model in sandbox for validation review
+[2026-10-12 11:04:51] [INFO] [RETRAINING] Starting retraining/updating with 50 samples
+[2026-10-12 11:04:51] [INFO] [RETRAINING] ✅ Local Expert retrained successfully (Buffer: 5000 samples)
+[2026-10-12 11:04:51] [INFO] [CANDIDATE_MODEL_EVALUATION] Evaluation completed:
+[2026-10-12 11:04:51] [INFO] [CANDIDATE_MODEL_EVALUATION] accuracy: 1.0000
+[2026-10-12 11:04:51] [INFO] [CANDIDATE_MODEL_EVALUATION] precision: 1.0000
+[2026-10-12 11:04:51] [INFO] [CANDIDATE_MODEL_EVALUATION] recall: 1.0000
+[2026-10-12 11:04:51] [INFO] [CANDIDATE_MODEL_EVALUATION] f1: 1.0000
+[2026-10-12 11:04:51] [WARNING] [GOVERNANCE] Uploaded dataset triggered retraining. Candidate model registered in outputs/pending_deployment.json with status PENDING_APPROVAL awaiting human governance.
+[2026-10-12 11:04:51] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-10-12 11:04:51] [INFO] [INITIALIZATION] Global baseline model training completed successfully
+[2026-10-12 11:04:51] [INFO] [DECISION] Batch 1 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (1.0000) stable
+[2026-10-12 11:04:52] [INFO] [DECISION] Batch 2 [YELLOW]: Warning logged -> Minor variation in 1 features (< threshold 3) - Accuracy (1.0000) stable
+[2026-10-12 11:04:52] [INFO] [DECISION] Batch 3 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-12 11:04:52] [WARNING] [DECISION] Batch 4 [RED]: Retraining triggered -> Accuracy (0.8750) dropped below threshold (0.9900)
+[2026-10-12 11:04:52] [SUCCESS] [RETRAINING] Batch 4: Local Model updated (Buffer: 8)
+[2026-10-12 11:04:52] [WARNING] [DECISION] Batch 5 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.7500) dropped below threshold (0.9900)
+[2026-10-12 11:04:52] [SUCCESS] [RETRAINING] Batch 5: Local Model updated (Buffer: 16)
+[2026-10-12 11:04:52] [SUCCESS] [PIPELINE] Pipeline finished: GREEN=1, YELLOW=2, RED=2
+[2026-10-12 11:07:12] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-10-12 11:07:13] [INFO] [INITIALIZATION] Global baseline model training completed successfully
+[2026-10-12 11:07:13] [INFO] [DECISION] Batch 1 [YELLOW]: Warning logged -> Minor variation in 1 features (< threshold 3) - Accuracy (0.9967) stable
+[2026-10-12 11:07:13] [INFO] [DECISION] Batch 2 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-12 11:07:13] [WARNING] [DECISION] Batch 3 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3)
+[2026-10-12 11:07:13] [SUCCESS] [RETRAINING] Batch 3: Local Model updated (Buffer: 1200)
+[2026-10-12 11:07:13] [WARNING] [DECISION] Batch 4 [RED]: Retraining triggered -> Significant drift in 4 features (>= threshold 3)
+[2026-10-12 11:07:13] [SUCCESS] [RETRAINING] Batch 4: Local Model updated (Buffer: 2400)
+[2026-10-12 11:07:13] [INFO] [DECISION] Batch 5 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (0.9983) stable
+[2026-10-12 11:07:13] [WARNING] [DECISION] Batch 6 [RED]: Retraining triggered -> Significant drift in 4 features (>= threshold 3)
+[2026-10-12 11:07:14] [SUCCESS] [RETRAINING] Batch 6: Local Model updated (Buffer: 3600)
+[2026-10-12 11:07:14] [INFO] [DECISION] Batch 7 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-12 11:07:14] [INFO] [DECISION] Batch 8 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-12 11:07:14] [INFO] [DECISION] Batch 9 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (1.0000) stable
+[2026-10-12 11:07:14] [WARNING] [DECISION] Batch 10 [RED]: Retraining triggered -> Significant drift in 4 features (>= threshold 3)
+[2026-10-12 11:07:14] [SUCCESS] [RETRAINING] Batch 10: Local Model updated (Buffer: 4800)
+[2026-10-12 11:07:14] [INFO] [DECISION] Batch 11 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (1.0000) stable
+[2026-10-12 11:07:14] [INFO] [DECISION] Batch 12 [YELLOW]: Warning logged -> Minor variation in 1 features (< threshold 3) - Accuracy (0.9992) stable
+[2026-10-12 11:07:14] [WARNING] [DECISION] Batch 13 [RED]: Retraining triggered -> Significant drift in 5 features (>= threshold 3)
+[2026-10-12 11:07:14] [SUCCESS] [RETRAINING] Batch 13: Local Model updated (Buffer: 5000)
+[2026-10-12 11:07:15] [INFO] [DECISION] Batch 14 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (0.9983) stable
+[2026-10-12 11:07:15] [INFO] [DECISION] Batch 15 [YELLOW]: Warning logged -> Minor variation in 1 features (< threshold 3) - Accuracy (0.9983) stable
+[2026-10-12 11:07:15] [WARNING] [DECISION] Batch 16 [RED]: Retraining triggered -> Significant drift in 6 features (>= threshold 3)
+[2026-10-12 11:07:15] [SUCCESS] [RETRAINING] Batch 16: Local Model updated (Buffer: 5000)
+[2026-10-12 11:07:15] [INFO] [DECISION] Batch 17 [GREEN]: System stable -> System stable: 0 features drifted and accuracy is above threshold
+[2026-10-12 11:07:15] [INFO] [DECISION] Batch 18 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (0.9992) stable
+[2026-10-12 11:07:15] [INFO] [DECISION] Batch 19 [YELLOW]: Warning logged -> Minor variation in 2 features (< threshold 3) - Accuracy (1.0000) stable
+[2026-10-12 11:07:15] [WARNING] [DECISION] Batch 20 [RED]: Retraining triggered -> Significant drift in 6 features (>= threshold 3)
+[2026-10-12 11:07:15] [SUCCESS] [RETRAINING] Batch 20: Local Model updated (Buffer: 5000)
+[2026-10-12 11:07:15] [SUCCESS] [PIPELINE] Pipeline finished: GREEN=4, YELLOW=9, RED=7
+[2026-10-12 11:07:51] [INFO] [GOVERNANCE] Deployed by Human Approval. Reviewer: Human Compliance Officer. Notes: Approved verification test
+[2026-10-12 11:17:05] [INFO] [BASELINE_BEFORE_UPLOAD] Evaluation completed:
+[2026-10-12 11:17:05] [INFO] [BASELINE_BEFORE_UPLOAD] accuracy: 0.9343
+[2026-10-12 11:17:05] [INFO] [BASELINE_BEFORE_UPLOAD] precision: 0.9607
+[2026-10-12 11:17:05] [INFO] [BASELINE_BEFORE_UPLOAD] recall: 0.9343
+[2026-10-12 11:17:05] [INFO] [BASELINE_BEFORE_UPLOAD] f1: 0.9472
+[2026-10-12 11:17:05] [INFO] [DECISION] Drift detected: True
+[2026-10-12 11:17:05] [INFO] [DECISION] Accuracy degraded: True (0.9343 vs threshold 0.9900)
+[2026-10-12 11:17:05] [INFO] [DECISION] Retrain decision: True
+[2026-10-12 11:17:05] [INFO] [RETRAINING] 🔄 Training candidate model in sandbox for validation review
+[2026-10-12 11:17:05] [INFO] [RETRAINING] Starting retraining/updating with 100000 samples
+[2026-10-12 11:17:05] [INFO] [RETRAINING] ✅ Local Expert retrained successfully (Buffer: 5000 samples)
+[2026-10-12 11:17:06] [INFO] [CANDIDATE_MODEL_EVALUATION] Evaluation completed:
+[2026-10-12 11:17:06] [INFO] [CANDIDATE_MODEL_EVALUATION] accuracy: 0.9313
+[2026-10-12 11:17:06] [INFO] [CANDIDATE_MODEL_EVALUATION] precision: 0.9607
+[2026-10-12 11:17:06] [INFO] [CANDIDATE_MODEL_EVALUATION] recall: 0.9313
+[2026-10-12 11:17:06] [INFO] [CANDIDATE_MODEL_EVALUATION] f1: 0.9457
+[2026-10-12 11:17:06] [WARNING] [GOVERNANCE] Uploaded dataset triggered retraining. Candidate model registered in outputs/pending_deployment.json with status PENDING_APPROVAL awaiting human governance.
+[2026-10-12 11:17:06] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-10-12 11:17:06] [INFO] [INITIALIZATION] Global baseline model training completed successfully
+[2026-10-12 11:17:06] [WARNING] [DECISION] Batch 1 [RED]: Retraining triggered -> Accuracy (0.9770) dropped below threshold (0.9900)
+[2026-10-12 11:17:06] [SUCCESS] [RETRAINING] Batch 1: Local Model updated (Buffer: 4000)
+[2026-10-12 11:17:07] [WARNING] [DECISION] Batch 2 [RED]: Retraining triggered -> Accuracy (0.9750) dropped below threshold (0.9900)
+[2026-10-12 11:17:07] [SUCCESS] [RETRAINING] Batch 2: Local Model updated (Buffer: 5000)
+[2026-10-12 11:17:07] [WARNING] [DECISION] Batch 3 [RED]: Retraining triggered -> Accuracy (0.9732) dropped below threshold (0.9900)
+[2026-10-12 11:17:07] [SUCCESS] [RETRAINING] Batch 3: Local Model updated (Buffer: 5000)
+[2026-10-12 11:17:07] [WARNING] [DECISION] Batch 4 [RED]: Retraining triggered -> Significant drift in 29 features (>= threshold 3), Accuracy (0.9677) dropped below threshold (0.9900)
+[2026-10-12 11:17:07] [SUCCESS] [RETRAINING] Batch 4: Local Model updated (Buffer: 5000)
+[2026-10-12 11:17:07] [WARNING] [DECISION] Batch 5 [RED]: Retraining triggered -> Accuracy (0.9762) dropped below threshold (0.9900)
+[2026-10-12 11:17:07] [SUCCESS] [RETRAINING] Batch 5: Local Model updated (Buffer: 5000)
+[2026-10-12 11:17:07] [WARNING] [DECISION] Batch 6 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.9692) dropped below threshold (0.9900)
+[2026-10-12 11:17:07] [SUCCESS] [RETRAINING] Batch 6: Local Model updated (Buffer: 5000)
+[2026-10-12 11:17:08] [WARNING] [DECISION] Batch 7 [RED]: Retraining triggered -> Accuracy (0.9730) dropped below threshold (0.9900)
+[2026-10-12 11:17:08] [SUCCESS] [RETRAINING] Batch 7: Local Model updated (Buffer: 5000)
+[2026-10-12 11:17:08] [WARNING] [DECISION] Batch 8 [RED]: Retraining triggered -> Accuracy (0.9695) dropped below threshold (0.9900)
+[2026-10-12 11:17:08] [SUCCESS] [RETRAINING] Batch 8: Local Model updated (Buffer: 5000)
+[2026-10-12 11:17:08] [WARNING] [DECISION] Batch 9 [RED]: Retraining triggered -> Accuracy (0.9710) dropped below threshold (0.9900)
+[2026-10-12 11:17:08] [SUCCESS] [RETRAINING] Batch 9: Local Model updated (Buffer: 5000)
+[2026-10-12 11:17:08] [WARNING] [DECISION] Batch 10 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.9667) dropped below threshold (0.9900)
+[2026-10-12 11:17:08] [SUCCESS] [RETRAINING] Batch 10: Local Model updated (Buffer: 5000)
+[2026-10-12 11:17:08] [WARNING] [DECISION] Batch 11 [RED]: Retraining triggered -> Accuracy (0.9752) dropped below threshold (0.9900)
+[2026-10-12 11:17:08] [SUCCESS] [RETRAINING] Batch 11: Local Model updated (Buffer: 5000)
+[2026-10-12 11:17:09] [WARNING] [DECISION] Batch 12 [RED]: Retraining triggered -> Accuracy (0.9765) dropped below threshold (0.9900)
+[2026-10-12 11:17:09] [SUCCESS] [RETRAINING] Batch 12: Local Model updated (Buffer: 5000)
+[2026-10-12 11:17:09] [WARNING] [DECISION] Batch 13 [RED]: Retraining triggered -> Accuracy (0.9698) dropped below threshold (0.9900)
+[2026-10-12 11:17:09] [SUCCESS] [RETRAINING] Batch 13: Local Model updated (Buffer: 5000)
+[2026-10-12 11:17:09] [WARNING] [DECISION] Batch 14 [RED]: Retraining triggered -> Accuracy (0.9738) dropped below threshold (0.9900)
+[2026-10-12 11:17:09] [SUCCESS] [RETRAINING] Batch 14: Local Model updated (Buffer: 5000)
+[2026-10-12 11:17:09] [WARNING] [DECISION] Batch 15 [RED]: Retraining triggered -> Accuracy (0.9755) dropped below threshold (0.9900)
+[2026-10-12 11:17:09] [SUCCESS] [RETRAINING] Batch 15: Local Model updated (Buffer: 5000)
+[2026-10-12 11:17:09] [WARNING] [DECISION] Batch 16 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.9670) dropped below threshold (0.9900)
+[2026-10-12 11:17:09] [SUCCESS] [RETRAINING] Batch 16: Local Model updated (Buffer: 5000)
+[2026-10-12 11:17:10] [WARNING] [DECISION] Batch 17 [RED]: Retraining triggered -> Accuracy (0.9722) dropped below threshold (0.9900)
+[2026-10-12 11:17:10] [SUCCESS] [RETRAINING] Batch 17: Local Model updated (Buffer: 5000)
+[2026-10-12 11:17:10] [WARNING] [DECISION] Batch 18 [RED]: Retraining triggered -> Accuracy (0.9730) dropped below threshold (0.9900)
+[2026-10-12 11:17:10] [SUCCESS] [RETRAINING] Batch 18: Local Model updated (Buffer: 5000)
+[2026-10-12 11:17:11] [WARNING] [DECISION] Batch 19 [RED]: Retraining triggered -> Accuracy (0.9738) dropped below threshold (0.9900)
+[2026-10-12 11:17:11] [SUCCESS] [RETRAINING] Batch 19: Local Model updated (Buffer: 5000)
+[2026-10-12 11:17:11] [WARNING] [DECISION] Batch 20 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.9657) dropped below threshold (0.9900)
+[2026-10-12 11:17:11] [SUCCESS] [RETRAINING] Batch 20: Local Model updated (Buffer: 5000)
+[2026-10-12 11:17:12] [SUCCESS] [PIPELINE] Pipeline finished: GREEN=0, YELLOW=0, RED=20
+[2026-10-12 12:53:09] [INFO] [GOVERNANCE] Deployed by Human Approval. Reviewer: Human Compliance Officer. Notes: Approved via Model Update Required governance modal.
+[2026-10-13 12:18:58] [INFO] [BASELINE_BEFORE_UPLOAD] Evaluation completed:
+[2026-10-13 12:18:58] [INFO] [BASELINE_BEFORE_UPLOAD] accuracy: 0.0000
+[2026-10-13 12:18:58] [INFO] [BASELINE_BEFORE_UPLOAD] precision: 0.0000
+[2026-10-13 12:18:58] [INFO] [BASELINE_BEFORE_UPLOAD] recall: 0.0000
+[2026-10-13 12:18:58] [INFO] [BASELINE_BEFORE_UPLOAD] f1: 0.0000
+[2026-10-13 12:18:58] [INFO] [DECISION] Drift detected: True
+[2026-10-13 12:18:58] [INFO] [DECISION] Accuracy degraded: True (0.0000 vs threshold 0.9900)
+[2026-10-13 12:18:58] [INFO] [DECISION] Retrain decision: True
+[2026-10-13 12:18:58] [INFO] [RETRAINING] 🔄 Training candidate model in sandbox for validation review
+[2026-10-13 12:18:58] [INFO] [RETRAINING] Starting retraining/updating with 294588 samples
+[2026-10-13 12:19:36] [INFO] [BASELINE_BEFORE_UPLOAD] Evaluation completed:
+[2026-10-13 12:19:36] [INFO] [BASELINE_BEFORE_UPLOAD] accuracy: 0.0000
+[2026-10-13 12:19:36] [INFO] [BASELINE_BEFORE_UPLOAD] precision: 0.0000
+[2026-10-13 12:19:36] [INFO] [BASELINE_BEFORE_UPLOAD] recall: 0.0000
+[2026-10-13 12:19:36] [INFO] [BASELINE_BEFORE_UPLOAD] f1: 0.0000
+[2026-10-13 12:19:36] [INFO] [DECISION] Drift detected: True
+[2026-10-13 12:19:36] [INFO] [DECISION] Accuracy degraded: True (0.0000 vs threshold 0.9900)
+[2026-10-13 12:19:36] [INFO] [DECISION] Retrain decision: True
+[2026-10-13 12:19:36] [INFO] [RETRAINING] 🔄 Training candidate model in sandbox for validation review
+[2026-10-13 12:19:36] [INFO] [RETRAINING] Starting retraining/updating with 294588 samples
+[2026-10-13 12:19:52] [INFO] [BASELINE_BEFORE_UPLOAD] Evaluation completed:
+[2026-10-13 12:19:52] [INFO] [BASELINE_BEFORE_UPLOAD] accuracy: 0.0000
+[2026-10-13 12:19:52] [INFO] [BASELINE_BEFORE_UPLOAD] precision: 0.0000
+[2026-10-13 12:19:52] [INFO] [BASELINE_BEFORE_UPLOAD] recall: 0.0000
+[2026-10-13 12:19:52] [INFO] [BASELINE_BEFORE_UPLOAD] f1: 0.0000
+[2026-10-13 12:19:52] [INFO] [DECISION] Drift detected: True
+[2026-10-13 12:19:52] [INFO] [DECISION] Accuracy degraded: True (0.0000 vs threshold 0.9900)
+[2026-10-13 12:19:52] [INFO] [DECISION] Retrain decision: True
+[2026-10-13 12:19:52] [INFO] [RETRAINING] 🔄 Training candidate model in sandbox for validation review
+[2026-10-13 12:19:52] [INFO] [RETRAINING] Starting retraining/updating with 294588 samples
+[2026-10-13 12:20:32] [INFO] [BASELINE_BEFORE_UPLOAD] Evaluation completed:
+[2026-10-13 12:20:32] [INFO] [BASELINE_BEFORE_UPLOAD] accuracy: 0.9313
+[2026-10-13 12:20:32] [INFO] [BASELINE_BEFORE_UPLOAD] precision: 0.9607
+[2026-10-13 12:20:32] [INFO] [BASELINE_BEFORE_UPLOAD] recall: 0.9313
+[2026-10-13 12:20:32] [INFO] [BASELINE_BEFORE_UPLOAD] f1: 0.9457
+[2026-10-13 12:20:32] [INFO] [DECISION] Drift detected: True
+[2026-10-13 12:20:32] [INFO] [DECISION] Accuracy degraded: True (0.9313 vs threshold 0.9900)
+[2026-10-13 12:20:32] [INFO] [DECISION] Retrain decision: True
+[2026-10-13 12:20:32] [INFO] [RETRAINING] 🔄 Training candidate model in sandbox for validation review
+[2026-10-13 12:20:32] [INFO] [RETRAINING] Starting retraining/updating with 100000 samples
+[2026-10-13 12:20:32] [INFO] [RETRAINING] ✅ Local Expert retrained successfully (Buffer: 5000 samples)
+[2026-10-13 12:20:33] [INFO] [CANDIDATE_MODEL_EVALUATION] Evaluation completed:
+[2026-10-13 12:20:33] [INFO] [CANDIDATE_MODEL_EVALUATION] accuracy: 0.9313
+[2026-10-13 12:20:33] [INFO] [CANDIDATE_MODEL_EVALUATION] precision: 0.9607
+[2026-10-13 12:20:33] [INFO] [CANDIDATE_MODEL_EVALUATION] recall: 0.9313
+[2026-10-13 12:20:33] [INFO] [CANDIDATE_MODEL_EVALUATION] f1: 0.9457
+[2026-10-13 12:20:33] [WARNING] [GOVERNANCE] Uploaded dataset triggered retraining. Candidate model registered in outputs/pending_deployment.json with status PENDING_APPROVAL awaiting human governance.
+[2026-10-13 12:20:33] [INFO] [PIPELINE] Starting Continuous ML Drift Monitoring Pipeline
+[2026-10-13 12:20:34] [INFO] [INITIALIZATION] Global baseline model training completed successfully
+[2026-10-13 12:20:34] [WARNING] [DECISION] Batch 1 [RED]: Retraining triggered -> Accuracy (0.9770) dropped below threshold (0.9900)
+[2026-10-13 12:20:35] [SUCCESS] [RETRAINING] Batch 1: Local Model updated (Buffer: 4000)
+[2026-10-13 12:20:35] [WARNING] [DECISION] Batch 2 [RED]: Retraining triggered -> Accuracy (0.9750) dropped below threshold (0.9900)
+[2026-10-13 12:20:35] [SUCCESS] [RETRAINING] Batch 2: Local Model updated (Buffer: 5000)
+[2026-10-13 12:20:36] [WARNING] [DECISION] Batch 3 [RED]: Retraining triggered -> Accuracy (0.9732) dropped below threshold (0.9900)
+[2026-10-13 12:20:37] [SUCCESS] [RETRAINING] Batch 3: Local Model updated (Buffer: 5000)
+[2026-10-13 12:20:37] [WARNING] [DECISION] Batch 4 [RED]: Retraining triggered -> Significant drift in 29 features (>= threshold 3), Accuracy (0.9677) dropped below threshold (0.9900)
+[2026-10-13 12:20:39] [SUCCESS] [RETRAINING] Batch 4: Local Model updated (Buffer: 5000)
+[2026-10-13 12:20:39] [WARNING] [DECISION] Batch 5 [RED]: Retraining triggered -> Accuracy (0.9762) dropped below threshold (0.9900)
+[2026-10-13 12:20:39] [SUCCESS] [RETRAINING] Batch 5: Local Model updated (Buffer: 5000)
+[2026-10-13 12:20:40] [WARNING] [DECISION] Batch 6 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.9692) dropped below threshold (0.9900)
+[2026-10-13 12:20:41] [SUCCESS] [RETRAINING] Batch 6: Local Model updated (Buffer: 5000)
+[2026-10-13 12:20:41] [WARNING] [DECISION] Batch 7 [RED]: Retraining triggered -> Accuracy (0.9730) dropped below threshold (0.9900)
+[2026-10-13 12:20:42] [SUCCESS] [RETRAINING] Batch 7: Local Model updated (Buffer: 5000)
+[2026-10-13 12:20:43] [WARNING] [DECISION] Batch 8 [RED]: Retraining triggered -> Accuracy (0.9695) dropped below threshold (0.9900)
+[2026-10-13 12:20:43] [SUCCESS] [RETRAINING] Batch 8: Local Model updated (Buffer: 5000)
+[2026-10-13 12:20:44] [WARNING] [DECISION] Batch 9 [RED]: Retraining triggered -> Accuracy (0.9710) dropped below threshold (0.9900)
+[2026-10-13 12:20:45] [SUCCESS] [RETRAINING] Batch 9: Local Model updated (Buffer: 5000)
+[2026-10-13 12:20:45] [WARNING] [DECISION] Batch 10 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.9667) dropped below threshold (0.9900)
+[2026-10-13 12:20:45] [SUCCESS] [RETRAINING] Batch 10: Local Model updated (Buffer: 5000)
+[2026-10-13 12:20:46] [WARNING] [DECISION] Batch 11 [RED]: Retraining triggered -> Accuracy (0.9752) dropped below threshold (0.9900)
+[2026-10-13 12:20:47] [SUCCESS] [RETRAINING] Batch 11: Local Model updated (Buffer: 5000)
+[2026-10-13 12:20:47] [WARNING] [DECISION] Batch 12 [RED]: Retraining triggered -> Accuracy (0.9765) dropped below threshold (0.9900)
+[2026-10-13 12:20:48] [SUCCESS] [RETRAINING] Batch 12: Local Model updated (Buffer: 5000)
+[2026-10-13 12:20:49] [WARNING] [DECISION] Batch 13 [RED]: Retraining triggered -> Accuracy (0.9698) dropped below threshold (0.9900)
+[2026-10-13 12:20:49] [SUCCESS] [RETRAINING] Batch 13: Local Model updated (Buffer: 5000)
+[2026-10-13 12:20:50] [WARNING] [DECISION] Batch 14 [RED]: Retraining triggered -> Accuracy (0.9738) dropped below threshold (0.9900)
+[2026-10-13 12:20:52] [SUCCESS] [RETRAINING] Batch 14: Local Model updated (Buffer: 5000)
+[2026-10-13 12:20:52] [WARNING] [DECISION] Batch 15 [RED]: Retraining triggered -> Accuracy (0.9755) dropped below threshold (0.9900)
+[2026-10-13 12:20:52] [SUCCESS] [RETRAINING] Batch 15: Local Model updated (Buffer: 5000)
+[2026-10-13 12:20:54] [WARNING] [DECISION] Batch 16 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.9670) dropped below threshold (0.9900)
+[2026-10-13 12:20:54] [SUCCESS] [RETRAINING] Batch 16: Local Model updated (Buffer: 5000)
+[2026-10-13 12:20:54] [WARNING] [DECISION] Batch 17 [RED]: Retraining triggered -> Accuracy (0.9722) dropped below threshold (0.9900)
+[2026-10-13 12:20:54] [SUCCESS] [RETRAINING] Batch 17: Local Model updated (Buffer: 5000)
+[2026-10-13 12:20:56] [WARNING] [DECISION] Batch 18 [RED]: Retraining triggered -> Accuracy (0.9730) dropped below threshold (0.9900)
+[2026-10-13 12:20:56] [SUCCESS] [RETRAINING] Batch 18: Local Model updated (Buffer: 5000)
+[2026-10-13 12:20:56] [WARNING] [DECISION] Batch 19 [RED]: Retraining triggered -> Accuracy (0.9738) dropped below threshold (0.9900)
+[2026-10-13 12:20:57] [SUCCESS] [RETRAINING] Batch 19: Local Model updated (Buffer: 5000)
+[2026-10-13 12:20:58] [WARNING] [DECISION] Batch 20 [RED]: Retraining triggered -> Significant drift in 3 features (>= threshold 3), Accuracy (0.9657) dropped below threshold (0.9900)
+[2026-10-13 12:20:58] [SUCCESS] [RETRAINING] Batch 20: Local Model updated (Buffer: 5000)
+[2026-10-13 12:20:58] [SUCCESS] [PIPELINE] Pipeline finished: GREEN=0, YELLOW=0, RED=20
+[2026-10-13 12:21:23] [INFO] [GOVERNANCE] Deployed by Human Approval. Reviewer: Human Compliance Officer. Notes: Approved via Model Update Required governance modal.

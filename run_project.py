@@ -48,7 +48,9 @@ logger.log_event("INITIALIZATION", "Starting ML Drift System (Multi-Pattern Frau
 
 # Load data
 print("📥 Loading credit card transaction data...")
-data = pd.read_csv("data/creditcard.csv")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+data_path = os.path.join(BASE_DIR, "data", "creditcard.csv")
+data = pd.read_csv(data_path)
 X_data = data.drop("Class", axis=1)
 y_data = data["Class"]
 print(f"✅ Data loaded: {X_data.shape[0]} transactions, {X_data.shape[1]} features ({y_data.sum()} total fraud cases)")
@@ -289,7 +291,7 @@ print(f"""
    Sliding Window Buffer:   {ensemble.get_status()['local_buffer_size']} samples
 
 📝 LOGGING:
-   ✅ Event log updated: retraining_log.txt
+   ✅ Event log updated: outputs/retraining_log.txt
    ✅ {len(logger.events)} events logged
 
 🎓 SYSTEM STATUS: ✅ PRODUCTION READY (HYBRID ENSEMBLE)
