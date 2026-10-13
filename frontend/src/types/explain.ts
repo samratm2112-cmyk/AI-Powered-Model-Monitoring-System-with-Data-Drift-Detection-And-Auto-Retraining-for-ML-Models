@@ -26,16 +26,16 @@ export interface SampleTransactionItem {
 
 export interface ExplainTransactionResponse {
   transaction_id: number;
-  is_fraud: number;
+  is_target_class: number;
   predicted_class: number;
   prediction_label: string;
-  fraud_probability: number;
+  anomaly_score: number;
   base_value: number;
   model_output: number;
   human_explanation?: string;
   human_sentences?: string[];
   features: FeatureShapItem[];
-  top_fraud_pushes: TopPushItem[];
+  top_anomaly_pushes: TopPushItem[];
   top_legit_pushes: TopPushItem[];
   sample_ids: SampleTransactionItem[];
 }

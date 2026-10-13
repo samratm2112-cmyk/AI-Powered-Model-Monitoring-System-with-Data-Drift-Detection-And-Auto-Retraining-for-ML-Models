@@ -10,7 +10,7 @@ class FeatureShapItem(BaseModel):
     value: float
     shap_value: float
     direction: str = Field(..., example="positive")
-    impact: str = Field(..., example="Increases Fraud Risk")
+    impact: str = Field(..., example="Increases Anomaly Score")
     abs_shap: float
     human_description: Optional[str] = None
     human_sentence: Optional[str] = None
@@ -30,15 +30,15 @@ class SampleTransactionItem(BaseModel):
 
 class ExplainTransactionResponse(BaseModel):
     transaction_id: int
-    is_fraud: int
+    is_target_class: int
     predicted_class: int
     prediction_label: str
-    fraud_probability: float
+    anomaly_score: float
     base_value: float
     model_output: float
     human_explanation: Optional[str] = None
     human_sentences: Optional[List[str]] = None
     features: List[FeatureShapItem]
-    top_fraud_pushes: List[TopPushItem]
+    top_anomaly_pushes: List[TopPushItem]
     top_legit_pushes: List[TopPushItem]
     sample_ids: List[SampleTransactionItem]

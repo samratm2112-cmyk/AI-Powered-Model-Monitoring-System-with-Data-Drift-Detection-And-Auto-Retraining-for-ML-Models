@@ -226,7 +226,7 @@ class GovernanceService:
                     "name": "Stage 2: Supervised XGBoost Classifier",
                     "type": "Supervised Gradient Boosted Decision Trees",
                     "status": "Active",
-                    "description": "Evaluates flagged transactions with calibrated decision threshold of 0.3 to confirm fraud."
+                    "description": "Evaluates flagged samples with calibrated decision threshold of 0.3 to confirm target class classification."
                 }
             },
             "deployed_model": {

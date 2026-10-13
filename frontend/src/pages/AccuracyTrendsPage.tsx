@@ -446,7 +446,7 @@ export const AccuracyTrendsPage: React.FC = () => {
             <div>
               <h4 className="font-bold text-white">Overall System Health Rating</h4>
               <p className="text-xs text-slate-300 mt-1">
-                Model Adaptation Health is rated <span className="font-bold text-emerald-400">OPTIMAL</span>. Automated local retraining successfully prevented model decay during novel fraud attacks.
+                Model Adaptation Health is rated <span className="font-bold text-emerald-400">OPTIMAL</span>. Automated local retraining successfully prevented model decay during novel target class pattern attacks.
               </p>
             </div>
           </div>

@@ -240,7 +240,7 @@ def explain_transaction(
         show_plot: Whether to call plt.show().
 
     Returns:
-        shap.Explanation object for the single transaction (Class 1 - Fraud).
+        shap.Explanation object for the single transaction (Class 1 - Target/Anomalous).
     """
     # 1. Normalize transaction_data into a 1-row DataFrame
     if isinstance(transaction_data, pd.Series):
@@ -282,10 +282,10 @@ def explain_transaction(
         probs = model.predict_proba(df_trans_scaled)[0]
         prob_fraud = float(probs[1]) if len(probs) > 1 else float(probs[0])
         pred_class = int(prob_fraud >= 0.5)
-        pred_label = "FRAUD 🔴" if pred_class == 1 else "LEGITIMATE 🟢"
+        pred_label = "ANOMALOUS 🔴" if pred_class == 1 else "BASELINE 🟢"
     elif hasattr(model, "predict"):
         pred_class = int(model.predict(df_trans_scaled)[0])
-        pred_label = "FRAUD 🔴" if pred_class == 1 else "LEGITIMATE 🟢"
+        pred_label = "ANOMALOUS 🔴" if pred_class == 1 else "BASELINE 🟢"
 
     # Identify top contributing features towards fraud
     feature_names_list = df_trans_scaled.columns.tolist()
@@ -299,16 +299,16 @@ def explain_transaction(
     print(f"🔎 LOCAL SHAP TRANSACTION EXPLANATION")
     print("─" * 70)
     if prob_fraud is not None:
-        print(f"  • Model Prediction: {pred_label} (Fraud Probability: {prob_fraud*100:.2f}%)")
+        print(f"  • Model Prediction: {pred_label} (Anomaly Score: {prob_fraud*100:.2f}%)")
     print(f"  • Base Value E[f(X)]: {single_exp.base_values:.4f}")
     print(f"  • Model Output f(x):  {single_exp.base_values + single_exp.values.sum():.4f}")
 
-    print("\n  ⬆️ TOP FEATURES PUSHING TOWARDS FRAUD (+ SHAP):")
+    print("\n  ⬆️ TOP FEATURES PUSHING TOWARDS TARGET CLASS (+ SHAP):")
     for feat, val, raw_val in top_fraud_pushes:
         print(f"     + {feat:8s} | SHAP: +{val:.4f} | Feature Value: {raw_val:.4f}")
 
     if top_legit_pushes:
-        print("\n  ⬇️ TOP FEATURES PUSHING TOWARDS LEGITIMATE (- SHAP):")
+        print("\n  ⬇️ TOP FEATURES PUSHING TOWARDS BASELINE (- SHAP):")
         for feat, val, raw_val in top_legit_pushes:
             print(f"     - {feat:8s} | SHAP: {val:.4f} | Feature Value: {raw_val:.4f}")
 
@@ -316,7 +316,7 @@ def explain_transaction(
     if output_path or show_plot:
         fig = plt.figure(figsize=(11, 6))
         shap.plots.waterfall(single_exp, max_display=max_display, show=False)
-        title_suffix = f" (Fraud Prob: {prob_fraud*100:.1f}%)" if prob_fraud is not None else ""
+        title_suffix = f" (Anomaly Score: {prob_fraud*100:.1f}%)" if prob_fraud is not None else ""
         plt.title(f"SHAP Waterfall Explanation: Flagged Transaction{title_suffix}",
                   fontsize=13, fontweight='bold', pad=15)
         plt.tight_layout()
@@ -360,7 +360,7 @@ if __name__ == "__main__":
     # Use a representative sample for fast, robust SHAP training and analysis
     sample_size = min(30000, len(data))
     data_sample = data.sample(n=sample_size, random_state=42)
-    print(f"Using representative sample of {sample_size} records ({data_sample['Class'].sum()} fraud events)")
+    print(f"Using representative sample of {sample_size} records ({data_sample['Class'].sum()} target class events)")
 
     X = data_sample.drop("Class", axis=1)
     y = data_sample["Class"]
@@ -410,7 +410,7 @@ if __name__ == "__main__":
     X_test_eval = X_test_scaled.loc[eval_indices]
     y_test_eval = y_test.loc[eval_indices]
 
-    print(f"📊 Calculating SHAP values for {len(X_test_eval)} evaluation transactions ({y_test_eval.sum()} fraud cases)...")
+    print(f"📊 Calculating SHAP values for {len(X_test_eval)} evaluation records ({y_test_eval.sum()} target class cases)...")
     shap_explanation = explainer(X_test_eval)
 
     # For binary classification: index 1 corresponds to Fraud (Class 1)
@@ -436,7 +436,7 @@ if __name__ == "__main__":
         'SHAP_Importance': mean_abs_shap
     }).sort_values('SHAP_Importance', ascending=False).reset_index(drop=True)
 
-    print("🏆 Top 15 Features by Global SHAP Importance (Impact on Fraud Detection):")
+    print("🏆 Top 15 Features by Global SHAP Importance (Impact on Target Class Detection):")
     for idx, row in importance_df.head(15).iterrows():
         print(f"  #{idx+1:2d}. {row['Feature']:8s} - Mean |SHAP|: {row['SHAP_Importance']:.6f}")
 
@@ -492,7 +492,7 @@ if __name__ == "__main__":
     sample_transaction_raw = X_test.loc[sample_fraud_idx]
     actual_label = y_test.loc[sample_fraud_idx]
 
-    print(f"Selected Test Sample ID: {sample_fraud_idx} (Ground Truth: {'Fraud' if actual_label == 1 else 'Legitimate'})")
+    print(f"Selected Test Sample ID: {sample_fraud_idx} (Ground Truth: {'Anomalous' if actual_label == 1 else 'Baseline'})")
 
     # Call explain_transaction function and save dedicated waterfall plot
     single_explanation = explain_transaction(
@@ -525,7 +525,7 @@ if __name__ == "__main__":
     )
     plt.title(
         "Global SHAP Summary Plot: Feature Importance & Direction of Impact\n"
-        "(Red = High Feature Value | Blue = Low Feature Value | Positive SHAP = Increases Fraud Risk)",
+        "(Red = High Feature Value | Blue = Low Feature Value | Positive SHAP = Increases Target Class Risk)",
         fontsize=13,
         fontweight='bold',
         pad=15
@@ -541,8 +541,8 @@ if __name__ == "__main__":
         show=False
     )
     plt.title(
-        f"Local SHAP Explanation: Why Transaction #{sample_fraud_idx} Was Flagged As Fraud\n"
-        f"(Base Value E[f(X)] = {single_explanation.base_values:.3f} ➔ Model Output f(x) = {single_explanation.base_values + single_explanation.values.sum():.3f})",
+        f"Local SHAP Explanation: Why Transaction #{sample_fraud_idx} Was Flagged As Anomalous\n"
+        f"(Base Value E[f(X)] = {single_explanation.base_values:.3f} ➡ Model Output f(x) = {single_explanation.base_values + single_explanation.values.sum():.3f})",
         fontsize=13,
         fontweight='bold',
         pad=15

@@ -98,7 +98,7 @@ class ExplainabilityService:
             row = cls._df.iloc[idx]
             cls._samples.append({
                 "id": int(idx),
-                "label": f"Transaction #{idx} (Flagged Fraud - ${float(row['Amount']):.2f})",
+                "label": f"Transaction #{idx} (Flagged Anomaly - ${float(row['Amount']):.2f})",
                 "class_label": 1,
                 "amount": round(float(row["Amount"]), 2)
             })
@@ -128,7 +128,7 @@ class ExplainabilityService:
         sample = X_test.iloc[int(transaction_id)]
         print(f"SENSING REQUEST: Explaining transaction index {transaction_id} with values {sample.values}", flush=True)
 
-        is_fraud = int(cls._df.iloc[transaction_id].get("Class", 0)) if "Class" in cls._df.columns else 0
+        is_target_class = int(cls._df.iloc[transaction_id].get("Class", 0)) if "Class" in cls._df.columns else 0
 
         # Prepare feature vector for the specific sliced transaction
         features_df = pd.DataFrame([sample], columns=X_test.columns)
@@ -141,12 +141,12 @@ class ExplainabilityService:
         # Predict probability for the specific transaction
         if hasattr(cls._model, "predict_proba"):
             probs = cls._model.predict_proba(features_scaled)[0]
-            fraud_prob = float(probs[1]) if len(probs) > 1 else float(probs[0])
+            anomaly_prob = float(probs[1]) if len(probs) > 1 else float(probs[0])
         else:
-            fraud_prob = float(cls._model.predict(features_scaled)[0])
+            anomaly_prob = float(cls._model.predict(features_scaled)[0])
 
-        predicted_class = int(fraud_prob >= 0.3)
-        prediction_label = "FRAUD 🔴" if predicted_class == 1 else "LEGITIMATE 🟢"
+        predicted_class = int(anomaly_prob >= 0.3)
+        prediction_label = "ANOMALOUS 🔴" if predicted_class == 1 else "BASELINE 🟢"
 
         # Pass the specific row to TreeExplainer to get local values for that exact user
         shap_values = cls._explainer(features_scaled)
@@ -158,7 +158,7 @@ class ExplainabilityService:
 
         shap_array = single_exp.values
         if len(shap_array.shape) > 1 and shap_array.shape[1] > 1:
-            shap_array = shap_array[:, 1]  # Class 1 (Fraud)
+            shap_array = shap_array[:, 1]  # Class 1 (Target/Anomalous)
 
         # Import human explanation helpers from root_cause
         try:
@@ -201,7 +201,7 @@ class ExplainabilityService:
             raw_val = round(float(sample[col]), 4)
             s_val = round(float(shap_array[idx]), 4)
             direction = "positive" if s_val > 0 else "negative"
-            impact = "Increases Fraud Risk" if s_val > 0 else "Pushes Towards Legitimate"
+            impact = "Increases Anomaly Score" if s_val > 0 else "Pushes Towards Baseline"
             desc = get_feature_description(col)
             sentence = get_single_feature_sentence(col, s_val, raw_val)
 
@@ -243,16 +243,16 @@ class ExplainabilityService:
 
         return {
             "transaction_id": transaction_id,
-            "is_fraud": is_fraud,
+            "is_target_class": is_target_class,
             "predicted_class": predicted_class,
             "prediction_label": prediction_label,
-            "fraud_probability": round(fraud_prob, 4),
+            "anomaly_score": round(anomaly_prob, 4),
             "base_value": round(base_val, 4),
             "model_output": model_output,
             "human_explanation": human_explanation,
             "human_sentences": human_sentences,
             "features": feature_items,
-            "top_fraud_pushes": top_fraud[:5],
+            "top_anomaly_pushes": top_fraud[:5],
             "top_legit_pushes": top_legit[:5],
             "sample_ids": cls._samples
         }

@@ -85,15 +85,15 @@ class BatchStreamIngestion:
                     batch_df["V1"] = batch_df["V1"] * 1.5
                     batch_df["V2"] = batch_df["V2"] * 1.5
                 elif pattern_id == 8:
-                    # Novel Fraud Pattern D Attack Vector
-                    drift_type = "Novel Fraud Pattern D"
+                    # Novel Target Class Pattern D Attack Vector
+                    drift_type = "Novel Target Class Pattern D"
                     fraud_mask = (batch_df["Class"] == 1)
                     batch_df.loc[fraud_mask, "V11"] += 5.0
                     batch_df.loc[fraud_mask, "V12"] -= 6.0
                     batch_df.loc[fraud_mask, "V14"] -= 5.5
                 elif pattern_id == 10:
-                    # Strong Distribution Drift + Novel Fraud Attack
-                    drift_type = "Strong Drift + Novel Fraud"
+                    # Strong Distribution Drift + Novel Target Class Pattern
+                    drift_type = "Strong Drift + Novel Target Class"
                     batch_df["Amount"] = batch_df["Amount"] * 3.5
                     batch_df["V1"] = batch_df["V1"] * 1.8
                     batch_df["V3"] = batch_df["V3"] + 1.5
@@ -109,7 +109,7 @@ class BatchStreamIngestion:
                 'start_idx': start_idx,
                 'end_idx': end_idx,
                 'size': len(batch_df),
-                'fraud_count': int(y_batch.sum()),
+                'anomaly_count': int(y_batch.sum()),
                 'simulated_drift_type': drift_type
             }
             

@@ -216,7 +216,7 @@ export const SettingsPage: React.FC = () => {
               1. Average post-adaptation ensemble accuracy remains exceptionally strong at <strong className="text-emerald-600 dark:text-emerald-400">{avgAcc.toFixed(2)}%</strong> (well above the 99.00% production threshold).
             </p>
             <p className="leading-relaxed">
-              2. Retraining triggers successfully recovered performance during moderate drift (Batch 6) and novel fraud attack scenarios (Batch 10) without manual intervention.
+              2. Retraining triggers successfully recovered performance during moderate drift (Batch 6) and novel target class pattern scenarios (Batch 10) without manual intervention.
             </p>
           </div>
         </div>
@@ -304,7 +304,7 @@ export const SettingsPage: React.FC = () => {
               <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
               <div>
                 <span className="font-bold text-amber-900 dark:text-amber-200">Investigate Batch 10 Stream Data</span>
-                <p className="text-amber-700 dark:text-amber-400 mt-0.5">Novel Fraud Pattern D detected with 6 shifted features requiring local adaptation.</p>
+                <p className="text-amber-700 dark:text-amber-400 mt-0.5">Novel Target Class Pattern D detected with 6 shifted features requiring local adaptation.</p>
               </div>
             </div>
           </div>

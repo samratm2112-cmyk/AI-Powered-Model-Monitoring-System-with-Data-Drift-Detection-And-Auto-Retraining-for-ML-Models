@@ -89,7 +89,7 @@ export const EnsembleMonitor: React.FC = () => {
             </span>
           </div>
           <p className="text-xs text-slate-500 dark:text-slate-400 mb-2 leading-relaxed">
-            {stages?.stage2_expert?.description || 'Processes flagged transactions with calibrated decision threshold of 0.3 to confirm fraud.'}
+            {stages?.stage2_expert?.description || 'Processes flagged samples with calibrated decision threshold of 0.3 to confirm target class classification.'}
           </p>
           <div className="flex items-center justify-between text-xs text-slate-600 dark:text-slate-400 pt-2 border-t border-slate-100 dark:border-slate-800/80">
             <span>Classifier:</span>

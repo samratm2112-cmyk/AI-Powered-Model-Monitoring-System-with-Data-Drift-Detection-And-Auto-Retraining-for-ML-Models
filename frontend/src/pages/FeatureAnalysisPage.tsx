@@ -69,11 +69,11 @@ export const FeatureAnalysisPage: React.FC = () => {
 
       if (feature.toLowerCase() === 'amount') {
         category = 'Financial';
-        description = 'Transaction Amount feature shifted during simulated micro-skimming or high-value fraud patterns.';
+        description = 'Transaction Amount feature shifted during simulated micro-skimming or high-value anomalous patterns.';
         severity = 'High';
       } else if (['v11', 'v12', 'v14'].includes(feature.toLowerCase())) {
         category = 'Novel Attack Vector';
-        description = 'Unseen behavioral shift characteristic of novel fraud archetype Type D.';
+        description = 'Unseen behavioral shift characteristic of novel target class archetype Type D.';
         severity = 'High';
       } else if (['v1', 'v2', 'v3', 'v4', 'v5'].includes(feature.toLowerCase())) {
         category = 'Behavioral Velocity';

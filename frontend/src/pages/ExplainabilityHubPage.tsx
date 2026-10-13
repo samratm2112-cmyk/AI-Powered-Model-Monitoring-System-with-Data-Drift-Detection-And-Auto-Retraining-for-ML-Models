@@ -80,7 +80,7 @@ export const ExplainabilityHubPage: React.FC = () => {
               <span>SHAP Interpretability Engine</span>
             </div>
             <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight">
-              Explainability Hub (Local SHAP Analysis)
+              Drift Root Cause Analysis
             </h1>
             <p className="text-sm md:text-base text-slate-300 max-w-2xl">
               Inspect granular, mathematical feature-level attributions for any transaction using Shapley Additive Explanations.
@@ -228,17 +228,17 @@ export const ExplainabilityHubPage: React.FC = () => {
             {/* Probability Gauge */}
             <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
               <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
-                Fraud Probability
+                Anomaly Score
               </span>
               <div className="mt-2 flex items-baseline space-x-2">
                 <span className="text-3xl font-extrabold text-slate-900 dark:text-slate-100">
-                  {(data.fraud_probability * 100).toFixed(2)}%
+                  {(data.anomaly_score * 100).toFixed(2)}%
                 </span>
               </div>
               <div className="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden mt-2">
                 <div
-                  style={{ width: `${Math.min(100, data.fraud_probability * 100)}%` }}
-                  className={`h-full ${data.fraud_probability >= 0.3 ? 'bg-rose-500' : 'bg-emerald-500'}`}
+                  style={{ width: `${Math.min(100, data.anomaly_score * 100)}%` }}
+                  className={`h-full ${data.anomaly_score >= 0.3 ? 'bg-rose-500' : 'bg-emerald-500'}`}
                 ></div>
               </div>
             </div>
@@ -250,7 +250,7 @@ export const ExplainabilityHubPage: React.FC = () => {
               </span>
               <div className="mt-2 flex items-center space-x-2">
                 <span className="text-xl font-bold text-slate-800 dark:text-slate-200">
-                  {data.is_fraud === 1 ? 'Class 1 (Actual Fraud)' : 'Class 0 (Legitimate)'}
+                  {data.is_target_class === 1 ? 'Class 1 (Anomalous)' : 'Class 0 (Baseline)'}
                 </span>
               </div>
               <span className="text-xs text-slate-500 dark:text-slate-400 mt-1 block">
@@ -282,19 +282,19 @@ export const ExplainabilityHubPage: React.FC = () => {
           {/* TOP PUSH SUMMARY CARDS */}
           {/* ============================================================================ */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Top Fraud Pushes (+ SHAP) */}
+            {/* Top Anomaly Pushes (+ SHAP) */}
             <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-rose-200/80 dark:border-rose-900/40 shadow-xs space-y-3">
               <div className="flex items-center space-x-2 text-rose-600 dark:text-rose-400">
                 <TrendingUp className="w-4 h-4" />
                 <h3 className="text-sm font-bold uppercase tracking-wide">
-                  Top Features Pushing Towards Fraud (+ SHAP)
+                  Top Features Pushing Towards Anomaly (+ SHAP)
                 </h3>
               </div>
               <p className="text-xs text-slate-500 dark:text-slate-400">
-                These feature deviations contributed the strongest positive pressure towards the fraud verdict:
+                These feature deviations contributed the strongest positive pressure towards the anomalous verdict:
               </p>
               <div className="space-y-2">
-                {data.top_fraud_pushes?.map((item) => (
+                {data.top_anomaly_pushes?.map((item) => (
                   <div
                     key={item.feature}
                     className="p-3 rounded-xl bg-rose-50/70 dark:bg-rose-950/40 border border-rose-200/60 dark:border-rose-900/40 text-xs space-y-1"
@@ -370,14 +370,14 @@ export const ExplainabilityHubPage: React.FC = () => {
                   Dynamic SHAP Feature Contribution Waterfall
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400">
-                  Relative impact of the top 14 features on transaction #{data.transaction_id}. Red pushes toward fraud (+), Green pushes toward normal (-).
+                  Relative impact of the top 14 features on transaction #{data.transaction_id}. Red pushes toward anomaly (+), Green pushes toward baseline (-).
                 </p>
               </div>
 
               <div className="flex items-center space-x-3 text-xs">
                 <span className="flex items-center space-x-1 text-slate-600 dark:text-slate-400">
                   <span className="w-3 h-3 rounded-xs bg-rose-500"></span>
-                  <span>+ SHAP (Fraud Risk)</span>
+                  <span>+ SHAP (Anomaly Risk)</span>
                 </span>
                 <span className="flex items-center space-x-1 text-slate-600 dark:text-slate-400">
                   <span className="w-3 h-3 rounded-xs bg-emerald-500"></span>
@@ -415,7 +415,7 @@ export const ExplainabilityHubPage: React.FC = () => {
                             <p className="font-bold text-sm text-indigo-300">{item.feature}</p>
                             <p className="text-slate-300">Feature Value: <strong>{item.value}</strong></p>
                             <p className={item.shap > 0 ? 'text-rose-400 font-bold' : 'text-emerald-400 font-bold'}>
-                              SHAP Impact: {item.shap > 0 ? `+${item.shap.toFixed(4)} (Increases Fraud)` : `${item.shap.toFixed(4)} (Pushes Legit)`}
+                              SHAP Impact: {item.shap > 0 ? `+${item.shap.toFixed(4)} (Increases Anomaly Score)` : `${item.shap.toFixed(4)} (Pushes Baseline)`}
                             </p>
                           </div>
                         );
@@ -470,7 +470,7 @@ export const ExplainabilityHubPage: React.FC = () => {
                   className="px-3 py-1.5 rounded-lg text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300"
                 >
                   <option value="all">All Features</option>
-                  <option value="positive">+ SHAP (Fraud)</option>
+                  <option value="positive">+ SHAP (Anomaly)</option>
                   <option value="negative">- SHAP (Legitimate)</option>
                 </select>
               </div>

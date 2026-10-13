@@ -41,7 +41,7 @@ def ensure_dataset_exists(file_path=None, n_samples=30000, force_generate=True):
     if os.path.exists(file_path) and not force_generate:
         return
 
-    print(f"📦 Generating enriched Credit Card dataset with 3 historical fraud archetypes ({n_samples} rows)...")
+    print(f"📦 Generating enriched Credit Card dataset with 3 historical target class archetypes ({n_samples} rows)...")
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
     np.random.seed(42)
     
@@ -84,7 +84,7 @@ def ensure_dataset_exists(file_path=None, n_samples=30000, force_generate=True):
 
     df = pd.DataFrame(df_dict)
     df.to_csv(file_path, index=False)
-    print(f"✅ Generated dataset with {n_fraud} multi-pattern historical fraud cases (Types A, B, C).")
+    print(f"✅ Generated dataset with {n_fraud} multi-pattern historical target class cases (Types A, B, C).")
 
 # ============================================================================
 # STRUCTURED LOGGING SYSTEM
@@ -506,7 +506,7 @@ if __name__ == "__main__":
     print("STEP 1: LOADING MULTI-PATTERN HISTORICAL DATA & TRAINING GLOBAL MODEL")
     print("="*70)
 
-    logger.log_event("INITIALIZATION", "Starting ML Drift System with Multi-Pattern Historical Fraud Dataset")
+    logger.log_event("INITIALIZATION", "Starting ML Monitoring System with Multi-Pattern Historical Dataset (Demo: Credit Card Fraud Detection)")
 
     data = pd.read_csv(DEFAULT_DATA_FILE)
 
@@ -523,8 +523,8 @@ if __name__ == "__main__":
     ensemble = GlobalLocalEnsemble(global_weight=0.7, threshold=0.3, n_estimators=100, random_state=42)
     ensemble.fit_global(X_train, y_train)
 
-    print(f"✅ Global Model (Veteran Expert) trained on {len(X_train)} historical transactions ({y_train.sum()} fraud cases of Types A, B, C)")
-    logger.log_event("INITIALIZATION", f"✅ Initial Global Model trained on {len(X_train)} samples with {y_train.sum()} fraud events")
+    print(f"✅ Global Model (Veteran Expert) trained on {len(X_train)} historical records ({y_train.sum()} target class cases of Types A, B, C)")
+    logger.log_event("INITIALIZATION", f"✅ Initial Global Model trained on {len(X_train)} samples with {y_train.sum()} target class events")
 
     # Preserve old model baseline for fail-safe rollback
     old_model = copy.deepcopy(ensemble)
@@ -533,7 +533,7 @@ if __name__ == "__main__":
     # STEP 2: Simulate New Data with Drift & Novel Fraud (Type D)
     # ============================================================================
     print("\n" + "="*70)
-    print("STEP 2: SIMULATING NEW DATA WITH DRIFT & NOVEL FRAUD (TYPE D)")
+    print("STEP 2: SIMULATING NEW DATA WITH DISTRIBUTION DRIFT & NOVEL TARGET CLASS PATTERN (TYPE D)")
     print("="*70)
 
     # Use next 10000 for testing (simulating new incoming data stream)
@@ -551,9 +551,9 @@ if __name__ == "__main__":
     new_data.loc[fraud_mask, "V12"] -= 6.0
     new_data.loc[fraud_mask, "V14"] -= 5.5
 
-    print("✅ New data loaded with feature drift & novel fraud pattern (Type D) applied")
+    print("✅ New data loaded with feature drift & novel target class pattern (Type D) applied")
     print(f"   - Distribution Shift: Amount ×3, V1 ×1.5, V2 ×1.5, V3 +1")
-    print(f"   - Novel Attack Shift: V11 +5.0, V12 -6.0, V14 -5.5 for production fraud cases")
+    print(f"   - Novel Pattern Shift: V11 +5.0, V12 -6.0, V14 -5.5 for production target class cases")
 
     # ============================================================================
     # STEP 3: Prepare New Data
@@ -568,7 +568,7 @@ if __name__ == "__main__":
     # Apply same scaling
     X_new["Amount"] = scaler.transform(X_new[["Amount"]])
 
-    print(f"New data shape: {X_new.shape} with {y_new.sum()} novel fraud cases")
+    print(f"New data shape: {X_new.shape} with {y_new.sum()} novel target class cases")
 
     # ============================================================================
     # STEP 4: Evaluate Model on New Data (BEFORE RETRAINING - Old Model Baseline)

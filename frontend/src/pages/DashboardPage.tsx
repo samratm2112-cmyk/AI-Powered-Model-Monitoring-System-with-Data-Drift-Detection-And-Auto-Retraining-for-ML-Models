@@ -139,6 +139,22 @@ export const DashboardPage: React.FC = () => {
       )}
 
       {/* ============================================================================ */}
+      {/* DEMO USE-CASE BANNER */}
+      {/* ============================================================================ */}
+      <div className="flex items-center gap-3 px-5 py-3 rounded-xl bg-gradient-to-r from-amber-500/15 via-orange-500/10 to-amber-500/15 border border-amber-400/40 dark:border-amber-500/30">
+        <span className="text-xl">🔬</span>
+        <div className="flex-1 min-w-0">
+          <span className="text-sm font-bold text-amber-800 dark:text-amber-300">
+            Current Use-Case: Credit Card Fraud Detection (Demonstration Mode)
+          </span>
+          <span className="hidden sm:inline text-xs text-amber-700/70 dark:text-amber-400/70 ml-2">
+            — This system is a generic ML Model Monitoring Framework. The credit card dataset is a reference implementation only.
+          </span>
+        </div>
+        <span className="shrink-0 px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase bg-amber-500 text-white tracking-wide">Demo</span>
+      </div>
+
+      {/* ============================================================================ */}
       {/* SECTION 1: HERO HEADER */}
       {/* ============================================================================ */}
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 p-8 text-white shadow-lg border border-slate-800">
@@ -462,6 +478,80 @@ export const DashboardPage: React.FC = () => {
             Sliding window memory size
           </p>
         </div>
+
+        {/* KPI 9: System Health */}
+        {(() => {
+          const redCount = summary?.red_count || 0;
+          const yellowCount = summary?.yellow_count || 0;
+          const total = summary?.total_batches_processed || 1;
+          const driftRatio = (redCount + yellowCount) / total;
+          const healthStatus = redCount > 0 ? 'RED' : yellowCount > 0 ? 'YELLOW' : 'GREEN';
+          const healthColor = healthStatus === 'RED'
+            ? 'text-rose-600 dark:text-rose-400'
+            : healthStatus === 'YELLOW'
+            ? 'text-amber-600 dark:text-amber-400'
+            : 'text-emerald-600 dark:text-emerald-400';
+          const healthBg = healthStatus === 'RED'
+            ? 'bg-rose-50 dark:bg-rose-950/60'
+            : healthStatus === 'YELLOW'
+            ? 'bg-amber-50 dark:bg-amber-950/60'
+            : 'bg-emerald-50 dark:bg-emerald-950/60';
+          const healthDesc = healthStatus === 'RED'
+            ? 'Significant drift — retraining triggered'
+            : healthStatus === 'YELLOW'
+            ? 'Minor variation detected'
+            : 'All streams nominal';
+          return (
+            <div className="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                  System Health
+                </span>
+                <div className={`p-2 rounded-lg ${healthBg} ${healthColor}`}>
+                  <Activity className="w-5 h-5" />
+                </div>
+              </div>
+              <div className="mt-3 flex items-baseline justify-between">
+                <span className={`text-2xl font-extrabold flex items-center gap-2 ${healthColor}`}>
+                  <span className={`w-3 h-3 rounded-full animate-pulse ${healthStatus === 'RED' ? 'bg-rose-500' : healthStatus === 'YELLOW' ? 'bg-amber-500' : 'bg-emerald-500'}`}></span>
+                  {healthStatus}
+                </span>
+              </div>
+              <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">{healthDesc}</p>
+            </div>
+          );
+        })()}
+
+        {/* KPI 10: Governance Status */}
+        {(() => {
+          const isPending = deploymentStatus?.has_pending_deployment;
+          return (
+            <div className="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                  Governance Status
+                </span>
+                <div className={`p-2 rounded-lg ${
+                  isPending
+                    ? 'bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400'
+                    : 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400'
+                }`}>
+                  {isPending ? <ShieldAlert className="w-5 h-5" /> : <ShieldCheck className="w-5 h-5" />}
+                </div>
+              </div>
+              <div className="mt-3">
+                <span className={`text-base font-extrabold ${
+                  isPending ? 'text-amber-600 dark:text-amber-400' : 'text-emerald-600 dark:text-emerald-400'
+                }`}>
+                  {isPending ? 'Pending Human Approval' : 'Active'}
+                </span>
+              </div>
+              <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                {isPending ? 'Candidate model awaiting review' : 'Deployed model is production-approved'}
+              </p>
+            </div>
+          );
+        })()}
       </div>
 
       {/* ============================================================================ */}
